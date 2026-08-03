@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100vh;
+}
+
+#container{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "header header header"
+                        "main main main"
+                        "footer footer footer";
+    text-align: center;
+}
+
+header{
+    height: 15vh;
+    grid-area: header;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+}
+
+nav{
+    background-color: pink;
+    height: 40%;
+}
+
+main{
+    height: 70vh;
+    grid-area: main;
+    background-color: rgb(236, 40, 236);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "carrossel carrossel carrossel carrossel"
+                        "catAmb catAmb catAmb catAmb"
+                        "catEst catEst catEst catEst"
+                        "figure figure figure figure";
+    gap: 3px;
+    padding: 5px;
+}
+
+#carrossel{
+    grid-area: carrossel;
+    background-color: rgb(255, 255, 0);
+}
+
+#catAmb{
+    grid-area: catAmb;
+    background-color: rgb(255, 255, 0);
+}
+
+#catEst{
+    grid-area: catEst;
+    background-color: rgb(255, 255, 0);
+}
+
+
+figure{
+    grid-area: figure;
+    background-color: lightcoral;
+}
+
+footer{
+    height: 15vh;
+    grid-area: footer;
+    background-color: lightgreen;
+}
