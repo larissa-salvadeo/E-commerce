@@ -5,27 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumière</title>
     <link rel="stylesheet" href="style.css">
+    <script src="arquivo.js"></script>
 </head>
 <body id="container">
     <!------HEADER------>
     <header> <!--Logo-->
-        <p>HEADER</p>
-        <nav> <!--Login, menu, carrinho, busca e home-->
-            <p>NAV</p>
+
+        <div class="bloco-titulo">
+                <a href="index.html"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
+        </div>
+        
+        <div class="topnav">
+            <a href="index.html">Home</a>
+            <a href="#news">Produtos</a>
+            <a href="#news">Sobre nós</a>
+            <a href="carrinho.html">Carrinho</a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+  <         /div>
+        </div>
+
+         <!--<nav> <--Login, menu, carrinho, busca e home->
+            <ul class="menu">
+                <li><a href="busca.html"><img src="Imagens/Lupa.png" alt="Busca" width="120px" height="90px"></a></li>
+                <li><a href="login.html"><img src="Imagens/Pessoa.png" alt="Login" width="120px" height="90px"></a></li>
+                <li><a href="menu.html"><img src="Imagens/Casa.png" alt="Menu" width="120px" height="90px"></a></li>
+                <li><a href="carrinho.html"><img src="Imagens/Carrinho.png" alt="Carrinho" width="120px" height="90px"></a></li>
+            </ul>-->
+            
         </nav>
     </header>
 
     <!------MAIN------>
     <main>
-        <p>MAIN</p>
-        <section id="carrossel"> <!--Carrossel-->
+        <section id="carrossel">
             <p>CARROSSEL</p>
+            <div class="slideshow-container">
+
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img src="Imagens/Ambiente.png">
+                    <div class="text">Caption Text</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img src="Imagens/Estudo.png">
+                    <div class="text">Caption Two</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <img src="Imagens/Ambiente.png">
+                    <div class="text">Caption Three</div>
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
         </section>
+
+
+        <!------------CATEGORIAS------------>
+
+        
         <section id="catAmb"> <!--Categoria-->
-            <p>CATEGORIA AMBIENTE</p>
+        <a class = "img_section" href="catAmb.html"><img src="Imagens/Ambiente.png" alt="Categoria Ambiente"></a>
         </section>
         <section id="catEst"> <!--Categoria-->
-            <p>CATEGORIA ESTUDO</p>
+            <a class = "img_section" href="catEst.html"><img src="Imagens/Estudo.png" alt="Categoria Estudo"></a>
         </section>
         <figure> <!--Vídeo-->
             <p>VÍDEO</p>
@@ -35,6 +93,10 @@
     <!------FOOTER------>
     <footer> <!--Logo, redes sociais, sobre nos, direitos reservados-->
         <p>FOOTER</p>
+        <a href="missao.html">Missão, visão e valores</a>
+        <a href="devs.html">Devs</a>
+        <a href="redes.html">Redes Sociais</a>
+        <a href="contato.html">Contato</a>
     </footer>
 </body>
 </html>
