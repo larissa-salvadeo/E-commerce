@@ -9,112 +9,25 @@ html, body{
     width: 100%;
 }
 
-/*Começo Carrossel*/
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-/*Fim Carrossel*/
-
 #container{
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 15vh 70vh 15vh;
-    grid-template-areas: "header header header"
-                        "main main main"
-                        "footer footer footer";
+    grid-template-rows: auto 1fr auto; 
+    grid-template-areas: 
+        "header header header"
+        "main main main"
+        "footer footer footer";
     text-align: center;
 }
 
 header{
-    height: 15vh;
     grid-area: header;
-    background-color: lightblue;
+    background-color: #5F8565;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: "logo nav nav nav nav";
+
     
 }
 
@@ -122,15 +35,88 @@ header{
     grid-area: logo;
 }
 
-nav{
+.navheader{
     grid-area: nav;
-    height: 40%;
+    height: 85%;
+    background-color: #5F8565;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 12px;
+}
+
+.pesquisa {
+  width: 100%;
+  display: flex; 
+  margin-bottom: 10px;
+}
+
+.pesquisa form {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 500px;
+}
+
+.pesquisa input[type="text"] {
+  width: 100%;
+  padding: 8px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px; 
+  background-color: #fff;
+}
+
+.pesquisa button {
+  padding: 8px 16px;
+  background-color: #1E341F; 
+  color: white;
+  font-size: 15px;
+  border: 1px solid white;  
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.pesquisa button:hover {
+  background-color: #5F8565;
+}
+
+
+.menu-links {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 15px;
+}
+
+.menu-links a {
+  display: inline-block;
+  color: #F2E6D8;
+  text-align: center;
+  padding: 12px 18px;
+  text-decoration: none;
+  font-size: 16px;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.active {
+  background-color: #1E341F;
+  transform: scale(1.02);
+}
+
+.menu-links a:hover,
+.menu-links a.active {
+  border-bottom: 3px solid #1E341F;
 }
 
 main{
-    height: 70vh;
     grid-area: main;
-    background-color: rgb(236, 40, 236);
+    background-color: #F2E6D8;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas: "carrossel carrossel carrossel carrossel"
@@ -140,41 +126,94 @@ main{
     padding: 5px;
 }
 
-#carrossel{
+.slideshow-container{
     grid-area: carrossel;
-    background-color: rgb(255, 255, 0);
+    background-color:#F2E6D8;
     height: 450px;
 }
 
 #catAmb{
     grid-area: catAmb;
-    background-color: rgb(255, 255, 0);
+    background-color: #F2E6D8;
 }
 
 #catEst{
     grid-area: catEst;
-    background-color: rgb(255, 255, 0);
+    background-color: #F2E6D8;
 }
 
 section a img{
-    width: 100%;
-    height: 100%;
+    padding-top: 100px;
+    width: 90%;
+    height: 80%;
     object-fit: cover;
+    border-radius: 15px;
+}
+
+section a img:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    opacity: 0.8;
 }
 
 #catAmb, #catEst{
-    height: 400px;
+    height: 682px;
 }
 
 figure{
     grid-area: figure;
-    background-color: lightcoral;
+    border-radius: 15px;
+    background-color: black;
 }
 
 footer{
-    height: 5vh ;
     grid-area: footer;
-    background-color: lightgreen;
+    text-align: center;
+    background-color: #1E341F;
+}
+
+footer nav ul{
+  list-style: none;
+  text-decoration:none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap:1.5rem;
+}
+
+footer nav ul li a{
+  float: left;
+  display: block;
+  color: #F2E6D8;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-bottom: 3px solid transparent;
+}
+
+footer nav ul li a:hover{
+  border-bottom: 3px solid #5F8565;
+}
+
+footer nav ul li a.active{
+  border-bottom: 3px solid #5F8565;
+}
+
+footer p{
+  font-size: 0.875rem;
+  color:#F2E6D8;
+}
+
+footer img{
+  width: auto;
+  height: 160px;
+}
+
+main figure video {
+    width: 50%;
+    height: 360px;
+    object-fit: cover;
 }
 
 nav ul{
@@ -186,61 +225,152 @@ nav ul{
 
 .bloco-titulo{
     display: flex;
+}
 
+.bloco-titulo img{
+  width: auto;
+  height: 100px;
+  padding: 3px;
 }
 
 .bloco-titulo a{
-    margin:0; 
+  margin:0; 
 }
 
 body {
-    margin:0;
-}
+  margin:0;
+  font-family: "Merriweather", serif;
 
-.topnav {
-  overflow: hidden;
 }
-
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  border-bottom: 3px solid transparent;
-}
-
-.topnav a:hover {
-  border-bottom: 3px solid rgb(4, 95, 1);
-}
-
-.topnav a.active {
-  border-bottom: 3px solid rgb(4, 95, 1);
-}
-
 
 /*Media queries-Responsividade*/
 
 /*Mobile*/
 @media screen and (max-width:600px){
-    #container{
-        grid-template-areas: "header header header"
-                        "main main main"
-                        "footer footer footer"
-                        "nav nav nav nav";
+    header{
+        height:70%;
+    }
+    .navheader{
+        height:20%;
     }
 
-    #header{
-        grid-template-areas: "logo logo logo logo";
+    .pesquisa {
+        height: 5px;
+        margin-bottom: 5px;
     }
-    
-    
+
+    .pesquisa form {
+        width: 90%;
+        height:100px;
+        width: 200px;
+    }
+
+    .menu-links {
+        flex-wrap: wrap;
+        gap: 2px;
+    }
+
+    .menu-links a {
+        padding: 4px 12px;
+        font-size: 10px;
+        border-bottom: 2px solid transparent;
+    }
+    .bloco-titulo img{
+        width: 60%;
+        height: 40%;
+        padding: 3px;
+    }
 
 
     
 }
+
+/* COMEÇO CARROSSEL */
+
+.slideshow-container {
+    grid-area: carrossel;
+
+    width: 100%;
+    max-width: 1000px;
+
+    position: relative;
+    margin: auto;
+
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.slides-track {
+    display: flex;
+    width: 100%;
+
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.mySlides {
+    min-width: 100%;
+    position: relative;
+}
+
+.slideshow-container img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+
+    position: absolute;
+    bottom: 8px;
+
+    width: 100%;
+
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+
+    position: absolute;
+    top: 0;
+
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.dots-container {
+    grid-area: carrossel;
+    text-align: center;
+    padding-top: 500px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+
+    margin: 0 4px;
+
+    background-color: #bbb;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    transition: background-color 0.6s ease,
+                transform 0.3s ease;
+}
+
+.dot.active {
+    background-color: #555;
+    transform: scale(1.2);
+}
+
+/* FIM CARROSSEL */
 
 /*MacBook*/
 

@@ -1,102 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumière</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="arquivo.js"></script>
-</head>
-<body id="container">
-    <!------HEADER------>
-    <header> <!--Logo-->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lumière</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+        <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+    </head>
 
-        <div class="bloco-titulo">
-                <a href="index.html"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
-        </div>
-        
-        <div class="topnav">
-            <a href="index.html">Home</a>
-            <a href="#news">Produtos</a>
-            <a href="#news">Sobre nós</a>
-            <a href="carrinho.html">Carrinho</a>
-            <div class="search-container">
-                <form action="/action_page.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-  <         /div>
-        </div>
-
-         <!--<nav> <--Login, menu, carrinho, busca e home->
-            <ul class="menu">
-                <li><a href="busca.html"><img src="Imagens/Lupa.png" alt="Busca" width="120px" height="90px"></a></li>
-                <li><a href="login.html"><img src="Imagens/Pessoa.png" alt="Login" width="120px" height="90px"></a></li>
-                <li><a href="menu.html"><img src="Imagens/Casa.png" alt="Menu" width="120px" height="90px"></a></li>
-                <li><a href="carrinho.html"><img src="Imagens/Carrinho.png" alt="Carrinho" width="120px" height="90px"></a></li>
-            </ul>-->
+    <body id="container">
+        <!------HEADER------>
+        <header> <!--Logo-->
+            <div class="bloco-titulo">
+                    <a href="index.html"><img src="Imagens/Logo.png" alt="Logo"></a>
+            </div>
             
-        </nav>
-    </header>
-
-    <!------MAIN------>
-    <main>
-        <section id="carrossel">
-            <p>CARROSSEL</p>
-            <div class="slideshow-container">
-
-                <div class="mySlides fade">
-                    <div class="numbertext">1 / 3</div>
-                    <img src="Imagens/Ambiente.png">
-                    <div class="text">Caption Text</div>
+            <nav class="navheader">
+                
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
 
-                <div class="mySlides fade">
-                    <div class="numbertext">2 / 3</div>
-                    <img src="Imagens/Estudo.png">
-                    <div class="text">Caption Two</div>
+                <div class="menu-links">
+                    <a class="active" href="index.html">Home <i class="fi fi-rr-home"></i></a>
+                    <a href="produtos.html">Produtos</a>
+                    <a href="sobre.html">Sobre nós</a>
+                    <a href="login.html">Login <i class="fi fi-rr-user"></i></a>
+                    <a href="carrinho.html">Carrinho <i class="fi fi-rr-shopping-cart"></i></a>
+                </div>
+                <div class="pesquisa">
+                    <form action="/action.php">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fi fi-rr-search"></i></button>
+                    </form>
                 </div>
 
-                <div class="mySlides fade">
-                    <div class="numbertext">3 / 3</div>
-                    <img src="Imagens/Ambiente.png">
-                    <div class="text">Caption Three</div>
+            </nav>
+
+        </header>
+
+        <!------MAIN------>
+        <main>           
+            <!------------CARROSSEL------------>
+                <div class="slideshow-container">
+                  <!-- Novo trilho flexível (.slides-track) embrulhando os slides -->
+                  <div class="slides-track" id="track">
+                    
+                    <div class="mySlides">
+                      <div class="numbertext">1 / 3</div>
+                      <img src="Imagens/Slide1.png" alt="Slide 1">
+                      <div class="text">Slide 1</div>
+                    </div>
+
+                    <div class="mySlides">
+                      <div class="numbertext">2 / 3</div>
+                      <img src="Imagens/Slide2.png" alt="Slide 2">
+                      <div class="text">Slide 2</div>
+                    </div>
+
+                    <div class="mySlides">
+                      <div class="numbertext">3 / 3</div>
+                      <img src="Imagens/Slide3.png" alt="Slide 3">
+                      <div class="text">Slide 3</div>
+                    </div>
+
+                  </div>
                 </div>
 
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
+                <div class="dots-container">
+                  <span class="dot"></span> 
+                  <span class="dot"></span> 
+                  <span class="dot"></span> 
+                </div>
+
+            <!------------CATEGORIAS------------>
+            <section id="catAmb"> <!--Categoria-->
+                <a class = "img_section" href="catAmb.html"><img src="Imagens/Ambiente.png" alt="Categoria Ambiente"></a>
+            </section>
+            <section id="catEst"> <!--Categoria--> 
+                <a class = "img_section" href="catEst.html"><img src="Imagens/Estudos.png" alt="Categoria Estudo"></a>
+            </section>
+
+            <!------------VÍDEO------------>
+            <figure>
+                <video autoplay muted playsinline controls width="100%" loop>
+                    <source src="Imagens/Video.mp4" type="video/mp4">
+                </video>
+            </figure>
+
+        </main>
+
+        <!------FOOTER------>
+        <footer> <!--Logo, redes sociais, sobre nos, direitos reservados-->
+            <a href="index.html"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
+            <nav>
+                <ul>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="devs.html">Desenvolvedores</a></li>
+                    <li><a href="missao.html">Missão, Visão e Valores</a></li>
+                    <li><a href="redes.html">Redes Sociais</a></li>
+                </ul>
+            </nav>
             <br>
-
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-            </div>
-        </section>
-
-
-        <!------------CATEGORIAS------------>
-
-        
-        <section id="catAmb"> <!--Categoria-->
-        <a class = "img_section" href="catAmb.html"><img src="Imagens/Ambiente.png" alt="Categoria Ambiente"></a>
-        </section>
-        <section id="catEst"> <!--Categoria-->
-            <a class = "img_section" href="catEst.html"><img src="Imagens/Estudo.png" alt="Categoria Estudo"></a>
-        </section>
-        <figure> <!--Vídeo-->
-            <p>VÍDEO</p>
-        </figure>
-    </main>
-
-    <!------FOOTER------>
-    <footer> <!--Logo, redes sociais, sobre nos, direitos reservados-->
-        <p>FOOTER</p>
-        <a href="missao.html">Missão, visão e valores</a>
-        <a href="devs.html">Devs</a>
-        <a href="redes.html">Redes Sociais</a>
-        <a href="contato.html">Contato</a>
-    </footer>
-</body>
+            <nav>
+                <ul>
+                    <li><a href="contato.html"><i class="fi fi-brands-instagram"></i></a></li>
+                    <li><a href="contato.html"><i class="fi fi-brands-facebook"></i></a></li>
+                </ul>
+            </nav> 
+            <br>
+            <p>&copy 2026. Todos os direitos reservados.</p>    
+        </footer>
+        <script src="script.js"></script>
+    </body>
 </html>
