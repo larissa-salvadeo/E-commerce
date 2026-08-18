@@ -191,6 +191,7 @@ main{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas: 
         "carrossel carrossel carrossel carrossel"
+        "dots dots dots dots"
         "catAmb catAmb catEst catEst"
         "figure figure figure figure";
     gap: 3px;
@@ -200,54 +201,36 @@ main{
 .slideshow-container {
     grid-area: carrossel;
     width: 100%;
-    max-width: 1000px;
+    max-width: 100vw;
     position: relative;
-    margin: auto;
+    margin: 2px;
     overflow: hidden;
     border-radius: 8px;
-    height: 450px;
+    height: 70vh;
 }
 
 .slides-track {
     display: flex;
     width: 100%;
+    height:100%;
     transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .mySlides {
     min-width: 100%;
+    height:100%;
     position: relative;
 }
 
 .slideshow-container img {
     width: 100%;
+    height:100%;
     vertical-align: middle;
 }
 
-.text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-    background: rgba(0, 0, 0, 0.4);
-}
-
 .dots-container {
-    grid-area: carrossel;
+    grid-area: dots;
     text-align: center;
-    padding-top: 500px;
 }
 
 .dot {
@@ -266,21 +249,28 @@ main{
 }
 
 #catAmb{
+    margin-top: 60px;
     grid-area: catAmb;
     background-color: #F2E6D8;
-    height: 682px;
+    height: 60vh;
+    width:40vw;
+    margin-bottom: 60px;
+    justify-self: center;
 }
 
 #catEst{
+    margin-top: 60px;
     grid-area: catEst;
     background-color: #F2E6D8;
-    height: 682px;
+    height: 60vh;
+    width:40vw;
+    margin-bottom: 60px;
+    justify-self: center;
 }
 
 section a img{
-    margin-top: 100px;
-    width: 90%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 15px;
 }
@@ -305,26 +295,69 @@ main figure video {
 
 
 /*LOGIN*/
-#login {
+#main-login {
     background: #F2E6D8;
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
-    height: 80vh;
+    height: 100vh;
+    margin: 0;
 }
 
-#login h1 {
+/* Modal e Máscara de Fundo */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    width: 768px;
+    max-width: 90%;
+}
+
+/* Botão Fechar (X) */
+.close-btn {
+    position: absolute;
+    top: -35px;
+    right: 0;
+    color: #F2E6D8;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1010;
+}
+
+.close-btn:hover {
+    color: #516551;
+}
+
+/* Animação Zoom */
+.animate {
+    animation: animatezoom 0.4s;
+}
+
+@keyframes animatezoom {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Estilos Internos do Painel */
+#container-login h1 {
     font-weight: bold;
     margin: 0;
 }
 
-#login h2 {
-    text-align: center;
-}
-
-#login p {
+#container-login p {
     font-size: 14px;
     font-weight: 100;
     line-height: 20px;
@@ -332,18 +365,18 @@ main figure video {
     margin: 20px 0 30px;
 }
 
-#login a {
+#container-login a {
     color: #333;
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0;
 }
 
-#login button {
+#container-login button {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
-    color: #FFFFFF;
+    border: 1px solid #4d6b51;
+    background-color: #5F8565;
+    color: #F2E6D8;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
@@ -353,21 +386,21 @@ main figure video {
     cursor: pointer;
 }
 
-#login button:active {
+#container-login button:active {
     transform: scale(0.95);
 }
 
-#login button:focus {
+#container-login button:focus {
     outline: none;
 }
 
-#login button.ghost {
+#container-login button.ghost {
     background-color: transparent;
-    border-color: #FFFFFF;
+    border-color: #F2E6D8;
 }
 
-#login form {
-    background-color: #FFFFFF;
+#container-login form {
+    background-color: #F2E6D8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -377,7 +410,7 @@ main figure video {
     text-align: center;
 }
 
-#login input {
+#container-login input {
     background-color: #eee;
     border: none;
     padding: 12px 15px;
@@ -386,14 +419,13 @@ main figure video {
 }
 
 .container-login {
-    background-color: #fff;
+    background-color: #F2E6D8;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
                 0 10px 10px rgba(0,0,0,0.22);
     position: relative;
     overflow: hidden;
-    width: 768px;
-    max-width: 100%;
+    width: 100%;
     min-height: 480px;
 }
 
@@ -455,13 +487,11 @@ main figure video {
 }
 
 .overlay {
-    background: #5F8565;
-    background: -webkit-linear-gradient(to right, #5F8565, #FF416C);
-    background: linear-gradient(to right, #FF4B2B, #FF416C);
+    background: linear-gradient(to right, #1E341F, #4f8951);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
-    color: #FFFFFF;
+    color: #F2E6D8;
     position: relative;
     left: -100%;
     height: 100%;
@@ -505,7 +535,6 @@ main figure video {
 .container-login.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
-
 
 /* FOOTER */
 footer{
@@ -630,6 +659,7 @@ footer img{
         grid-template-columns: 1fr;
         grid-template-areas: 
             "carrossel"
+            "dots"
             "catAmb"
             "catEst"
             "figure";
@@ -637,7 +667,6 @@ footer img{
     }
 
     .slideshow-container {
-        margin: 50px;
         height: auto;
         display:flex;
         align-items: center;
@@ -646,15 +675,11 @@ footer img{
     }
 
     .mySlides {
-        height:auto;
+        height:40vh;
     }
 
     .slideshow-container img {
-        height:350px;
-    }
-
-    .dots-container {
-        padding-top: 400px;
+        height:100%;
     }
 
     .dot {
@@ -664,7 +689,6 @@ footer img{
 
     main figure{
         height: auto;
-        margin:2%;
     }
 
     main figure video {
@@ -673,31 +697,68 @@ footer img{
     }
 
     #catAmb, #catEst{
-        height: auto;
+        height: 30vh;
+        width: 100vw;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 15px 0;
         margin: 0;
     }
-    
 
     section a{
         display: block;
-        width: 100%;
-        height: auto;
-        text-align: center;
+        width: 90%;
+        height: 90%;
     }
 
 
     section a img{
         margin-top: 0;
-        width: 90%;
-        max-width: 400px;
-        height: 220px; 
         object-fit: cover;
+        max-width: 80%;
+        height: 100%; 
         border-radius: 15px;
     }
+
+    /*Pop-up Login/Cadastro*/
+    .modal-content {
+        width: 80vw;
+    }
+    #container-login h1 {
+        font-size:16px;
+    }
+
+    #container-login p {
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 0.3px;
+        margin: 8px 0 16px;
+    }
+
+    #container-login a {
+        font-size: 10px;
+        margin: 12px 0;
+    }
+
+    #container-login button {
+        font-size: 10px;
+        padding: 8px 30px;
+    }
+
+    #container-login form {
+        padding: 0 30px;
+    }
+
+    #container-login input {
+        padding: 6px 10px;
+        margin: 12px 0;
+    }
+
+    .container-login {
+        min-height: 420px;
+    }
+
+    /*Footer*/
 
     footer a img{
         height: 60px;

@@ -1,10 +1,12 @@
+/* CARROSSEL */
 let slideIndex = 0;
-
 const track = document.getElementById("track");
 const slides = document.getElementsByClassName("mySlides");
 const dots = document.getElementsByClassName("dot");
 
 function showSlides() {
+    if (!track || slides.length === 0) return;
+
     track.style.transform = `translateX(-${slideIndex * 100}%)`;
 
     for (let i = 0; i < dots.length; i++) {
@@ -24,38 +26,55 @@ function showSlides() {
     setTimeout(showSlides, 4000);
 }
 
-showSlides();
+if (track) {
+    showSlides();
+}
 
 
+/* MENU MOBILE */
 const body = document.querySelector("body");
 const navHeader = document.querySelector(".navheader");
 const menuBtn = document.querySelector(".menu-btn");
 const cancelBtn = document.querySelector(".cancel-btn");
 
-// Abrir Menu Mobile
-menuBtn.onclick = () => {
-    navHeader.classList.add("show");
-    menuBtn.classList.add("hide");
-    body.classList.add("disabled");
-};
+if (menuBtn && cancelBtn) {
+    menuBtn.onclick = () => {
+        navHeader.classList.add("show");
+        menuBtn.classList.add("hide");
+        body.classList.add("disabled");
+    };
 
-// Fechar Menu Mobile
-cancelBtn.onclick = () => {
-    body.classList.remove("disabled");
-    navHeader.classList.remove("show");
-    menuBtn.classList.remove("hide");
-};
+    cancelBtn.onclick = () => {
+        body.classList.remove("disabled");
+        navHeader.classList.remove("show");
+        menuBtn.classList.remove("hide");
+    };
+}
 
 
-/*LOGIN*/
+/* LOGIN E MODAL */
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container-login');
 
-signUpButton.addEventListener('click', () => {
-    container.classList.add("right-panel-active");
-});
+if (signUpButton && signInButton && container) {
+    signUpButton.addEventListener('click', () => container.classList.add("right-panel-active"));
+    signInButton.addEventListener('click', () => container.classList.remove("right-panel-active"));
+}
 
-signInButton.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-}); 
+const modal = document.getElementById('modalLogin');
+const openBtn = document.getElementById('openModalBtn');
+const closeBtn = document.getElementById('closeModalBtn');
+
+if (modal && openBtn && closeBtn) {
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => modal.style.display = 'none');
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) modal.style.display = 'none';
+    });
+}
