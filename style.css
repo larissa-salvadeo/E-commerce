@@ -288,6 +288,67 @@ main figure video {
     object-fit: cover;
 }
 
+/*----------------DESENVOLVEDORES----------------*/
+#desenvolvedores {
+    display: grid;
+
+    grid-template-areas:
+        "titulo titulo titulo titulo titulo"
+        "dev1 dev2 dev3 dev4 dev5"
+        "devs devs devs devs devs";
+
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+#desenvolvedores h1{
+    grid-area: titulo;
+    text-align: center;
+}
+
+#dev1 {
+    grid-area: dev1;
+}
+
+#dev2 {
+    grid-area: dev2;
+}
+
+#dev3 {
+    grid-area: dev3;
+}
+
+#dev4 {
+    grid-area: dev4;
+}
+
+#dev5 {
+    grid-area: dev5;
+}
+
+#devs {
+    grid-area: devs;
+}
+
+#dev1 img, #dev2 img, #dev3 img, #dev4 img, #dev5 img {
+    width: 250px;     
+    height: 250px;     
+    border-radius: 50%;    
+    margin-bottom: 10px;     
+    margin-left: 30px;
+}
+
+#devs img {
+    width: 70vw;
+    height: 500px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+#desenvolvedores h3{
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
 
 /*LOGIN*/
 #main-login {
