@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  rel="stylesheet" href="teste.css">
+</head>
+<body>
+      <nav class="navbar">
+      <a href="" class="brand"
+        ><img
+          src="https://i.pinimg.com/originals/20/60/2d/20602d43cc993811e5a6bd1886af4f33.png"
+          alt=""
+      /></a>
+      <div class="nav-links">
+        <a href="">New & Featured</a><a href="">Sale</a><a href="">Customise</a
+        ><a href="">SNKRS</a>
+      </div>
+      <div class="search">
+        <div class="search-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <input type="text" placeholder="Search" />
+      </div>
+    </nav>
+    <h1>New Arrivals</h1>
+    <div class="categories">
+      <div class="category-badge">
+        <i class="fa-solid fa-shoe-prints"></i> Shoes<input
+          type="checkbox"
+          checked
+        />
+      </div>
+      <div class="category-badge">
+        <i class="fa-solid fa-shirt"></i> T-Shirts<input type="checkbox" />
+      </div>
+      <div class="category-badge">
+        <i class="fa-solid fa-vest"></i> Jackets<input type="checkbox" />
+      </div>
+      <div class="category-badge">
+        <i class="fa-solid fa-socks"></i> Socks<input type="checkbox" />
+      </div>
+      <div class="category-badge">
+        <i class="fa-brands fa-redhat"></i> Accessories<input type="checkbox" />
+      </div>
+    </div>
+    <div class="content">
+      <aside>
+        <div class="filter-category" id="gender">
+          <div class="filter-title">Gender</div>
+          <div class="filter-options">
+            <div class="filter-option">
+              <label for="men">Men</label
+              ><input type="checkbox" checked id="men" name="gender" />
+            </div>
+            <div class="filter-option">
+              <label for="women">Women</label
+              ><input type="checkbox" checked id="women" name="gender" />
+            </div>
+            <div class="filter-option">
+              <label for="kids">Kids</label
+              ><input type="checkbox" checked id="kids" name="gender" />
+            </div>
+          </div>
+        </div>
+        <div class="filter-category" id="sport">
+          <div class="filter-title">Sport</div>
+          <div class="filter-options">
+            <div class="filter-option">
+              <div class="filter-option">
+                <label for="running">
+                  <img
+                    src="https://e1.pxfuel.com/desktop-wallpaper/474/1022/desktop-wallpaper-running-motivation-thumbnail.jpg"
+                    alt="" /></label
+                ><input type="checkbox" checked id="running" name="sport" />
+              </div>
+            </div>
+            <div class="filter-option">
+              <div class="filter-option">
+                <label for="basketball">
+                  <img
+                    src="https://images.pexels.com/photos/5275668/pexels-photo-5275668.jpeg?cs=srgb&dl=pexels-cottonbro-studio-5275668.jpg&fm=jpg"
+                    alt="" /></label
+                ><input type="checkbox" checked id="basketball" name="sport" />
+              </div>
+            </div>
+            <div class="filter-option">
+              <div class="filter-option">
+                <label for="tennis">
+                  <img
+                    src="https://images5.alphacoders.com/816/816149.jpg"
+                    alt="" /></label
+                ><input type="checkbox" checked id="tennis" name="sport" />
+              </div>
+            </div>
+            <div class="filter-option">
+              <div class="filter-option">
+                <label for="training">
+                  <img
+                    src="https://wallpapers.com/images/hd/weightlifting-training-npi6gamoelyd4359.jpg"
+                    alt="" /></label
+                ><input type="checkbox" checked id="training" name="sport" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-category" id="collection">
+          <div class="filter-title">Collection</div>
+          <div class="filter-options">
+            <div class="filter-option">
+              <label for="airmax">Air Max</label
+              ><input type="checkbox" checked id="airmax" name="collection" />
+            </div>
+            <div class="filter-option">
+              <label for="airforce">Air Force</label
+              ><input type="checkbox" checked id="airforce" name="collection" />
+            </div>
+            <div class="filter-option">
+              <label for="airtrainer">Air Trainer</label
+              ><input
+                type="checkbox"
+                checked
+                id="airtrainer"
+                name="collection"
+              />
+            </div>
+            <div class="filter-option">
+              <label for="airmore">Air More</label
+              ><input type="checkbox" checked id="airmore" name="collection" />
+            </div>
+            <div class="filter-option">
+              <label for="alphafly">Alphafly</label
+              ><input type="checkbox" checked id="alphafly" name="collection" />
+            </div>
+          </div>
+        </div>
+      </aside>
+      <main>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="men"
+          data-sport="tennis"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/437840c0-29b2-490b-85aa-5fcc60b513fa/air-force-1-07-lv8-shoes-lPdFPQ.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 '07 LV8</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$130</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airtrainer"
+          data-gender="women"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/f890c217-4ac9-4a1c-9f0b-76307842fd68/air-trainer-1-shoes-8dJ90B.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Trainer 1</span>
+            <span class="shoe-subtitle">Women's Shoes</span>
+            <span class="shoe-price">$120</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="kids"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d3130b4d-8f2a-4ee2-ac72-bb88807ebc7f/air-max-excee-older-shoes-jnfW44.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max Excee</span>
+            <span class="shoe-subtitle">Older Kids' Shoes</span>
+            <span class="shoe-price">$60</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmore"
+          data-gender="men"
+          data-sport="basketball"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/7cc09330-8e8f-49fa-a5c6-d3a11210bebd/air-more-uptempo-96-shoes-x7J3ls.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air More Uptempo '96</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$150</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="kids"
+          data-sport="basketball"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d2d8bd90-6817-4ce2-be81-1faa4e1c4434/force-1-mid-easyon-younger-shoes-bslqhN.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 Mid EasyOn</span>
+            <span class="shoe-subtitle">Younger Kids' Shoes</span>
+            <span class="shoe-price">$65</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="kids"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/ad063085-0b46-4781-98e9-236041132613/air-max-1-se-older-shoes-V74dDk.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max 1 SE</span>
+            <span class="shoe-subtitle">Older Kids' Shoes</span>
+            <span class="shoe-price">$80</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="men"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9a913112-6c85-42bf-84a2-7a5198f4a0e0/air-max-97-shoes-EBZrb8.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max 97</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$115</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="women"
+          data-sport="tennis"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/c20afd60-b230-4815-bfd2-6768c875f6cd/air-force-1-07-shoes-0XGfD7.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 '07</span>
+            <span class="shoe-subtitle">Women's Shoes</span>
+            <span class="shoe-price">$100</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="alphafly"
+          data-gender="men"
+          data-sport="running"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/74c43cb2-45ce-40bd-a32c-cc0163db5e22/alphafly-3-proto-road-racing-shoes-W112t4.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Alphafly 3 Proto</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$190</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="men"
+          data-sport="tennis"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/437840c0-29b2-490b-85aa-5fcc60b513fa/air-force-1-07-lv8-shoes-lPdFPQ.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 '07 LV8</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$130</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airtrainer"
+          data-gender="women"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/f890c217-4ac9-4a1c-9f0b-76307842fd68/air-trainer-1-shoes-8dJ90B.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Trainer 1</span>
+            <span class="shoe-subtitle">Women's Shoes</span>
+            <span class="shoe-price">$120</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="kids"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d3130b4d-8f2a-4ee2-ac72-bb88807ebc7f/air-max-excee-older-shoes-jnfW44.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max Excee</span>
+            <span class="shoe-subtitle">Older Kids' Shoes</span>
+            <span class="shoe-price">$60</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmore"
+          data-gender="men"
+          data-sport="basketball"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/7cc09330-8e8f-49fa-a5c6-d3a11210bebd/air-more-uptempo-96-shoes-x7J3ls.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air More Uptempo '96</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$150</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="kids"
+          data-sport="basketball"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d2d8bd90-6817-4ce2-be81-1faa4e1c4434/force-1-mid-easyon-younger-shoes-bslqhN.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 Mid EasyOn</span>
+            <span class="shoe-subtitle">Younger Kids' Shoes</span>
+            <span class="shoe-price">$65</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="kids"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/ad063085-0b46-4781-98e9-236041132613/air-max-1-se-older-shoes-V74dDk.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max 1 SE</span>
+            <span class="shoe-subtitle">Older Kids' Shoes</span>
+            <span class="shoe-price">$80</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="men"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9a913112-6c85-42bf-84a2-7a5198f4a0e0/air-max-97-shoes-EBZrb8.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max 97</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$115</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="women"
+          data-sport="tennis"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/c20afd60-b230-4815-bfd2-6768c875f6cd/air-force-1-07-shoes-0XGfD7.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 '07</span>
+            <span class="shoe-subtitle">Women's Shoes</span>
+            <span class="shoe-price">$100</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="alphafly"
+          data-gender="men"
+          data-sport="running"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/74c43cb2-45ce-40bd-a32c-cc0163db5e22/alphafly-3-proto-road-racing-shoes-W112t4.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Alphafly 3 Proto</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$190</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="men"
+          data-sport="tennis"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/437840c0-29b2-490b-85aa-5fcc60b513fa/air-force-1-07-lv8-shoes-lPdFPQ.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 '07 LV8</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$130</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airtrainer"
+          data-gender="women"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/f890c217-4ac9-4a1c-9f0b-76307842fd68/air-trainer-1-shoes-8dJ90B.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Trainer 1</span>
+            <span class="shoe-subtitle">Women's Shoes</span>
+            <span class="shoe-price">$120</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="kids"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d3130b4d-8f2a-4ee2-ac72-bb88807ebc7f/air-max-excee-older-shoes-jnfW44.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max Excee</span>
+            <span class="shoe-subtitle">Older Kids' Shoes</span>
+            <span class="shoe-price">$60</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmore"
+          data-gender="men"
+          data-sport="basketball"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/7cc09330-8e8f-49fa-a5c6-d3a11210bebd/air-more-uptempo-96-shoes-x7J3ls.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air More Uptempo '96</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$150</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="kids"
+          data-sport="basketball"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d2d8bd90-6817-4ce2-be81-1faa4e1c4434/force-1-mid-easyon-younger-shoes-bslqhN.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 Mid EasyOn</span>
+            <span class="shoe-subtitle">Younger Kids' Shoes</span>
+            <span class="shoe-price">$65</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="kids"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/ad063085-0b46-4781-98e9-236041132613/air-max-1-se-older-shoes-V74dDk.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max 1 SE</span>
+            <span class="shoe-subtitle">Older Kids' Shoes</span>
+            <span class="shoe-price">$80</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airmax"
+          data-gender="men"
+          data-sport="training"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9a913112-6c85-42bf-84a2-7a5198f4a0e0/air-max-97-shoes-EBZrb8.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Max 97</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$115</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="airforce"
+          data-gender="women"
+          data-sport="tennis"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">New</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/c20afd60-b230-4815-bfd2-6768c875f6cd/air-force-1-07-shoes-0XGfD7.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Air Force 1 '07</span>
+            <span class="shoe-subtitle">Women's Shoes</span>
+            <span class="shoe-price">$100</span>
+          </div>
+        </div>
+        <div
+          class="shoe-card"
+          data-collection="alphafly"
+          data-gender="men"
+          data-sport="running"
+        >
+          <div class="shoe-img">
+            <div class="heart"><i class="fa-regular fa-heart"></i></div>
+            <div class="tag">Bestseller</div>
+            <img
+              src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/74c43cb2-45ce-40bd-a32c-cc0163db5e22/alphafly-3-proto-road-racing-shoes-W112t4.png"
+              alt=""
+            />
+          </div>
+          <div class="shoe-text">
+            <span class="shoe-title">Alphafly 3 Proto</span>
+            <span class="shoe-subtitle">Men's Shoes</span>
+            <span class="shoe-price">$190</span>
+          </div>
+        </div>
+        
+      </main>
+      <div id="filterBtn">
+        <input type="checkbox"/>
+        <i class="fa-solid fa-sliders"></i>
+      </div>
+    </div>
+</body>
+</html>
