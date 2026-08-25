@@ -31,7 +31,7 @@ Thales Navarro - N°34
     <header>
         <!--Logo-->
         <div class="bloco-titulo">
-            <a href="index.html"><img src="Imagens/Logo.png" alt="Logo"></a>
+            <a href="index.php"><img src="Imagens/Logo.png" alt="Logo"></a>
         </div>
         
         <nav class="navheader">
@@ -46,17 +46,17 @@ Thales Navarro - N°34
                 <div class="icon cancel-btn">
                     <i class="fas fa-times"></i>
                 </div>
-                <a class="active" href="index.html">Home <i class="fi fi-rr-home"></i></a>
-                <a href="produtos.html">Produtos</a>
-                <a href="sobre.html">Sobre nós</a>
+                <a class="active" href="index.php">Home <i class="fi fi-rr-home"></i></a>
+                <a href="produtos.php">Produtos</a>
+                <a href="sobre.php">Sobre nós</a>
                 <a class="btn-open" id="openModalBtn" href="#">Login <i class="fi fi-rr-user"></i></a>
-                <a href="carrinho.html">Carrinho <i class="fi fi-rr-shopping-cart"></i></a>
+                <a href="carrinho.php">Carrinho <i class="fi fi-rr-shopping-cart"></i></a>
             </div>
 
             <!-- Barra de Pesquisa -->
             <div class="pesquisa">
                 <form action="/action.php">
-                    <input type="text" placeholder="Search.." name="search">
+                    <input type="text" placeholder="Pesquisar..." name="search">
                     <button type="submit"><i class="fi fi-rr-search"></i></button>
                 </form>
             </div>
@@ -90,10 +90,10 @@ Thales Navarro - N°34
 
         <!------------CATEGORIAS------------>
         <section id="catAmb"> 
-            <a href="catAmb.html"><img src="Imagens/Ambiente.png" alt="Categoria Ambiente"></a>
+            <a href="catAmb.php"><img src="Imagens/Ambiente.png" alt="Categoria Ambiente"></a>
         </section>
         <section id="catEst"> 
-            <a href="catEst.html"><img src="Imagens/Estudos.png" alt="Categoria Estudo"></a>
+            <a href="catEst.php"><img src="Imagens/Estudos.png" alt="Categoria Estudo"></a>
         </section>
 
         <!------------VÍDEO------------>
@@ -146,10 +146,10 @@ Thales Navarro - N°34
     </div>
     <!------FOOTER------>
     <footer>
-        <a href="index.html"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
+        <a href="index.php"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
         <nav>
             <ul>
-                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="sobre.php">Sobre Nós</a></li>
             </ul>
         </nav>
         <br>

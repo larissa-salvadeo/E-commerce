@@ -193,6 +193,7 @@ main{
     padding: 5px;
 }
 
+/* CARROSSEL */
 .slideshow-container {
     grid-area: carrossel;
     width: 100%;
@@ -243,6 +244,7 @@ main{
     transform: scale(1.2);
 }
 
+/* CATEGORIAS */
 #catAmb{
     margin-top: 60px;
     grid-area: catAmb;
@@ -276,6 +278,7 @@ section a img:hover{
     opacity: 0.8;
 }
 
+/* VÍDEO */
 figure{
     grid-area: figure;
     border-radius: 15px;

@@ -21,7 +21,7 @@
     <header>
         <!--Logo-->
         <div class="bloco-titulo">
-            <a href="index.html"><img src="Imagens/Logo.png" alt="Logo"></a>
+            <a href="index.php"><img src="Imagens/Logo.png" alt="Logo"></a>
         </div>
         
         <nav class="navheader">
@@ -36,17 +36,17 @@
                 <div class="icon cancel-btn">
                     <i class="fas fa-times"></i>
                 </div>
-                <a href="index.html">Home <i class="fi fi-rr-home"></i></a>
-                <a href="produtos.html">Produtos</a>
-                <a class="active" href="sobre.html">Sobre nós</a>
+                <a href="index.php">Home <i class="fi fi-rr-home"></i></a>
+                <a href="produtos.php">Produtos</a>
+                <a class="active" href="sobre.php">Sobre nós</a>
                 <a class="btn-open" id="openModalBtn" href="#">Login <i class="fi fi-rr-user"></i></a>
-                <a href="carrinho.html">Carrinho <i class="fi fi-rr-shopping-cart"></i></a>
+                <a href="carrinho.php">Carrinho <i class="fi fi-rr-shopping-cart"></i></a>
             </div>
 
             <!-- Barra de Pesquisa -->
             <div class="pesquisa">
                 <form action="/action.php">
-                    <input type="text" placeholder="Search.." name="search">
+                    <input type="text" placeholder="Pesquisar..." name="search">
                     <button type="submit"><i class="fi fi-rr-search"></i></button>
                 </form>
             </div>
@@ -221,16 +221,16 @@
 
     <!------FOOTER------>
     <footer>
-        <a href="index.html"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
+        <a href="index.php"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
         <nav>
             <ul>
-                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="sobre.php">Sobre Nós</a></li>
             </ul>
         </nav>
         <nav>
             <ul>
-                <li><a href="contato.html"><i class="fi fi-brands-instagram"></i></a></li>
-                <li><a href="contato.html"><i class="fi fi-brands-facebook"></i></a></li>
+                <li><a href="contato.php"><i class="fi fi-brands-instagram"></i></a></li>
+                <li><a href="contato.php"><i class="fi fi-brands-facebook"></i></a></li>
             </ul>
         </nav> 
         <br>
