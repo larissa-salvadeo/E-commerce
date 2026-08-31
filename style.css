@@ -559,6 +559,84 @@ body {
     width: 100%;
   }
 }
+/*------------PRODUTOS-------------------*/
+.produtos {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(4, 20vw);  
+	gap: 20px;
+    width: fit-content;
+	margin: 35px 0;
+}
+.single-card {
+	position: relative;
+	width: 100%; 
+	height: 430px;
+	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+	background: #95af98;
+	border-radius: 15px;
+	transition: all 0.8s ease-in-out;
+}
+
+.single-card:hover {
+	transform: translateY(-10px);
+	opacity: 1;
+}
+
+.img-area {
+	position: relative;
+	width: 100%;
+	height: 250px;
+	overflow: hidden;
+}
+
+.img-area img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.img-area:hover img {
+	transform: scale(1.1);
+}
+
+.info {
+	margin: 20px;
+	text-align: center;
+	color: #f3eeee;
+	font-size: 12px;
+}
+
+.info h3 {
+	margin: 10px 0 6px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.price {
+	margin: 5px;
+	font-size: 16px;
+	color: #f3eeee;
+}
+
+.carrinho {
+	margin: 10px;
+	text-align: center;
+	font-size: 25px;
+}
+
+.carrinho a {
+	text-decoration: none;
+	color: #f8f4f4;
+}
 
 /*--------------------LOGIN------------------*/
 #main-login {
@@ -1005,6 +1083,43 @@ footer img{
         max-width: 80%;
         height: 100%; 
         border-radius: 15px;
+    }
+    /*Produtos*/
+    .wrapper {
+		grid-template-columns: 1fr; 
+		justify-items: center;
+	}
+    .single-card {
+        max-width: 80vw;
+        height: 40vh;
+    }
+    .img-area {
+        height: 60%;
+    }
+
+    .info {
+        font-size: 10px;
+    }
+
+    .info h3 {
+        margin: 8px 0 4px;
+        font-size: 14px;
+    }
+
+    .price {
+        margin: 3px;
+        font-size: 14px;
+    }
+
+    .carrinho {
+        margin: 4px;
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .carrinho a {
+        text-decoration: none;
+        color: #f8f4f4;
     }
 
     /*Pop-up Login/Cadastro*/

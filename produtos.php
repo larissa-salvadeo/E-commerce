@@ -55,8 +55,61 @@
     </header>
 
     <!------MAIN------>
-    <main>          
-        
+    <main class="produtos">          
+        <div class="wrapper">
+            <div class="single-card">
+                <div class="img-area">
+                    <img src="imagens/exemplo.jpeg" alt="">
+                </div>
+                <div class="info">
+                    <h3>Vela Aromática Cherry Blossom 70ml </h3>
+                    <p class="price">R$ 16,90</p>
+                    <p>Cheiro Maravilhoso</p>
+                    <div class="carrinho">
+                        <a href="index.php"><i class="fi fi-rr-shopping-cart"></i></a>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="single-card">
+                <div class="img-area">
+                    <img src="imagens/exemplo.jpeg" alt="">
+                </div>
+                <div class="info">
+                    <h3>Vela Aromática Cherry Blossom 70ml </h3>
+                    <p class="price">R$ 16,90</p>
+                    <p>Cheiro Maravilhoso</p>
+                    <div class="carrinho">
+                        <a href="index.php"><i class="fi fi-rr-shopping-cart"></i></a>                    </div>
+                    </div>
+            </div>
+            <div class="single-card">
+                <div class="img-area">
+                    <img src="imagens/exemplo.jpeg" alt="">
+                </div>
+                <div class="info">
+                    <h3>Vela Aromática Cherry Blossom 70ml </h3>
+                    <p class="price">R$ 16,90</p>
+                    <p>Cheiro Maravilhoso</p>
+                    <div class="carrinho">
+                        <a href="index.php"><i class="fi fi-rr-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="single-card">
+                <div class="img-area">
+                    <img src="imagens/exemplo.jpeg" alt="">
+                </div>
+                <div class="info">
+                    <h3>Vela Aromática Cherry Blossom 70ml </h3>
+                    <p class="price">R$ 16,90</p>
+                    <p>Cheiro Maravilhoso</p>
+                    <div class="carrinho">
+                        <a href="index.php"><i class="fi fi-rr-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- MODAL POP-UP -->
     <div id="modalLogin" class="modal">
