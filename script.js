@@ -78,3 +78,56 @@ if (modal && openBtn && closeBtn) {
         if (event.target === modal) modal.style.display = 'none';
     });
 }
+
+/* MENSAGENS DE LOGIN E CADASTRO */
+
+const mensagemLogin = document.getElementById("mensagemLogin");
+
+const parametros = new URLSearchParams(window.location.search);
+
+const cadastro = parametros.get("cadastro");
+const login = parametros.get("login");
+const msg = parametros.get("msg");
+
+if (modal && mensagemLogin) {
+
+    // CADASTRO REALIZADO
+    if (cadastro === "sucesso") {
+
+        modal.style.display = "flex";
+
+        mensagemLogin.textContent = "Cadastro realizado com sucesso!";
+        mensagemLogin.className = "mensagem sucesso";
+
+    }
+
+    // ERRO NO CADASTRO
+    else if (cadastro === "erro") {
+
+        modal.style.display = "flex";
+
+        mensagemLogin.textContent = msg || "Erro ao realizar o cadastro!";
+        mensagemLogin.className = "mensagem erro";
+
+    }
+
+    // LOGIN REALIZADO
+    else if (login === "sucesso") {
+
+        modal.style.display = "flex";
+
+        mensagemLogin.textContent = "Login realizado com sucesso!";
+        mensagemLogin.className = "mensagem sucesso";
+
+    }
+
+    // ERRO NO LOGIN
+    else if (login === "erro") {
+
+        modal.style.display = "flex";
+
+        mensagemLogin.textContent = msg || "Erro ao realizar o login!";
+        mensagemLogin.className = "mensagem erro";
+
+    }
+}

@@ -28,45 +28,100 @@ body.disabled {
 
 /*----------SOBRE NÓS----------*/
 
-.desenvolvedores{
+#desenvolvedores {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 1fr auto; 
+
     grid-template-areas:
-        "dev1 dev2 dev3"
-        "dev4 dev5 dev5"
-        "devs devs devs";
+        "titulo titulo titulo titulo titulo"
+        "dev1 dev2 dev3 dev4 dev5"
+        "devs devs devs devs devs";
+
+    grid-template-columns: repeat(5, 200px);
+
+    gap: 50px;
+    padding: 60px 150px;
+
+    justify-content: center;
+
+    background-color: #f8f5f0;
+    text-align: center;
+    border-radius: 10px;
 }
 
+/* Título */
+#desenvolvedores h1 {
+    grid-area: titulo;
 
-/*DESENVOLVEDORES*/
-
-#dev1 {
-    grid-area: dev1;
-    
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #3d342f;
 }
 
-#dev2 {
-    grid-area: dev2;
+#dev1, #dev2, #dev3, #dev4, #dev5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 20px 10px;
+
+    transition: transform 0.3s ease;
 }
 
-#dev3 {
-    grid-area: dev3;
+/*Hover Texto/Imagem*/
+#dev1:hover, #dev2:hover, #dev3:hover,#dev4:hover, #dev5:hover {
+    transform: translateY(-8px);
 }
 
-#dev4 {
-    grid-area: dev4;
+/* Imagens dos devs */
+#dev1 img, #dev2 img, #dev3 img, #dev4 img, #dev5 img {
+    object-fit: cover;
+
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 18px;
+    border: 4px solid white;
+
+    box-shadow: 0 30px 20px rgba(0, 0, 0, 0.15);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
 }
 
-#dev5 {
-    grid-area: dev5;
+/*Hover Imagem*/
+#dev1:hover img, #dev2:hover img, #dev3:hover img, #dev4:hover img, #dev5:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
+/*Nomes*/
+#desenvolvedores h3 {
+    margin: 0;
+    max-width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #4a403a;
+}
+
+/*Imagem devs - grupo*/
 #devs {
     grid-area: devs;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
 }
 
-
+#devs img {
+    width: min(900px, 90%);
+    height: 450px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px;
+}
 
 /* HEADER & NAVBAR DESKTOP */
 header{
@@ -669,6 +724,28 @@ body {
     opacity: 1;
     z-index: 5;
     animation: show 0.6s;
+}
+
+.mensagem-login {
+    width: 80%;
+    margin: 15px auto;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.mensagem-login.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.mensagem-login.erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
 @keyframes show {

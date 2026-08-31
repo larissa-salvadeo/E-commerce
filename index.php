@@ -6,7 +6,30 @@ Larissa Salvadeo - N°21
 Pietra Borgo - N°31
 Thales Navarro - N°34
 -->
+<?php
+    session_start();
+    include("util.php");
+    $conn = conecta();
 
+    if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
+
+        $email = $_COOKIE['usuarioLogado'];
+
+        $sql = "SELECT nome, email FROM usuario WHERE email = :email AND excluido = FALSE";
+
+        $select = $conn->prepare($sql);
+        $select->bindParam(':email', $email);
+        $select->execute();
+
+        $usuario = $select->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            $_SESSION['sessionConectado'] = TRUE;
+            $_SESSION['sessionLogin'] = $usuario['email'];
+            $_SESSION['sessionNome'] = $usuario['nome'];
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -103,26 +126,30 @@ Thales Navarro - N°34
             </video>
         </figure>
     </main>
+
     <!-- MODAL POP-UP -->
     <div id="modalLogin" class="modal">
         <div class="modal-content animate">
             <span class="close-btn" id="closeModalBtn">&times;</span>
+            <div id="mensagemLogin" class="mensagem-login"></div>
 
             <div class="container-login" id="container-login">
                 <div class="form-container sign-up-container">
-                    <form action="#">
+                    <form action="CRUD Usuários/cadastrar.php" method="POST" enctype="multipart/form-data">
                         <h1>Cadastrar Conta</h1>
-                        <input type="text" placeholder="Nome" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Senha" />
+                        <input type="text" placeholder="Nome" name="nome" />
+                        <input type="email" placeholder="Email" name="email" />
+                        <input type="password" placeholder="Senha" name="senha" />
+                        <input type="text" placeholder="Telefone" name="telefone" />
+                        <input type="file" placeholder="Imagem" name="imagem" />
                         <button type="submit">Cadastrar</button>
                     </form>
                 </div>
                 <div class="form-container sign-in-container">
-                    <form action="#">
+                    <form action="CRUD Usuários/login.php" method="POST">
                         <h1>Entrar</h1>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Senha" />
+                        <input type="email" name="usuario" placeholder="Email" />
+                        <input type="password" name="senha" placeholder="Senha" />
                         <a href="#">Esqueci minha senha</a>
                         <button type="submit">Entrar</button>
                     </form>

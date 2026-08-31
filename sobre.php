@@ -56,168 +56,33 @@
     <!------MAIN------>
     <main id="sobre">          
         <!------------DESENVOLVEDORES------------>
-        <div class="responsive-container-block outer-container">
-            <div class="responsive-container-block inner-container">
-                <p class="text-blk section-head-text">
-                Meet Our Expert Instructors
-                </p>
-                <p class="text-blk section-subhead-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-                <div class="responsive-container-block">
-                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 team-card-container">
-                    <div class="team-card">
-                    <div class="img-wrapper">
-                        <img class="team-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/expert1.png">
-                    </div>
-                    <p class="text-blk name">
-                        Maxwell Doe
-                    </p>
-                    <p class="text-blk position">
-                        Instructor
-                    </p>
-                    <div class="social-media-links">
-                        <a href="http://www.twitter.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-twitter.svg">
-                        </a>
-                        <a href="http://www.facebook.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-fb.svg">
-                        </a>
-                        <a href="http://www.instagram.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-insta.svg">
-                        </a>
-                        <a href="http://www.gmail.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-mail.svg">
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 team-card-container">
-                    <div class="team-card">
-                    <div class="img-wrapper">
-                        <img class="team-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/expert2.png">
-                    </div>
-                    <p class="text-blk name">
-                        Maxwell Doe
-                    </p>
-                    <p class="text-blk position">
-                        Instructor
-                    </p>
-                    <div class="social-media-links">
-                        <a href="http://www.twitter.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-twitter.svg">
-                        </a>
-                        <a href="http://www.facebook.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-fb.svg">
-                        </a>
-                        <a href="http://www.instagram.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-insta.svg">
-                        </a>
-                        <a href="http://www.gmail.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-mail.svg">
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 team-card-container">
-                    <div class="team-card">
-                    <div class="img-wrapper">
-                        <img class="team-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/expert1.png">
-                    </div>
-                    <p class="text-blk name">
-                        Maxwell Doe
-                    </p>
-                    <p class="text-blk position">
-                        Instructor
-                    </p>
-                    <div class="social-media-links">
-                        <a href="http://www.twitter.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-twitter.svg">
-                        </a>
-                        <a href="http://www.facebook.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-fb.svg">
-                        </a>
-                        <a href="http://www.instagram.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-insta.svg">
-                        </a>
-                        <a href="http://www.gmail.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-mail.svg">
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 team-card-container">
-                    <div class="team-card">
-                    <div class="img-wrapper">
-                        <img class="team-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/expert2.png">
-                    </div>
-                    <p class="text-blk name">
-                        Maxwell Doe
-                    </p>
-                    <p class="text-blk position">
-                        Instructor
-                    </p>
-                    <div class="social-media-links">
-                        <a href="http://www.twitter.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-twitter.svg">
-                        </a>
-                        <a href="http://www.facebook.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-fb.svg">
-                        </a>
-                        <a href="http://www.instagram.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-insta.svg">
-                        </a>
-                        <a href="http://www.gmail.com/" target="_blank">
-                        <img src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/gray-mail.svg">
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div> 
+        <div id="desenvolvedores">
+            <h1>Conheça os Desenvolvedores</h1>
+            <section id="dev1"> 
+                <img src="Imagens/dev1.png" alt="Desenvolvedor 1">
+                <h3>Ana Júlia Pereira da Silva Leal</h3>
+            </section>
+            <section id="dev2"> 
+                <img src="Imagens/dev2.png" alt="Desenvolvedor 2">
+                <h3>Julia Gonçalves de Souza Campos</h3>
+            </section>
+            <section id="dev3">
+                <img src="Imagens/dev3.png" alt="Desenvolvedor 3">
+                <h3>Larissa Salvadeo Santana</h3>
+            </section>
+            <section id="dev4"> 
+                <img src="Imagens/dev4.png" alt="Desenvolvedor 4">
+                <h3>Pietra Borgo Bernardi</h3>
+            </section>    
+            <section id="dev5"> 
+                <img src="Imagens/dev5.png" alt="Desenvolvedor 5">
+                <h3>Thales Navarro Neves</h3>
+            </section>    
+            <section id="devs">     
+                <img src="Imagens/devs.png" alt="Desenvolvedores">
+            </section> 
+        </div>   
     </main>
-    <!-- MODAL POP-UP -->
-    <div id="modalLogin" class="modal">
-        <div class="modal-content animate">
-            <span class="close-btn" id="closeModalBtn">&times;</span>
-
-            <div class="container-login" id="container-login">
-                <div class="form-container sign-up-container">
-                    <form action="#">
-                        <h1>Cadastrar Conta</h1>
-                        <input type="text" placeholder="Nome" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Senha" />
-                        <button type="submit">Cadastrar</button>
-                    </form>
-                </div>
-                <div class="form-container sign-in-container">
-                    <form action="#">
-                        <h1>Entrar</h1>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Senha" />
-                        <a href="#">Esqueci minha senha</a>
-                        <button type="submit">Entrar</button>
-                    </form>
-                </div>
-                <div class="overlay-container">
-                    <div class="overlay">
-                        <div class="overlay-panel overlay-left">
-                            <h1>Bem-vindo de volta!</h1>
-                            <p>Acesse sua conta com seu login e senha</p>
-                            <button type="button" class="ghost" id="signIn">Entrar</button>
-                        </div>
-                        <div class="overlay-panel overlay-right">
-                            <h1>Olá!</h1>
-                            <p>Preencha seus dados para começar essa jornada com a gente</p>
-                            <button type="button" class="ghost" id="signUp">Cadastrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!------FOOTER------>
     <footer>
