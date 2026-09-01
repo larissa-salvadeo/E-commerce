@@ -1,6 +1,7 @@
 <?php
 
 include("../util.php");
+session_start();
 
 $conn = conecta();
 
@@ -13,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $senha_hash = password_hash($senha, PASSWORD_BCRYPT);
 
-    // Verifica se o e-mail já existe
+    // Verifica se o email já existe
     $sql = "SELECT email FROM usuario WHERE email = :email";
 
     $select = $conn->prepare($sql);
@@ -21,15 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $select->execute();
 
     if ($select->fetch()) {
-
         header("Location: ../index.php?cadastro=erro&msg=Este%20email%20ja%20esta%20cadastrado");
         exit;
     }
 
-    $varSQL = "INSERT INTO usuario 
-               (nome, email, senha, telefone)
-               VALUES 
-               (:nome, :email, :senha, :telefone)";
+    // Cadastra o usuário
+    $varSQL = "INSERT INTO usuario (nome, email, senha, telefone)
+               VALUES (:nome, :email, :senha, :telefone)";
 
     $insert = $conn->prepare($varSQL);
 
@@ -40,25 +39,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
 
-        if ($insert->execute()) {
+    if ($insert->execute()) {
 
-            if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
-                salvaUpload($conn, $_FILES, 'imagem');
-            }
+        // Pega o ID do usuário que acabou de ser cadastrado
+        $idUsuario = $conn->lastInsertId();
 
-            header("Location: ../index.php?cadastro=sucesso");
-            exit;
-
-        } else {
-
-            header("Location: ../index.php?cadastro=erro&msg=Não%20foi%20possivel%20realizar%20o%20cadastro");
-            exit;
+        // Salva a imagem usando o ID do usuário
+        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+            salvaUploadId($conn, $_FILES, 'imagem', $idUsuario);
         }
 
-    } catch (PDOException $e) {
+        // Cria a sessão
+        $_SESSION['sessionConectado'] = TRUE;
+        $_SESSION['sessionLogin'] = $email;
+        $_SESSION['sessionNome'] = $nome;
+        $_SESSION['sessionId'] = $idUsuario;
 
-        header("Location: ../index.php?cadastro=erro&msg=Erro%20ao%20realizar%20o%20cadastro");
+        // Cookie
+        setcookie(
+            "usuarioLogado",
+            $email,
+            time() + (30 * 24 * 60 * 60),
+            "/"
+        );
+
+        header(
+            "Location: ../index.php?cadastro=sucesso&nome=" . urlencode($nome)
+        );
+        exit;
+
+    } else {
+
+        header(
+            "Location: ../index.php?cadastro=erro&msg=Não%20foi%20possivel%20realizar%20o%20cadastro"
+        );
         exit;
     }
+
+} catch (PDOException $e) {
+
+    header(
+        "Location: ../index.php?cadastro=erro&msg=Erro%20ao%20realizar%20o%20cadastro"
+    );
+    exit;
+}
 }
 ?>

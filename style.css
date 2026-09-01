@@ -805,25 +805,174 @@ body {
 }
 
 .mensagem-login {
-    width: 80%;
-    margin: 15px auto;
-    padding: 12px;
-    border-radius: 8px;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
-    font-size: 16px;
+    background-color: #f4e8d8;
+    border-radius: 10px;
+    z-index: 10;
+    color: white;
+}
+
+.mensagem-login h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.mensagem-login p {
+    font-size: 22px;
+    margin: 5px;
+    color: white;
+}
+
+.usuario-menu {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usuario-logado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.usuario-logado img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.usuario-logado span {
+    margin-top: 3px;
+    font-size: 13px;
+}
+
+/*LOGOUT*/
+.modal-usuario {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-usuario-content {
+    position: relative;
+    width: 400px;
+    max-width: 90%;
+    background-color: #F2E6D8;
+    border-radius: 15px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: abrirUsuario 0.3s ease;
+}
+
+@keyframes abrirUsuario {
+
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+.modal-usuario-content h2 {
+    color: #1E341F;
+    margin-bottom: 20px;
+}
+
+.foto-usuario-modal {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.modal-usuario-content h3 {
+    color: #3d342f;
+    margin-bottom: 8px;
+}
+
+.modal-usuario-content p {
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* X para fechar */
+
+.fechar-usuario {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: #1E341F;
+    cursor: pointer;
+}
+
+.fechar-usuario:hover {
+    color: #5F8565;
+}
+
+/* Botões */
+
+.botoes-usuario {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.botoes-usuario a {
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-size: 14px;
     font-weight: bold;
 }
 
-.mensagem-login.sucesso {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+/* Sair */
+.btn-sair {
+    background-color: #5F8565;
+    color: #F2E6D8;
 }
 
-.mensagem-login.erro {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+.btn-sair:hover {
+    background-color: #1E341F;
+}
+
+/* Excluir */
+
+.btn-excluir {
+    background-color: #8B3A3A;
+    color: white;
+}
+
+.btn-excluir:hover {
+    background-color: #6B2525;
 }
 
 @keyframes show {

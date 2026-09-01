@@ -79,55 +79,92 @@ if (modal && openBtn && closeBtn) {
     });
 }
 
-/* MENSAGENS DE LOGIN E CADASTRO */
+// MENSAGEM DE SUCESSO
 
-const mensagemLogin = document.getElementById("mensagemLogin");
+const mensagemLogin = document.getElementById('mensagemLogin');
+const containerLogin = document.getElementById('container-login');
 
-const parametros = new URLSearchParams(window.location.search);
+const urlParams = new URLSearchParams(window.location.search);
 
-const cadastro = parametros.get("cadastro");
-const login = parametros.get("login");
-const msg = parametros.get("msg");
+const login = urlParams.get('login');
+const cadastro = urlParams.get('cadastro');
+const nome = urlParams.get('nome');
+const msg = urlParams.get('msg');
 
-if (modal && mensagemLogin) {
 
-    // CADASTRO REALIZADO
-    if (cadastro === "sucesso") {
+if (login === 'sucesso' || cadastro === 'sucesso') {
 
-        modal.style.display = "flex";
+    containerLogin.style.display = 'none';
+    mensagemLogin.style.display = 'flex';
 
-        mensagemLogin.textContent = "Cadastro realizado com sucesso!";
-        mensagemLogin.className = "mensagem sucesso";
+    if (login === 'sucesso') {
 
+        mensagemLogin.innerHTML = `
+            <h2>Bem-vindo(a), ${nome}!</h2>
+        `;
+
+    } 
+    else {
+        mensagemLogin.innerHTML = `
+            <h2>Bem-vindo(a), ${nome}!</h2>
+            <p>Sua conta foi criada com sucesso.</p>
+        `;
     }
 
-    // ERRO NO CADASTRO
-    else if (cadastro === "erro") {
+    // Abre o pop-up
+    modal.style.display = 'flex';
 
-        modal.style.display = "flex";
+    // Fecha automaticamente depois de 3 segundos
+    setTimeout(() => {
 
-        mensagemLogin.textContent = msg || "Erro ao realizar o cadastro!";
-        mensagemLogin.className = "mensagem erro";
+        modal.style.display = 'none';
+        containerLogin.style.display = 'flex';
+        mensagemLogin.style.display = 'none';
 
-    }
+    }, 3000);
 
-    // LOGIN REALIZADO
-    else if (login === "sucesso") {
 
-        modal.style.display = "flex";
+    // Limpa os parâmetros da URL
+    window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+    );
+}
 
-        mensagemLogin.textContent = "Login realizado com sucesso!";
-        mensagemLogin.className = "mensagem sucesso";
+/* POP-UP DO USUÁRIO */
 
-    }
+const abrirUsuario = document.getElementById('abrirUsuario');
+const modalUsuario = document.getElementById('modalUsuario');
+const fecharUsuario = document.getElementById('fecharUsuario');
 
-    // ERRO NO LOGIN
-    else if (login === "erro") {
+if (abrirUsuario && modalUsuario && fecharUsuario) {
 
-        modal.style.display = "flex";
+    // Abrir o pop-up
+    abrirUsuario.addEventListener('click', (e) => {
 
-        mensagemLogin.textContent = msg || "Erro ao realizar o login!";
-        mensagemLogin.className = "mensagem erro";
+        e.preventDefault();
 
-    }
+        modalUsuario.style.display = 'flex';
+
+    });
+
+    // Fechar pelo X
+    fecharUsuario.addEventListener('click', () => {
+
+        modalUsuario.style.display = 'none';
+
+    });
+
+    // Fechar clicando fora do pop-up
+    window.addEventListener('click', (event) => {
+
+        if (event.target === modalUsuario) {
+
+            modalUsuario.style.display = 'none';
+
+        }
+
+    });
+
 }

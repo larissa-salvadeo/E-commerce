@@ -23,7 +23,7 @@ function salvaUpload($paramConn, $paramFiles, $paramCampo)
     if ( isset( $paramFiles[$paramCampo] ) ) {
             $novoId   = $paramConn->lastInsertId();
             $ext = pathinfo($paramFiles[$paramCampo]['name'], PATHINFO_EXTENSION);
-            $arquivoNovo = "imagens/$novoId.$ext";
+            $arquivoNovo = "Imagens/$novoId.$ext";
             try {
                 if (move_uploaded_file($paramFiles[$paramCampo]['tmp_name'], $arquivoNovo)) {
                     echo "<br>Arquivo $arquivoNovo criado com sucesso.\n";
@@ -36,21 +36,27 @@ function salvaUpload($paramConn, $paramFiles, $paramCampo)
 }
 
 function salvaUploadId($paramConn, $paramFiles, $paramCampo, $paramId)
-{   
-    // ISSET verifica se a variável existe
-    if ( isset( $paramFiles[$paramCampo] ) ) {
-        $novoId = $paramId;
+{
+    if (isset($paramFiles[$paramCampo]) && $paramFiles[$paramCampo]['error'] == 0) {
+
         $ext = pathinfo($paramFiles[$paramCampo]['name'], PATHINFO_EXTENSION);
-        $arquivoNovo = "imagens/$novoId.$ext";
-        
+
+        $arquivoNovo = "../Imagens/" . $paramId . "." . $ext;
+
         try {
+
             if (move_uploaded_file($paramFiles[$paramCampo]['tmp_name'], $arquivoNovo)) {
-                echo "<br>Arquivo $arquivoNovo atualizado com sucesso.\n";
-            } 
-        } catch (Exception $e) { 
-            echo "Erro, verifique se a pasta imagens existe e tem permissão de escrita.";
-        }     
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception $e) {
+            return false;
+        }
     }
+
+    return false;
 }
 
 ?>

@@ -1,3 +1,46 @@
+<?php
+session_start();
+include("util.php");
+
+$conn = conecta();
+
+$mensagem = $_GET['mensagem'] ?? '';
+$imagemUsuario = 'Imagens/usuario.png';
+
+if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
+
+    $email = $_COOKIE['usuarioLogado'];
+
+    $sql = "SELECT id_usuario, nome, email FROM usuario WHERE email = :email AND excluido = FALSE";
+
+    $select = $conn->prepare($sql);
+    $select->bindParam(':email', $email);
+    $select->execute();
+
+    $usuario = $select->fetch(PDO::FETCH_ASSOC);
+
+    if ($usuario) {
+        $_SESSION['sessionConectado'] = TRUE;
+        $_SESSION['sessionLogin'] = $usuario['email'];
+        $_SESSION['sessionNome'] = $usuario['nome'];
+        $_SESSION['sessionId'] = $usuario['id_usuario'];
+    }
+}
+
+if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE && isset($_SESSION['sessionId'])) {
+    $id_usuario = $_SESSION['sessionId'];
+    $extensoes = ['png', 'jpg', 'jpeg', 'webp'];
+    
+    foreach ($extensoes as $ext) {
+        $caminho = "Imagens/" . $id_usuario . "." . $ext;
+        if (file_exists($caminho)) {
+            $imagemUsuario = $caminho;
+            break;
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -40,7 +83,23 @@
                 <a  href="index.php">Home <i class="fi fi-rr-home"></i></a>
                 <a href="produtos.php">Produtos</a>
                 <a href="sobre.php">Sobre nós</a>
-                <a class="btn-open" id="openModalBtn" href="#">Login <i class="fi fi-rr-user"></i></a>
+
+                <?php if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE): ?>
+
+                <a class="usuario-menu" href="#" id="abrirUsuario">
+                    <div class="usuario-logado">
+                        <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário">
+                        <span>
+                            <?= htmlspecialchars($_SESSION['sessionNome']) ?>
+                        </span>
+                    </div>
+                </a>
+                <?php else: ?>
+                <a class="btn-open" id="openModalBtn" href="#">
+                    Login <i class="fi fi-rr-user"></i>
+                </a>
+                <?php endif; ?>
+                
                 <a class="active" href="carrinho.php">Carrinho <i class="fi fi-rr-shopping-cart"></i></a>
             </div>
 
@@ -58,26 +117,53 @@
     <main>          
         
     </main>
+
+    <div id="modalUsuario" class="modal-usuario">
+        <div class="modal-usuario-content">
+
+            <span class="fechar-usuario" id="fecharUsuario">&times;</span>
+            <h2>Minha conta</h2>
+            <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário" class="foto-usuario-modal">
+
+            <h3><?= htmlspecialchars($_SESSION['sessionNome']) ?></h3>
+
+            <p><?= htmlspecialchars($_SESSION['sessionLogin']) ?></p>
+
+            <div class="botoes-usuario">
+                <a href="CRUD Usuários/logout.php" class="btn-sair">
+                    Sair
+                </a>
+
+                <a href="CRUD Usuários/excluirConta.php" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir sua conta?');">
+                    Excluir conta
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL POP-UP -->
     <div id="modalLogin" class="modal">
         <div class="modal-content animate">
             <span class="close-btn" id="closeModalBtn">&times;</span>
+            <div id="mensagemLogin" class="mensagem-login"></div>
 
             <div class="container-login" id="container-login">
                 <div class="form-container sign-up-container">
-                    <form action="#">
+                    <form action="CRUD Usuários/cadastrar.php" method="POST" enctype="multipart/form-data">
                         <h1>Cadastrar Conta</h1>
-                        <input type="text" placeholder="Nome" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Senha" />
+                        <input type="text" placeholder="Nome" name="nome" required/>
+                        <input type="email" placeholder="Email" name="email" required/>
+                        <input type="password" placeholder="Senha" name="senha"required />
+                        <input type="text" placeholder="Telefone" name="telefone" required/>
+                        <input type="file" placeholder="Imagem" name="imagem" />
                         <button type="submit">Cadastrar</button>
                     </form>
                 </div>
                 <div class="form-container sign-in-container">
-                    <form action="#">
+                    <form action="CRUD Usuários/login.php" method="POST">
                         <h1>Entrar</h1>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Senha" />
+                        <input type="email" name="usuario" placeholder="Email" required/>
+                        <input type="password" name="senha" placeholder="Senha" required/>
                         <a href="#">Esqueci minha senha</a>
                         <button type="submit">Entrar</button>
                     </form>
