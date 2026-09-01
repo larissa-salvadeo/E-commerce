@@ -27,8 +27,14 @@ body.disabled {
 }
 
 /*----------SOBRE NÓS----------*/
-
-#desenvolvedores {
+.sobre{
+    display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.desenvolvedores {
     display: grid;
 
     grid-template-areas:
@@ -36,20 +42,18 @@ body.disabled {
         "dev1 dev2 dev3 dev4 dev5"
         "devs devs devs devs devs";
 
-    grid-template-columns: repeat(5, 200px);
+    grid-template-columns: repeat(5, 1fr);
 
     gap: 50px;
     padding: 60px 150px;
-
-    justify-content: center;
-
+    
     background-color: #f8f5f0;
     text-align: center;
     border-radius: 10px;
 }
 
 /* Título */
-#desenvolvedores h1 {
+.desenvolvedores h1 {
     grid-area: titulo;
 
     margin-bottom: 20px;
@@ -97,7 +101,7 @@ body.disabled {
 }
 
 /*Nomes*/
-#desenvolvedores h3 {
+.desenvolvedores h3 {
     margin: 0;
     max-width: 200px;
     font-size: 16px;

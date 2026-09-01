@@ -113,10 +113,31 @@ if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TR
     </header>
 
     <!------MAIN------>
-    <main id="sobre">          
-        <!------------DESENVOLVEDORES------------>
-        <div id="desenvolvedores">
-            <h1>Conheça os Desenvolvedores</h1>
+    <main class="sobre">
+        <!------------QUEM SOMOS?------------>
+        <div class="quem">
+            <section id="texto-quem">
+                
+            </section>
+            <section id="img-quem">
+                
+            </section>
+        </div>
+        <!------------NOSSA MISSÃO, VISÃO E VALORES------------>
+        <div class="mvv">
+            <section id="missao">
+                
+            </section>
+            <section id="visao">
+                
+            </section>
+            <section id="valores">
+                
+            </section>
+        </div>
+        <!------------CONHEÇA OS DESENVOLVEDORES------------>
+        <div class="desenvolvedores">
+            <h1><b>Conheça os Desenvolvedores</b></h1>
             <section id="dev1"> 
                 <img src="Imagens/dev1.png" alt="Desenvolvedor 1">
                 <h3>Ana Júlia Pereira da Silva Leal</h3>
