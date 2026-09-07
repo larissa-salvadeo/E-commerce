@@ -168,3 +168,27 @@ if (abrirUsuario && modalUsuario && fecharUsuario) {
     });
 
 }
+
+
+
+//PÁGINA DE PRODUTO
+document.addEventListener('DOMContentLoaded', () => {
+    const mainImage = document.getElementById('pdpMainPreview');
+    const thumbItems = document.querySelectorAll('.pdp-thumb-item');
+
+    thumbItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Remove a classe ativa de todas as miniaturas
+            thumbItems.forEach(thumb => thumb.classList.remove('pdp-thumb-active'));
+            
+            // Adiciona a classe ativa no item clicado
+            item.classList.add('pdp-thumb-active');
+            
+            // Pega a imagem de dentro da miniatura clicada e atualiza a foto principal
+            const newSrc = item.querySelector('.pdp-thumb-img').getAttribute('src');
+            if (mainImage && newSrc) {
+                mainImage.setAttribute('src', newSrc);
+            }
+        });
+    });
+});

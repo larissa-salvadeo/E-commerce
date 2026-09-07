@@ -1,81 +1,24 @@
-<?php include("_cabecalho.php"); ?>
 
-    <!------MAIN------>
-    <main class="sobre">
-        <!------------QUEM SOMOS?------------>
-        <div class="quem">
-            <section id="texto-quem">
-                
-            </section>
-            <section id="img-quem">
-                
-            </section>
-        </div>
-        <!------------NOSSA MISSÃO, VISÃO E VALORES------------>
-        <div class="mvv">
-            <section id="missao">
-                
-            </section>
-            <section id="visao">
-                
-            </section>
-            <section id="valores">
-                
-            </section>
-        </div>
-        <!------------CONHEÇA OS DESENVOLVEDORES------------>
-        <div class="desenvolvedores">
-            <h1><b>Conheça os Desenvolvedores</b></h1>
-            <section id="dev1"> 
-                <img src="Imagens/dev1.png" alt="Desenvolvedor 1">
-                <h3>Ana Júlia Pereira da Silva Leal</h3>
-            </section>
-            <section id="dev2"> 
-                <img src="Imagens/dev2.png" alt="Desenvolvedor 2">
-                <h3>Julia Gonçalves de Souza Campos</h3>
-            </section>
-            <section id="dev3">
-                <img src="Imagens/dev3.png" alt="Desenvolvedor 3">
-                <h3>Larissa Salvadeo Santana</h3>
-            </section>
-            <section id="dev4"> 
-                <img src="Imagens/dev4.png" alt="Desenvolvedor 4">
-                <h3>Pietra Borgo Bernardi</h3>
-            </section>    
-            <section id="dev5"> 
-                <img src="Imagens/dev5.png" alt="Desenvolvedor 5">
-                <h3>Thales Navarro Neves</h3>
-            </section>    
-            <section id="devs">     
-                <img src="Imagens/devs.png" alt="Desenvolvedores">
-            </section> 
-        </div>   
-    </main>
-
+    <!-- MODAL DE USUÁRIO -->
+    <?php if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE): ?>
     <div id="modalUsuario" class="modal-usuario">
         <div class="modal-usuario-content">
-
             <span class="fechar-usuario" id="fecharUsuario">&times;</span>
             <h2>Minha conta</h2>
             <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário" class="foto-usuario-modal">
 
             <h3><?= htmlspecialchars($_SESSION['sessionNome']) ?></h3>
-
             <p><?= htmlspecialchars($_SESSION['sessionLogin']) ?></p>
 
             <div class="botoes-usuario">
-                <a href="CRUD Usuários/logout.php" class="btn-sair">
-                    Sair
-                </a>
-
-                <a href="CRUD Usuários/excluirConta.php" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir sua conta?');">
-                    Excluir conta
-                </a>
+                <a href="CRUD Usuários/logout.php" class="btn-sair">Sair</a>
+                <a href="CRUD Usuários/excluirConta.php" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir sua conta?');">Excluir conta</a>
             </div>
         </div>
     </div>
+    <?php endif; ?>
 
-    <!-- MODAL POP-UP -->
+    <!-- MODAL POP-UP DE LOGIN/CADASTRO -->
     <div id="modalLogin" class="modal">
         <div class="modal-content animate">
             <span class="close-btn" id="closeModalBtn">&times;</span>
@@ -87,7 +30,7 @@
                         <h1>Cadastrar Conta</h1>
                         <input type="text" placeholder="Nome" name="nome" required/>
                         <input type="email" placeholder="Email" name="email" required/>
-                        <input type="password" placeholder="Senha" name="senha"required />
+                        <input type="password" placeholder="Senha" name="senha" required />
                         <input type="text" placeholder="Telefone" name="telefone" required/>
                         <input type="file" placeholder="Imagem" name="imagem" />
                         <button type="submit">Cadastrar</button>
@@ -119,6 +62,7 @@
             </div>
         </div>
     </div>
+
     <!------FOOTER------>
     <footer>
         <a href="index.php"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
@@ -127,10 +71,11 @@
                 <li><a href="sobre.php">Sobre Nós</a></li>
             </ul>
         </nav>
+        <br>
         <nav>
             <ul>
-                <li><a href="contato.php"><i class="fi fi-brands-instagram"></i></a></li>
-                <li><a href="contato.php"><i class="fi fi-brands-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/lumiere.ltda/" target="_blank"><i class="fi fi-brands-instagram"></i></a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=61593508136608" target="_blank"><i class="fi fi-brands-facebook"></i></a></li>
             </ul>
         </nav> 
         <br>
