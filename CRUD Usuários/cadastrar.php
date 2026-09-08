@@ -41,12 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($insert->execute()) {
 
-        // Pega o ID do usuário que acabou de ser cadastrado
-        $idUsuario = $conn->lastInsertId();
-
-        // Salva a imagem usando o ID do usuário
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
-            salvaUploadId($conn, $_FILES, 'imagem', $idUsuario);
+            salvaUpload($conn, $_FILES, 'imagem');
         }
 
         // Cria a sessão
