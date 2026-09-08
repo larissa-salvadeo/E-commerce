@@ -41,7 +41,7 @@
                         <h1>Entrar</h1>
                         <input type="email" name="usuario" placeholder="Email" required/>
                         <input type="password" name="senha" placeholder="Senha" required/>
-                        <a href="#">Esqueci minha senha</a>
+                        <a href="esqueci.php">Esqueci minha senha</a>
                         <button type="submit">Entrar</button>
                     </form>
                 </div>
