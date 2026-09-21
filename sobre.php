@@ -14,13 +14,24 @@
         <!------------NOSSA MISSÃO, VISÃO E VALORES------------>
         <div class="mvv">
             <section id="missao">
-                
+                <h1><b>Missão</b></h1><br>
+                <p>Proporcionar momentos de conforto, tranquilidade e concentração por meio de velas aromáticas que transformam ambientes de estudo e convivência em espaços mais agradáveis e acolhedores.</p><br>
             </section>
             <section id="visao">
-                
+                <h1><b>Visão</b></h1><br>
+                <p>Oferecer velas aromáticas criativas e de qualidade, capazes de proporcionar ambientes aconchegantes e contribuir para a concentração e o bem-estar das pessoas.</p><br>
             </section>
             <section id="valores">
-                
+                <h1><b>Valores</b></h1><br>
+                <ul>
+                    <li>• Bem-estar: buscamos tornar os momentos do dia mais leves e agradáveis.</li>
+                    <li>• Criatividade: valorizamos combinações de aromas e ideias que tornam cada ambiente especial.</li>
+                    <li>• Qualidade: prezamos pela qualidade dos nossos produtos e pela satisfação dos clientes.</li>
+                    <li>• Responsabilidade: buscamos escolhas mais conscientes na produção e nos materiais utilizados.</li>
+                    <li>• Aconchego: acreditamos que pequenos detalhes podem transformar um espaço.</li>
+                    <li>• Foco e tranquilidade: incentivamos ambientes que favoreçam concentração, relaxamento e produtividade.</li>
+                    <li>• Cuidado: colocamos atenção em cada etapa, desde a criação até a experiência do cliente.</li>
+                </ul><br>
             </section>
         </div>
         <!------------CONHEÇA OS DESENVOLVEDORES------------>

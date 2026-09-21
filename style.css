@@ -8,6 +8,8 @@ html, body{
     height: 100%;
     width: 100%;
     font-family: "Merriweather", serif;
+    margin: 0;
+    padding: 0;
 }
 
 body.disabled {
@@ -28,12 +30,57 @@ body.disabled {
 
 /*----------SOBRE NÓS----------*/
 .sobre{
-    display: flex;
-	justify-content: center;
-	width: 100%;
-	margin: 0;
-	padding: 0;
+    display: grid;
+
+    grid-template-areas:
+        "quem"
+        "mvv"
+        "devs";
+
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+    
+    width: 100%;             
+    padding: 60px 4%;        
+    box-sizing: border-box;
+    
+    background-color: #f8f5f0;
+    text-align: center;
 }
+
+.mvv {
+    display: grid;
+
+    grid-template-areas:
+        "missao visao"
+        "valores valores";
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+#missao, #visao, #valores{
+    color: #f8f5f0;
+    background: #44704f;
+    border-radius: 10px;
+}
+
+#missao { 
+    grid-area: missao; 
+}
+
+#visao { 
+    grid-area: visao; 
+}
+
+#valores { 
+    grid-area: valores; /* Garante que ocupe as 2 colunas de ponta a ponta */
+}
+
 .desenvolvedores {
     display: grid;
 
@@ -44,12 +91,10 @@ body.disabled {
 
     grid-template-columns: repeat(5, 1fr);
 
-    gap: 50px;
-    padding: 60px 150px;
-    
-    background-color: #f8f5f0;
+    gap: 20px;
     text-align: center;
-    border-radius: 10px;
+    justify-items: center;
+    width: 100%;
 }
 
 /* Título */
@@ -67,11 +112,18 @@ body.disabled {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 
     padding: 20px 10px;
 
     transition: transform 0.3s ease;
 }
+
+#dev1 { grid-area: dev1; }
+#dev2 { grid-area: dev2; }
+#dev3 { grid-area: dev3; }
+#dev4 { grid-area: dev4; }
+#dev5 { grid-area: dev5; }
 
 /*Hover Texto/Imagem*/
 #dev1:hover, #dev2:hover, #dev3:hover,#dev4:hover, #dev5:hover {
@@ -82,8 +134,11 @@ body.disabled {
 #dev1 img, #dev2 img, #dev3 img, #dev4 img, #dev5 img {
     object-fit: cover;
 
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: auto;
+    max-width: 180px;
+    aspect-ratio: 1/1;
+
     border-radius: 50%;
     margin-bottom: 18px;
     border: 4px solid white;
@@ -113,9 +168,7 @@ body.disabled {
 /*Imagem devs - grupo*/
 #devs {
     grid-area: devs;
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
+    width: 100%;
 }
 
 #devs img {
