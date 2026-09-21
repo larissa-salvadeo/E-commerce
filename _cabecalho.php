@@ -34,12 +34,13 @@ if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
     $usuario = $select->fetch(PDO::FETCH_ASSOC);
 
     if ($usuario) {
-        $_SESSION['sessionConectado'] = TRUE;
-        $_SESSION['sessionLogin'] = $usuario['email'];
-        $_SESSION['sessionNome'] = $usuario['nome'];
-        $_SESSION['sessionId'] = $usuario['id_usuario'];
+        $_SESSION['sessaoConectado'] = TRUE;
+        $_SESSION['sessaoAdmin'];
+        $_SESSION['sessaoLogin'] = $usuario['email'];
+        $_SESSION['sessaoNome'] = $usuario['nome'];
+        $_SESSION['sessaoId'] = $usuario['id_usuario'];
     }
-}
+} 
 
 if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE && isset($_SESSION['sessionId'])) {
     $id_usuario = $_SESSION['sessionId'];

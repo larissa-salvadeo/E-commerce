@@ -1,5 +1,5 @@
 <?php 
-  /*  //// PARA ENVIO DE EMAILS PHPMAILER //////
+ /*//// PARA ENVIO DE EMAILS PHPMAILER //////
   require __DIR__.'/PHPMailer/PHPMailer/src/PHPMailer.php';
   require __DIR__.'/PHPMailer/PHPMailer/src/SMTP.php';
   # use "use" after include or require
@@ -89,44 +89,47 @@
     }
 
     function salvaUpload($paramConn, $paramFiles, $paramCampo)
-    {   
-        if ( isset( $paramFiles[$paramCampo] ) ) {
-                $novoId   = $paramConn->lastInsertId();
-                $ext = pathinfo($paramFiles[$paramCampo]['name'], PATHINFO_EXTENSION);
-                $arquivoNovo = "Imagens/$novoId.$ext";
-                try {
-                    if (move_uploaded_file($paramFiles[$paramCampo]['tmp_name'], $arquivoNovo)) {
-                        echo "<br>Arquivo $arquivoNovo criado com sucesso.\n";
-                    } 
-                } 
-                catch (PDOException $e) {
-                    echo "Erro, verifique o arquivo se a pasta imagens existe";
-                }     
-            }
-    }
-
-    function salvaUploadId($paramConn, $paramFiles, $paramCampo, $paramId)
-    {
-        if (isset($paramFiles[$paramCampo]) && $paramFiles[$paramCampo]['error'] == 0) {
-
-            $ext = pathinfo($paramFiles[$paramCampo]['name'], PATHINFO_EXTENSION);
-
-            $arquivoNovo = "../Imagens/" . $paramId . "." . $ext;
-
+    {    
+        if(isset( $paramFiles[$paramCampo])) {
+            $ext = pathinfo($paramFiles[$paramCampo]['name'],PATHINFO_EXTENSION);
+            $nomeUnico = uniqid();
+            $arquivoNovo = "imgs/$nomeUnico.$ext";
             try {
-
-                if (move_uploaded_file($paramFiles[$paramCampo]['tmp_name'], $arquivoNovo)) {
-                    return true;
-                } else {
-                    return false;
-                }
-
-            } catch (Exception $e) {
-                return false;
-            }
+               if (move_uploaded_file($paramFiles[$paramCampo]['tmp_name'],$arquivoNovo)) {
+                   return $arquivoNovo;
+               } 
+            } catch (PDOException $e) {
+               return null;
+            }     
         }
-
-        return false;
     }
 
+    function SaiSeHacker(){
+        $autorizadoAdmin = ((isset($_SESSION['sessaoAdmin'])) and ($_SESSION['sessaoAdmin'] == true));
+        if (!$autorizadoAdmin) {
+            header ("location: /index.php");
+            exit;
+        }
+    }
+
+    function LogaAutomatico ($paramLogin, $paramSenha){
+        $_SESSION['sessaoConectado'] = ValidaLogin($paramLogin, $paramSenha, $nome, $foto, $eh_admin);
+        $_SESSION['sessaoAdmin'] = $eh_admin;
+        if ( $_SESSION['sessaoConectado'] ) {
+            DefineCookie('loginCookie', $login, 60);
+            $_SESSION['sessaoLogin'] = $login;
+            $_SESSION['sessaoNome'] = $nome;
+            $_SESSION['sessaoFoto'] = $foto;
+            header('Location: /index.php');
+        }
+    }
+
+    function Raiz() {
+        return str_replace('\\','/',$_SERVER['DOCUMENT_ROOT']);
+    }
+
+    function ImagemJaExiste ($paramImagem){
+        $caminhoFisico = Raiz()."/$paramImagem";
+        return file_exists($caminhoFisico);
+    }
 ?>
