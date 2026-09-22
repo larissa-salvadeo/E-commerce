@@ -39,7 +39,7 @@ body.disabled {
 
     grid-template-columns: 1fr;
 
-    gap: 50px;
+    gap: 10px;
     
     width: 100%;             
     padding: 60px 4%;        
@@ -49,12 +49,20 @@ body.disabled {
     text-align: center;
 }
 
-.mvv {
+.sobre h1{
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #3d342f;
+}
+
+.quem {
     display: grid;
 
     grid-template-areas:
-        "missao visao"
-        "valores valores";
+        "titulo-quem titulo-quem"
+        "texto foto";
 
     grid-template-columns: repeat(2, 1fr);
 
@@ -63,31 +71,68 @@ body.disabled {
     width: 100%;
 }
 
+.quem h1{
+    grid-area: titulo-quem;
+}
+
+#texto-quem {
+    grid-area: texto;
+}
+
+#img-quem {
+    grid-area: foto;
+}
+
+.mvv {
+  display: grid;
+  grid-template-areas: 
+                        "titulo-mvv titulo-mvv"
+                        "missao visao" 
+                        "valores valores";
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  justify-items: center; 
+  align-items: center;    
+  width: 80%;
+  margin: 0 auto;
+}
+
+.mvv h1{
+    grid-area: titulo-mvv;
+}
+
 #missao, #visao, #valores{
-    color: #f8f5f0;
-    background: #44704f;
+    color: #3d342f;
+    background: #f8f5f0;
+    border: 3px solid #5F8565;
     border-radius: 10px;
+    padding: 30px;
 }
 
 #missao { 
-    grid-area: missao; 
+    grid-area: missao;
+    text-align: center;
 }
 
 #visao { 
-    grid-area: visao; 
+    grid-area: visao;
+    text-align: center;
 }
 
 #valores { 
-    grid-area: valores; /* Garante que ocupe as 2 colunas de ponta a ponta */
+    grid-area: valores;
+}
+
+#valores ul li {
+    text-align: left;
 }
 
 .desenvolvedores {
     display: grid;
 
     grid-template-areas:
-        "titulo titulo titulo titulo titulo"
-        "dev1 dev2 dev3 dev4 dev5"
-        "devs devs devs devs devs";
+        "titulo-devs titulo-devs titulo-devs titulo-devs titulo-devs"
+        "dev1 dev2 dev3 dev4 dev5";
 
     grid-template-columns: repeat(5, 1fr);
 
@@ -99,13 +144,7 @@ body.disabled {
 
 /* Título */
 .desenvolvedores h1 {
-    grid-area: titulo;
-
-    margin-bottom: 20px;
-    font-size: 32px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    color: #3d342f;
+    grid-area: titulo-devs;
 }
 
 #dev1, #dev2, #dev3, #dev4, #dev5 {
