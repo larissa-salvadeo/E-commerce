@@ -1,5 +1,6 @@
 
-<?php include("_cabecalho.php"); ?>
+<?php 
+include("_cabecalho.php"); ?>
 <!------MAIN------>
     <main>
         <!------------CARROSSEL------------>

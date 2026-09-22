@@ -1095,6 +1095,156 @@ body {
     animation: abrirUsuario 0.3s ease;
 }
 
+/*-------------------- RECUPERAÇÃO DE SENHA ------------------*/
+
+#main-recuperacao {
+    background: #F2E6D8;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Caixa principal */
+
+.recuperacao-container {
+    background-color: #F2E6D8;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+                0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 450px;
+    max-width: 90%;
+    min-height: 450px;
+}
+
+/* Conteúdo */
+
+.recuperacao-form {
+    background-color: #F2E6D8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 50px;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Título */
+
+.recuperacao-form h1 {
+    font-weight: bold;
+    margin: 0 0 15px;
+    color: #000000;
+}
+
+/* Texto */
+
+.recuperacao-form p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 10px 0 25px;
+    color: #000000;
+}
+
+/* Campos */
+
+.recuperacao-form input[type="email"],
+.recuperacao-form input[type="password"] {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+}
+
+/* Foco no campo */
+
+.recuperacao-form input[type="email"]:focus,
+.recuperacao-form input[type="password"]:focus {
+    box-shadow: 0 0 0 2px #5F8565;
+}
+
+/* Botão */
+
+.recuperacao-form input[type="submit"] {
+    border-radius: 20px;
+    border: 1px solid #4d6b51;
+    background-color: #5F8565;
+    color: #F2E6D8;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Efeito do botão */
+
+.recuperacao-form input[type="submit"]:active {
+    transform: scale(0.95);
+}
+
+.recuperacao-form input[type="submit"]:hover {
+    background-color: #4d6b51;
+}
+
+/* Mensagens */
+
+.mensagem-recuperacao {
+    margin-top: 20px;
+    padding: 12px 15px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #5F8565;
+    color: #F2E6D8;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+/* Link voltar */
+
+.voltar-login {
+    color: #000000;
+    font-size: 13px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.voltar-login:hover {
+    color: #5F8565;
+    text-decoration: underline;
+}
+
+/* Responsividade */
+
+@media (max-width: 500px) {
+
+    .recuperacao-container {
+        width: 90%;
+    }
+
+    .recuperacao-form {
+        padding: 30px;
+    }
+
+}
+
 @keyframes abrirUsuario {
 
     from {

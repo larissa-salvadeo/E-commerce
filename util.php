@@ -1,79 +1,68 @@
-<?php 
- /*//// PARA ENVIO DE EMAILS PHPMAILER //////
-  require __DIR__.'/PHPMailer/PHPMailer/src/PHPMailer.php';
-  require __DIR__.'/PHPMailer/PHPMailer/src/SMTP.php';
-  # use "use" after include or require
-  use PHPMailer\PHPMailer\PHPMailer;
-  use PHPMailer\PHPMailer\SMTP;
-  ////////////////////////////////////////////
+<?php
 
-      //////////////////////////////////////////////////////////////// 
-  // Envio de emails
-  // Marcelo C Peres 2023
-  /* Exemplo: 
-     if ( EnviaEmail ('fulano@fulano','Feliz Aniversario',
-                      '<html><body>Feliz niver</body></html>') 
-     {
-      echo 'enviado com sucesso';
-     }
-  */   
-     
-  ////////////////////////////////////////////////////////////////
-  /*function EnviaEmail ( $pEmailDestino, $pAssunto, $pHtml, 
-                        $pUsuario = "seu_email_aqui", 
-                        $pSenha = "sua_senha_aqui", 
-                        $pSMTP = "smtp.gmail.com" )   
-  {   
-      
-   try {
- 
-     //cria instancia de phpmailer
-     echo "<br>Tentando enviar para $pEmailDestino...";
-     $mail = new PHPMailer(); 
-     $mail->IsSMTP();  
-  
-     // servidor smtp
-     $mail->Host = $pSMTP;
-     $mail->SMTPAuth = true;      // requer autenticacao com o servidor                         
-     $mail->SMTPSecure = 'tls';                            
-      
-     $mail-> SMTPOptions = array (
-       'ssl' => array (
-       'verificar_peer' => false,
-       'verify_peer_name' => false,
-       'allow_self_signed' => true ) );
-      
-     $mail->Port = 587;      
-      
-     $mail->Username = $pUsuario; 
-     $mail->Password = $pSenha; 
-     $mail->From = $pUsuario; 
-     $mail->FromName = "Suporte de senhas"; 
-  
-     $mail->AddAddress($pEmailDestino, "Usuario"); 
-     $mail->IsHTML(true); 
-     $mail->Subject = $pAssunto; 
-     $mail->Body = $pHtml;
-     $enviado = $mail->Send(); 
-       
-     if (!$enviado) {
-        echo "<br>Erro: " . $mail->ErrorInfo;
-     } else {
-        echo "<br><b>Enviado!</b>";
-     }
-     return $enviado;         
-      
-   } catch (phpmailerException $e) {
-     echo $e->errorMessage(); // erros do phpmailer
-   } catch (Exception $e) {
-     echo $e->getMessage();  // erros da aplicacao - gerais
-   }      
-  }
-    */
+// PHPMailer
+require_once __DIR__ . '/PHPMailer/PHPMailer/src/PHPMailer.php';
+require_once __DIR__ . '/PHPMailer/PHPMailer/src/SMTP.php';
+
+// Inicia a sessão somente se ainda não estiver iniciada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Endereço do site
+$_SESSION['sessaoSite'] = "http://localhost/E-commerce";
+
+function EnviaEmail(
+    $pEmailDestino,
+    $pAssunto,
+    $pHtml,
+    $pUsuario = "lumiere.velasaromaticascti@gmail.com",
+    $pSenha = "gfdixdcxgczrymqs",
+    $pSMTP = "smtp.gmail.com"
+) {
+    try {
+
+        $mail = new PHPMailer();
+
+        // Configuração SMTP
+        $mail->SMTPDebug = 0;
+        $mail->IsSMTP();
+
+        $mail->Host = $pSMTP;
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        // Conta Gmail
+        $mail->Username = $pUsuario;
+        $mail->Password = $pSenha;
+
+        // Remetente
+        $mail->From = $pUsuario;
+        $mail->FromName = "Suporte de senhas";
+
+        // Destinatário
+        $mail->AddAddress($pEmailDestino, "Usuario");
+
+        // Mensagem
+        $mail->IsHTML(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->Subject = $pAssunto;
+        $mail->Body = $pHtml;
+
+        // Envia
+        return $mail->Send();
+
+    } catch (Exception $e) {
+
+        return false;
+    }
+}
+
     function conecta($paramString = ""){
         if($paramString == ""){
-            $string_conexao = "pgsql:host=localhost; port=5432;
-            dbname=usuario; user=postgres; password=postgres";
+            $string_conexao = "pgsql:host=projetoscti.com.br; port=54432;
+            dbname=loja2b; user=loja2b; password=J1ZZ7iuMVcK0E2fA";
         }
         else{
             $string_conexao = $paramString;
@@ -93,19 +82,23 @@
         if(isset( $paramFiles[$paramCampo])) {
             $ext = pathinfo($paramFiles[$paramCampo]['name'],PATHINFO_EXTENSION);
             $nomeUnico = uniqid();
-            $arquivoNovo = "imgs/$nomeUnico.$ext";
-            try {
-               if (move_uploaded_file($paramFiles[$paramCampo]['tmp_name'],$arquivoNovo)) {
-                   return $arquivoNovo;
-               } 
-            } catch (PDOException $e) {
-               return null;
-            }     
+            $arquivoFisico = __DIR__ . "/Imagens/$nomeUnico.$ext";
+            $arquivoNovo = "../Imagens/$nomeUnico.$ext";
+            if (move_uploaded_file($paramFiles[$paramCampo]['tmp_name'],$arquivoFisico)) {
+                return "Imagens/$nomeUnico.$ext";;
+            }    
         }
+        return null;
     }
 
+    function ExecutaSQL($Conn, $sql, $parametros = []) {
+        $stmt = $Conn->prepare($sql);
+        $stmt->execute($parametros);
+        return $stmt;
+    }
+    
     function SaiSeHacker(){
-        $autorizadoAdmin = ((isset($_SESSION['sessaoAdmin'])) and ($_SESSION['sessaoAdmin'] == true));
+        $autorizadoAdmin = ((isset($_SESSION['sessionAdmin'])) and ($_SESSION['sessionAdmin'] == true));
         if (!$autorizadoAdmin) {
             header ("location: /index.php");
             exit;
@@ -113,13 +106,13 @@
     }
 
     function LogaAutomatico ($paramLogin, $paramSenha){
-        $_SESSION['sessaoConectado'] = ValidaLogin($paramLogin, $paramSenha, $nome, $foto, $eh_admin);
-        $_SESSION['sessaoAdmin'] = $eh_admin;
-        if ( $_SESSION['sessaoConectado'] ) {
+        $_SESSION['sessionConectado'] = ValidaLogin($paramLogin, $paramSenha, $nome, $foto, $eh_admin);
+        $_SESSION['sessionAdmin'] = $eh_admin;
+        if ( $_SESSION['sessionConectado'] ) {
             DefineCookie('loginCookie', $login, 60);
-            $_SESSION['sessaoLogin'] = $login;
-            $_SESSION['sessaoNome'] = $nome;
-            $_SESSION['sessaoFoto'] = $foto;
+            $_SESSION['sessionLogin'] = $login;
+            $_SESSION['sessionNome'] = $nome;
+            $_SESSION['sessionFoto'] = $foto;
             header('Location: /index.php');
         }
     }

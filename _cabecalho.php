@@ -19,13 +19,12 @@ $conn = conecta();
 $paginaAtual = basename($_SERVER['PHP_SELF']);
 
 $mensagem = $_GET['mensagem'] ?? '';
-$imagemUsuario = 'Imagens/usuario.png';
 
 if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
 
     $email = $_COOKIE['usuarioLogado'];
 
-    $sql = "SELECT id_usuario, nome, email FROM usuario WHERE email = :email AND excluido = FALSE";
+    $sql = "SELECT id_usuario, nome, email, admin, imagem FROM usuario WHERE email = :email AND excluido = FALSE";
 
     $select = $conn->prepare($sql);
     $select->bindParam(':email', $email);
@@ -34,27 +33,23 @@ if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
     $usuario = $select->fetch(PDO::FETCH_ASSOC);
 
     if ($usuario) {
-        $_SESSION['sessaoConectado'] = TRUE;
-        $_SESSION['sessaoAdmin'];
-        $_SESSION['sessaoLogin'] = $usuario['email'];
-        $_SESSION['sessaoNome'] = $usuario['nome'];
-        $_SESSION['sessaoId'] = $usuario['id_usuario'];
-    }
-} 
-
-if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE && isset($_SESSION['sessionId'])) {
-    $id_usuario = $_SESSION['sessionId'];
-    $extensoes = ['png', 'jpg', 'jpeg', 'webp'];
-    
-    foreach ($extensoes as $ext) {
-        $caminho = "Imagens/" . $id_usuario . "." . $ext;
-        if (file_exists($caminho)) {
-            $imagemUsuario = $caminho;
-            break;
-        }
+        $_SESSION['sessionConectado'] = TRUE;
+        $_SESSION['sessionLogin'] = $usuario['email'];
+        $_SESSION['sessionNome'] = $usuario['nome'];
+        $_SESSION['sessionId'] = $usuario['id_usuario'];
+        $_SESSION['sessionAdmin'] = $usuario['admin'];
+        $_SESSION['sessionImagem'] = $usuario['imagem'];
     }
 }
+
+if(isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE) {
+    $imagemUsuario = $_SESSION['sessionImagem'] ?? 'Imagens/usuario.png';
+} else {
+    $imagemUsuario = 'Imagens/usuario.png';
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -130,7 +125,7 @@ if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TR
 
             <!-- Barra de Pesquisa -->
             <div class="pesquisa">
-                <form action="/action.php">
+                <form action="busca.php" method="GET">
                     <input type="text" placeholder="Pesquisar..." name="search">
                     <button type="submit"><i class="fi fi-rr-search"></i></button>
                 </form>

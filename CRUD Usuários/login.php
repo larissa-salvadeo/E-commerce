@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST['usuario'];
     $senha = $_POST['senha'];
 
-    $varSQL = "SELECT id_usuario, nome, email, senha FROM usuario WHERE email = :usuario AND excluido = FALSE";
+    $varSQL = "SELECT id_usuario, nome, email, senha, admin, imagem FROM usuario WHERE email = :usuario AND excluido = FALSE";
     
     $select = $conn->prepare($varSQL);
     $select->bindParam(':usuario', $usuario);
@@ -31,6 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['sessionId'] = $linha['id_usuario'];
     $_SESSION['sessionLogin'] = $linha['email'];
     $_SESSION['sessionNome'] = $linha['nome'];
+    $_SESSION['sessionAdmin'] = $linha['admin'];
+    $_SESSION['sessionImagem'] = $linha['imagem'];
 
     setcookie("usuarioLogado", $linha['email'], time() + (30 * 24 * 60 * 60),"/");
 

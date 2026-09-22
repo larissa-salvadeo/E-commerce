@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = $_POST['senha'];
     $telefone = $_POST['telefone'];
 
-    $senha_hash = password_hash($senha, PASSWORD_BCRYPT);
+    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Verifica se o email já existe
     $sql = "SELECT email FROM usuario WHERE email = :email";
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $select->bindParam(":email", $email);
     $select->execute();
 
-    if ($select->fetch()) {
+    if ($select->fetch()){
         header("Location: ../index.php?cadastro=erro&msg=Este%20email%20ja%20esta%20cadastrado");
         exit;
     }
@@ -38,11 +38,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insert->bindParam(":telefone", $telefone);
 
     try {
+        $insert->execute();
+        $idUsuario = $conn->lastInsertId();
 
-    if ($insert->execute()) {
+        $imagem = null;
 
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
-            salvaUpload($conn, $_FILES, 'imagem');
+            $imagem = salvaUpload($conn, $_FILES, 'imagem');
+        }
+
+        if ($imagem != null) {
+
+            $sqlImagem = "UPDATE usuario SET imagem = :imagem WHERE id_usuario = :id_usuario";
+
+            $update = $conn->prepare($sqlImagem);
+
+            $update->bindParam(":imagem", $imagem);
+            $update->bindParam(":id_usuario", $idUsuario);
+
+            $update->execute();
+            $_SESSION['sessionImagem'] = $imagem;
         }
 
         // Cria a sessão
@@ -51,28 +66,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['sessionNome'] = $nome;
         $_SESSION['sessionId'] = $idUsuario;
 
+
         // Cookie
-        setcookie(
-            "usuarioLogado",
-            $email,
-            time() + (30 * 24 * 60 * 60),
-            "/"
-        );
+        setcookie("usuarioLogado", $email, time() + (30 * 24 * 60 * 60), "/");
 
         header(
             "Location: ../index.php?cadastro=sucesso&nome=" . urlencode($nome)
         );
         exit;
 
-    } else {
-
-        header(
-            "Location: ../index.php?cadastro=erro&msg=Não%20foi%20possivel%20realizar%20o%20cadastro"
-        );
-        exit;
-    }
-
-} catch (PDOException $e) {
+    } catch (PDOException $e) {
 
     header(
         "Location: ../index.php?cadastro=erro&msg=Erro%20ao%20realizar%20o%20cadastro"
