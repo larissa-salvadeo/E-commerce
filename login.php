@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../util.php");
+include("util.php");
 
 $conn = conecta();
 
@@ -18,12 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $linha = $select->fetch(PDO::FETCH_ASSOC);
 
     if (!$linha) {
-        header("Location: ../index.php?login=erro&msg=Usuario%20nao%20encontrado");
+        header("Location: index.php?login=erro&msg=Usuario%20nao%20encontrado");
         exit;
     }
 
     if (!password_verify($senha, $linha['senha'])) {
-        header("Location: ../index.php?login=erro&msg=Senha%20incorreta");
+        header("Location: index.php?login=erro&msg=Senha%20incorreta");
         exit;
     }
 
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     setcookie("usuarioLogado", $linha['email'], time() + (30 * 24 * 60 * 60),"/");
 
-    header("Location: ../index.php?login=sucesso&nome=" . urlencode($linha['nome'])); 
+    header("Location: index.php?login=sucesso&nome=" . urlencode($linha['nome'])); 
     exit;
 }
 ?>

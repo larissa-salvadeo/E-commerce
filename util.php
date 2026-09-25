@@ -10,7 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Endereço do site
-$_SESSION['sessaoSite'] = "http://localhost/E-commerce";
+$_SESSION['sessaoSite'] = "https://eq.projetoscti.com.br/loja2b";
 
 function EnviaEmail(
     $pEmailDestino,
@@ -100,7 +100,7 @@ function EnviaEmail(
     function SaiSeHacker(){
         $autorizadoAdmin = ((isset($_SESSION['sessionAdmin'])) and ($_SESSION['sessionAdmin'] == true));
         if (!$autorizadoAdmin) {
-            header ("location: /index.php");
+            header ("location: index.php");
             exit;
         }
     }
@@ -113,7 +113,7 @@ function EnviaEmail(
             $_SESSION['sessionLogin'] = $login;
             $_SESSION['sessionNome'] = $nome;
             $_SESSION['sessionFoto'] = $foto;
-            header('Location: /index.php');
+            header('Location: index.php');
         }
     }
 

@@ -7,7 +7,7 @@ include("_cabecalho.php"); ?>
         <div class="wrapper">
             <a href="paginaProduto.php" class="single-card">
                 <div class="img-area">
-                    <img src="imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
                 </div>
                 <div class="info">
                     <h3>Vela Aromática Cherry Blossom 70ml</h3>
@@ -20,7 +20,7 @@ include("_cabecalho.php"); ?>
             </a>
             <a href="paginaProduto.php" class="single-card">
                 <div class="img-area">
-                    <img src="imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
                 </div>
                 <div class="info">
                     <h3>Vela Aromática Cherry Blossom 70ml</h3>
@@ -33,7 +33,7 @@ include("_cabecalho.php"); ?>
             </a>
             <a href="paginaProduto.php" class="single-card">
                 <div class="img-area">
-                    <img src="imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
                 </div>
                 <div class="info">
                     <h3>Vela Aromática Cherry Blossom 70ml</h3>
@@ -46,7 +46,7 @@ include("_cabecalho.php"); ?>
             </a>
             <a href="paginaProduto.php" class="single-card">
                 <div class="img-area">
-                    <img src="imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
                 </div>
                 <div class="info">
                     <h3>Vela Aromática Cherry Blossom 70ml</h3>

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include("../util.php");
+include("util.php");
 
 $conn = conecta();
 
@@ -10,7 +10,7 @@ if (
     $_SESSION['sessionConectado'] !== TRUE ||
     !isset($_SESSION['sessionId'])
 ) {
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -30,7 +30,7 @@ session_destroy();
 
 setcookie("usuarioLogado", "", time() - 3600, "/");
 
-header("Location: ../index.php?conta=excluida");
+header("Location: index.php?conta=excluida");
 exit;
 
 ?>

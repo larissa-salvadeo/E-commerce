@@ -7,7 +7,7 @@ session_destroy();
 
 setcookie("usuarioLogado", "", time() - 3600, "/");
 
-header("Location: ../index.php");
+header("Location: index.php");
 exit;
 
 ?>

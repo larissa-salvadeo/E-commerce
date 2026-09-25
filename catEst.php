@@ -7,7 +7,7 @@ include("_cabecalho.php"); ?>
         <div class="single-card">
             <a href="paginaProduto.php" >
                 <div class="img-area">
-                    <img src="imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
                 </div>
             </a>
             <div class="info">
@@ -22,7 +22,7 @@ include("_cabecalho.php"); ?>
         <div class="single-card">
             <a href="paginaProduto.php" >
                 <div class="img-area">
-                    <img src="imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
                 </div>
             </a>
             <div class="info">

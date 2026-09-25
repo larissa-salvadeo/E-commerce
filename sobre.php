@@ -79,11 +79,11 @@ include("_cabecalho.php");?>
             <p><?= htmlspecialchars($_SESSION['sessionLogin']) ?></p>
 
             <div class="botoes-usuario">
-                <a href="CRUD Usuários/logout.php" class="btn-sair">
+                <a href="logout.php" class="btn-sair">
                     Sair
                 </a>
 
-                <a href="CRUD Usuários/excluirConta.php" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir sua conta?');">
+                <a href="excluirConta.php" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir sua conta?');">
                     Excluir conta
                 </a>
             </div>
@@ -98,7 +98,7 @@ include("_cabecalho.php");?>
 
             <div class="container-login" id="container-login">
                 <div class="form-container sign-up-container">
-                    <form action="CRUD Usuários/cadastrar.php" method="POST" enctype="multipart/form-data">
+                    <form action="cadastrar.php" method="POST" enctype="multipart/form-data">
                         <h1>Cadastrar Conta</h1>
                         <input type="text" placeholder="Nome" name="nome" required/>
                         <input type="email" placeholder="Email" name="email" required/>
@@ -109,7 +109,7 @@ include("_cabecalho.php");?>
                     </form>
                 </div>
                 <div class="form-container sign-in-container">
-                    <form action="CRUD Usuários/login.php" method="POST">
+                    <form action="login.php" method="POST">
                         <h1>Entrar</h1>
                         <input type="email" name="usuario" placeholder="Email" required/>
                         <input type="password" name="senha" placeholder="Senha" required/>

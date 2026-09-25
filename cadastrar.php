@@ -1,6 +1,6 @@
 <?php
 
-include("../util.php");
+include("util.php");
 session_start();
 
 $conn = conecta();
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $select->execute();
 
     if ($select->fetch()){
-        header("Location: ../index.php?cadastro=erro&msg=Este%20email%20ja%20esta%20cadastrado");
+        header("Location: index.php?cadastro=erro&msg=Este%20email%20ja%20esta%20cadastrado");
         exit;
     }
 
@@ -71,14 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         setcookie("usuarioLogado", $email, time() + (30 * 24 * 60 * 60), "/");
 
         header(
-            "Location: ../index.php?cadastro=sucesso&nome=" . urlencode($nome)
+            "Location: index.php?cadastro=sucesso&nome=" . urlencode($nome)
         );
         exit;
 
     } catch (PDOException $e) {
 
     header(
-        "Location: ../index.php?cadastro=erro&msg=Erro%20ao%20realizar%20o%20cadastro"
+        "Location: index.php?cadastro=erro&msg=Erro%20ao%20realizar%20o%20cadastro"
     );
     exit;
 }

@@ -67,8 +67,6 @@ if(isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRU
     <link rel="icon" href="Imagens/Icone.png" type="image/png">
 </head>
 
-<base href="<?= $_SESSION['raiz'] ?>">
-
 <body id="container">
     <!------HEADER------>
     <header>
