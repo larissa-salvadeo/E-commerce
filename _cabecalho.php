@@ -11,8 +11,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include_once("util.php");
-
 $conn = conecta();
 
 // Pega o nome do arquivo atual (ex: 'index.php', 'produtos.php', etc)
@@ -68,6 +66,8 @@ if(isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRU
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
     <link rel="icon" href="Imagens/Icone.png" type="image/png">
 </head>
+
+<base href="<?= $_SESSION['raiz'] ?>">
 
 <body id="container">
     <!------HEADER------>

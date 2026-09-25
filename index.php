@@ -1,6 +1,10 @@
 
-<?php 
-include("_cabecalho.php"); ?>
+<?php
+include("util.php");
+$_SESSION["raiz"] = "/loja2b/";
+include("_cabecalho.php");
+$_SESSION["sessaoSite"]=
+"https://eq.projetoscti.com.br". $_SESSION["raiz"]; ?>
 <!------MAIN------>
     <main>
         <!------------CARROSSEL------------>

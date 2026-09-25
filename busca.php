@@ -1,4 +1,5 @@
 <?php
+include("util.php");
 include("_cabecalho.php");
 
 $conn = conecta();

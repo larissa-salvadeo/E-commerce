@@ -118,7 +118,7 @@ function EnviaEmail(
     }
 
     function Raiz() {
-        return str_replace('\\','/',$_SERVER['DOCUMENT_ROOT']);
+        return str_replace('\\','/', $_SERVER['DOCUMENT_ROOT']).$_SESSION['raiz'];
     }
 
     function ImagemJaExiste ($paramImagem){

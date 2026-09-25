@@ -1,4 +1,7 @@
-<?php include("_cabecalho.php"); ?>          
+<?php 
+include("util.php");
+include("_cabecalho.php"); ?>          
+
 <!------MAIN------>
 <main class="pdp-container">
             <!-- Galeria de Imagens (Esquerda) -->

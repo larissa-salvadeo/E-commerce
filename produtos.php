@@ -1,4 +1,6 @@
-<?php include("_cabecalho.php"); ?>     
+<?php 
+include("util.php");
+include("_cabecalho.php"); ?>     
 
     <!------MAIN------>
     <main class="produtos">          
