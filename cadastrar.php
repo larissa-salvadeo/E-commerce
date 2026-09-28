@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $select->execute();
 
     if ($select->fetch()){
-        header("Location: usuarios/usuarios.php?cadastro=erro&msg=Este%20email%20ja%20esta%20cadastrado");
+        header("Location: index.php?cadastro=erro&msg=Este%20email%20ja%20esta%20cadastrado");
         exit;
     }
 

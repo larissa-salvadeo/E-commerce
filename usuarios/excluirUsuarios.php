@@ -1,8 +1,8 @@
 <?php
     include ("../util.php");
     $conn = conecta();
-
-    //SaiseHacker();
+    include "../_cabecalho.php";
+    SaiseHacker();
 
     $id_usuario = $_GET['id_usuario'];
     $varSQL = "UPDATE usuario SET excluido = TRUE, data_exclusao = NOW() WHERE id_usuario = :id_usuario";

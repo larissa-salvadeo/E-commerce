@@ -61,8 +61,10 @@ function EnviaEmail(
 
     function conecta($paramString = ""){
         if($paramString == ""){
-            $string_conexao = "pgsql:host=localhost; port=5432;
-            dbname=usuarios; user=postgres; password=postgres";
+            $string_conexao = "pgsql:host=projetoscti.com.br; port=54432;
+            dbname=loja2b; user=loja2b; password=J1ZZ7iuMVcK0E2fA";
+
+
         }
         else{
             $string_conexao = $paramString;

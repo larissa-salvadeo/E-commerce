@@ -1,5 +1,11 @@
 <html>
     <body>
+        <?php
+            include "../util.php";
+            $conn = conecta();
+            include "../_cabecalho.php";
+            //SaiseHacker();
+        ?>
         <form action = "insertProdutos.php" method = "POST" enctype="multipart/form-data"> 
             <label for = "nome">Nome: </label>
             <input type = "text" name = "nome"/>
@@ -12,6 +18,9 @@
             <br><br>
             <label for = 'imagem'>Imagem: </label>
             <input type='file' name='imagem'><br>
+            <br><br>
+              <label for = "categoria">Categoria: </label>
+            <input type = "text" name = "categoria"/>
             <br><br>
             <input type="submit" value="Adicionar"/>
         </form>

@@ -3,8 +3,8 @@
     <?php
         include "../util.php";
         $conn = conecta();
-
-        //SaiseHacker();
+        include "../_cabecalho.php";
+        SaiseHacker();
         $id_usuario = $_GET['id_usuario'];
 
         $varSQL ="SELECT id_usuario, nome, email, telefone, admin, imagem FROM usuario WHERE id_usuario = :id_usuario";

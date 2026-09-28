@@ -6,9 +6,10 @@
     <body>
         <?php
             include "../util.php";
+            include "../_cabecalho.php";
             
             $conn = conecta();
-            //SaiseHacker();
+            SaiseHacker();
             $varSQL = "SELECT id_usuario, nome, email, senha, telefone, imagem FROM usuario WHERE excluido = FALSE ORDER BY id_usuario ASC";
             $select = $conn->query($varSQL);
 

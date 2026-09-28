@@ -1,8 +1,8 @@
 <?php
     include "../util.php";       
     $conn = conecta();
-
-    //SaiseHacker();
+    include "../_cabecalho.php";
+    SaiseHacker();
 
     $id_usuario = $_POST['id_usuario'];
     $nome = $_POST['nome'];

@@ -1,5 +1,4 @@
-
-    <!-- MODAL DE USUÁRIO -->
+<!-- MODAL DE USUÁRIO -->
     <?php if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE): ?>
     <div id="modalUsuario" class="modal-usuario">
         <div class="modal-usuario-content">
@@ -71,14 +70,13 @@
                 <li><a href="sobre.php">Sobre Nós</a></li>
             </ul>
         </nav>
-        <br>
         <nav>
             <ul>
                 <li><a href="https://www.instagram.com/lumiere.ltda/" target="_blank"><i class="fi fi-brands-instagram"></i></a></li>
                 <li><a href="https://www.facebook.com/profile.php?id=61593508136608" target="_blank"><i class="fi fi-brands-facebook"></i></a></li>
             </ul>
         </nav> 
-        <br>
+        <hr class="linha">
         <p>&copy; 2026. Todos os direitos reservados.</p>    
     </footer>
 

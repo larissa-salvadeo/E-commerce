@@ -1,8 +1,8 @@
 <?php
 include("../util.php");
 $conn = conecta();
-
-//SaiseHacker();
+include "../_cabecalho.php";
+SaiseHacker();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -19,16 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $select = $conn->prepare($sql);
     $select->bindParam(":email", $email);
     $select->execute();
-
-    /*if ($select->fetch()){
-        ?>
-        <script>
-            alert("Olá! Esta é uma janelinha de mensagem.");
-        </script>
-        <?php
-        header("Location: usuarios.php");
-        exit;
-    }*/
 
     if ($select->fetch()){
     ?>

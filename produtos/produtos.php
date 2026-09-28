@@ -5,15 +5,15 @@
 
     <body>
         <?php
-            include "util.php";
+            include "../util.php";
             
             $conn = conecta();
 
             $varSQL = "SELECT * FROM produto WHERE excluido = FALSE";
             $select = $conn->query($varSQL);
 
-            echo "<table style='border: 2px #0091ff dotted; width: 80%' border='2'> 
-                    <thead>
+            echo "<table style='border: 2px #5F8565 dotted; width: 80%' border='2'> 
+                    <thead  style='background-color: #5F8565'>
                         <tr>
                             <th>ID</th>
                             <th>NOME</th>
@@ -52,8 +52,8 @@
                         <td><center> <img height=80 src='$imagem'/> <center></td>
                         <td>
                             <div>
-                                <a href='alterarProdutos.php?id_produto=".$id_produto."'> <center> <img height=35 src='Imagens/alterar.png'/> <center></a>
-                                <a href='excluirProdutos.php?id_produto=".$id_produto."'> <center> <img height=35 src='Imagens/excluir.png'/> <center></a>
+                                <a href='alterarProdutos.php?id_produto=".$id_produto."'> <center> <img height=35 src='../Imagens/alterar.png'/> <center></a>
+                                <a href='excluirProdutos.php?id_produto=".$id_produto."'> <center> <img height=35 src='../Imagens/excluir.png'/> <center></a>
                             </div>
                         </td>
                         
@@ -61,7 +61,7 @@
             }
 
             echo "</table><br><br>";
-            echo "<a href='adicionarProdutos.php'><img height=60 src='Imagens/adicionar.png'/></button>";
+            echo "<a href='adicionarProdutos.php'><img height=60 src='../Imagens/adicionar.png'/></button>";
         
         ?>
     </body>
