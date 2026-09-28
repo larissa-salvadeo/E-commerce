@@ -41,7 +41,7 @@ include("_cabecalho.php"); ?>
 
 
 <!--CÓDIGO PARA QUANDO O BANCO DE DADOS JÁ ESTIVER COM OS PRODUTOS CADASTRADOS -->
-</*?php 
+<?php /*
     include("_cabecalho.php");
 
     $sql = "SELECT id_produto, nome, descricao, categoria, valor_unitario, imagem 
@@ -53,7 +53,7 @@ include("_cabecalho.php"); ?>
     $select->bindParam(':categoria', $categoria);
     $select->execute();
 
-    $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
+    $produtos = $select->fetchAll(PDO::FETCH_ASSOC);*/
 ?>
 <!--
 <main class="produtos">
