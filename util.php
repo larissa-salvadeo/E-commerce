@@ -61,8 +61,8 @@ function EnviaEmail(
 
     function conecta($paramString = ""){
         if($paramString == ""){
-            $string_conexao = "pgsql:host=projetoscti.com.br; port=54432;
-            dbname=loja2b; user=loja2b; password=J1ZZ7iuMVcK0E2fA";
+            $string_conexao = "pgsql:host=localhost; port=5432;
+            dbname=usuarios; user=postgres; password=postgres";
         }
         else{
             $string_conexao = $paramString;
@@ -100,7 +100,7 @@ function EnviaEmail(
     function SaiSeHacker(){
         $autorizadoAdmin = ((isset($_SESSION['sessionAdmin'])) and ($_SESSION['sessionAdmin'] == true));
         if (!$autorizadoAdmin) {
-            header ("location: index.php");
+            header ("Location: ../index.php");
             exit;
         }
     }

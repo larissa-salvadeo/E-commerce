@@ -1,9 +1,8 @@
 <?php
-
-include("util.php");
-session_start();
-
+include("../util.php");
 $conn = conecta();
+
+//SaiseHacker();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -21,10 +20,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $select->bindParam(":email", $email);
     $select->execute();
 
-    if ($select->fetch()){
-        header("Location: usuarios/usuarios.php?cadastro=erro&msg=Este%20email%20ja%20esta%20cadastrado");
+    /*if ($select->fetch()){
+        ?>
+        <script>
+            alert("Olá! Esta é uma janelinha de mensagem.");
+        </script>
+        <?php
+        header("Location: usuarios.php");
         exit;
-    }
+    }*/
+
+    if ($select->fetch()){
+    ?>
+    <script>
+        alert("Email já cadastrado!");
+        window.location.href = "usuarios.php"; 
+    </script>
+    <?php
+    exit;
+}
 
     // Cadastra o usuário
     $varSQL = "INSERT INTO usuario (nome, email, senha, telefone)
@@ -37,8 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insert->bindParam(":senha", $senha_hash);
     $insert->bindParam(":telefone", $telefone);
 
-    try {
-        $insert->execute();
+    if($insert->execute()){
         $idUsuario = $conn->lastInsertId();
 
         $imagem = null;
@@ -57,30 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $update->bindParam(":id_usuario", $idUsuario);
 
             $update->execute();
-            $_SESSION['sessionImagem'] = $imagem;
         }
-
-        // Cria a sessão
-        $_SESSION['sessionConectado'] = TRUE;
-        $_SESSION['sessionLogin'] = $email;
-        $_SESSION['sessionNome'] = $nome;
-        $_SESSION['sessionId'] = $idUsuario;
-
-
-        // Cookie
-        setcookie("usuarioLogado", $email, time() + (30 * 24 * 60 * 60), "/");
-
-        header(
-            "Location: index.php?cadastro=sucesso&nome=" . urlencode($nome)
-        );
-        exit;
-
-    } catch (PDOException $e) {
-
-    header(
-        "Location: index.php?cadastro=erro&msg=Erro%20ao%20realizar%20o%20cadastro"
-    );
+    }    
+    
+    header("Location: usuarios.php");
     exit;
-}
 }
 ?>

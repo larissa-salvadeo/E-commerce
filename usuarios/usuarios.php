@@ -1,19 +1,19 @@
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
     </head>
 
     <body>
         <?php
-            include "util.php";
+            include "../util.php";
             
             $conn = conecta();
-
-            $varSQL = "SELECT id_usuario, nome, email, senha, telefone, imagem FROM usuario WHERE excluido = FALSE";
+            //SaiseHacker();
+            $varSQL = "SELECT id_usuario, nome, email, senha, telefone, imagem FROM usuario WHERE excluido = FALSE ORDER BY id_usuario ASC";
             $select = $conn->query($varSQL);
 
-            echo "<table style='border: 2px #0091ff dotted; width: 80%' border='2'> 
-                    <thead>
+            echo "<center><table style='border: 2px #5F8565 dotted; width: 80%' border='2'> 
+                    <thead style='background-color: #5F8565'>
                         <tr>
                             <th>ID</th>
                             <th>NOME</th>
@@ -23,7 +23,7 @@
                             <th>IMAGEM</th>
                             <th>AÇÕES</th>
                         </tr>
-                    </thead>";
+                    </thead></center>";
 
             while ($linha = $select->fetch() ){
                 $id_usuario = $linha['id_usuario'];
@@ -31,11 +31,7 @@
                 $email = $linha['email'];
                 $senha = $linha['senha'];
                 $telefone = $linha['telefone'];
-                $imagem = "Imagens/$id_usuario.png";
-
-                if (!file_exists($imagem) ) {
-                    $nomeArquivo = "Imagens/semnome.png";
-                }      
+                $imagem = $linha['imagem'];
         
                 echo "<tr>
                         <td>$id_usuario</td>
@@ -43,11 +39,11 @@
                         <td>$email</td>
                         <td>$senha</td>
                         <td>$telefone</td>
-                        <td><center> <img height=80 src='$imagem'/> <center></td>
+                        <td><center> <img height=80 src='../$imagem'/> <center></td>
                         <td>
-                            <div>
-                                <a href='alterarUsuarios.php?id_usuario=".$id_usuario."'> <center> <img height=35 src='Imagens/alterar.png'/> <center></a>
-                                <a href='excluirUsuarios.php?id_usuario=".$id_usuario."'> <center> <img height=35 src='Imagens/excluir.png'/> <center></a>
+                            <div class='acoes'>
+                                <a href='alterarUsuarios.php?id_usuario=".$id_usuario."'><img height=35 src='../Imagens/alterar.png'/></a>
+                                <a href='excluirUsuarios.php?id_usuario=".$id_usuario."'><img height=35 src='../Imagens/excluir.png'/></a>
                             </div>
                         </td>
                         
@@ -55,8 +51,7 @@
             }
 
             echo "</table><br><br>";
-            echo "<a href='adicionarUsuarios.php'><img height=60 src='Imagens/adicionar.png'/></button>";
-            echo "<a href='login.php'>Fazer Login</a>";
+            echo "<a href='adicionarUsuarios.php'><img height=60 src='../Imagens/adicionar.png'/></button>";
         
         ?>
     </body>

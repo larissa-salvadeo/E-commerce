@@ -1,11 +1,13 @@
 <html>
 <body>
     <?php
-        include "util.php";
+        include "../util.php";
         $conn = conecta();
+
+        //SaiseHacker();
         $id_usuario = $_GET['id_usuario'];
 
-        $varSQL ="SELECT id_usuario, nome, email, telefone, admin FROM usuario WHERE id_usuario = :id_usuario";
+        $varSQL ="SELECT id_usuario, nome, email, telefone, admin, imagem FROM usuario WHERE id_usuario = :id_usuario";
 
         $select = $conn->prepare($varSQL);
         $select->bindParam(':id_usuario', $id_usuario);
@@ -17,6 +19,7 @@
         $email = $linha['email'];
         $telefone = $linha['telefone'];
         $admin = $linha['admin'];
+        $imagem = $linha['imagem'];
     ?>
 
     <form action='updateUsuarios.php' method='post' enctype="multipart/form-data">

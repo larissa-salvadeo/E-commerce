@@ -1,6 +1,8 @@
 <?php
-    include "util.php";       
+    include "../util.php";       
     $conn = conecta();
+
+    //SaiseHacker();
 
     $id_usuario = $_POST['id_usuario'];
     $nome = $_POST['nome'];
@@ -26,9 +28,25 @@
     $update->bindParam(':admin', $admin);
     $update->bindParam(':id_usuario', $id_usuario);
 
-    if ( $update -> execute() ) {
-        salvaUploadId($conn, $_FILES, 'imagem', $_POST['id_usuario']);
-    }
+    if($update->execute()){
+        $imagem = null;
+
+        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+            $imagem = salvaUpload($conn, $_FILES, 'imagem');
+        }
+
+        if ($imagem != null) {
+
+            $sqlImagem = "UPDATE usuario SET imagem = :imagem WHERE id_usuario = :id_usuario";
+
+            $update = $conn->prepare($sqlImagem);
+
+            $update->bindParam(":imagem", $imagem);
+            $update->bindParam(":id_usuario", $id_usuario);
+
+            $update->execute();
+        }
+    }    
 
     header("Location: usuarios.php");
     

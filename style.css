@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+.acoes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Centraliza os botões na célula */
+    align-items: center;     /* Alinha os botões verticalmente */
+    gap: 10px; 
+}
+
 html, body{
     height: 100%;
     width: 100%;
