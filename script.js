@@ -1,33 +1,45 @@
 /* CARROSSEL */
+
 let slideIndex = 0;
+let timer; 
 const track = document.getElementById("track");
 const slides = document.getElementsByClassName("mySlides");
 const dots = document.getElementsByClassName("dot");
 
+if (track) {
+    showSlides();
+}
+
+function plusSlides(n) {
+    clearTimeout(timer);
+    slideIndex += n;
+    showSlides();
+}
+
+function currentSlide(n) {
+    clearTimeout(timer);
+    slideIndex = n;
+    showSlides();
+}
+
 function showSlides() {
     if (!track || slides.length === 0) return;
+
+    if (slideIndex >= slides.length) { slideIndex = 0; }
+    if (slideIndex < 0) { slideIndex = slides.length - 1; }
 
     track.style.transform = `translateX(-${slideIndex * 100}%)`;
 
     for (let i = 0; i < dots.length; i++) {
         dots[i].classList.remove("active");
     }
-
     if (dots[slideIndex]) {
         dots[slideIndex].classList.add("active");
     }
 
-    slideIndex++;
-
-    if (slideIndex >= slides.length) {
-        slideIndex = 0;
-    }
-
-    setTimeout(showSlides, 4000);
-}
-
-if (track) {
-    showSlides();
+    timer = setTimeout(function() {
+        plusSlides(1);
+    }, 4000);
 }
 
 

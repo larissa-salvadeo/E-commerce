@@ -2,40 +2,7 @@
 include("util.php");
 include("_cabecalho.php"); ?>    
 <!------MAIN------>    
-<main class="produtos">
-    <div class="wrapperCat">
-        <div class="single-card">
-            <a href="paginaProduto.php" >
-                <div class="img-area">
-                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
-                </div>
-            </a>
-            <div class="info">
-                <h3>Vela Aromática Cherry Blossom 70ml</h3>
-                <p class="price">R$ 16,90</p>
-                <p>Cheiro Maravilhoso</p>
-                <a href="carrinho.php" class="carrinho">
-                    <i class="fi fi-rr-shopping-cart"></i>
-                </a>
-            </div>
-        </div>
-        <div class="single-card">
-            <a href="paginaProduto.php" >
-                <div class="img-area">
-                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
-                </div>
-            </a>
-            <div class="info">
-                <h3>Vela Aromática Cherry Blossom 70ml</h3>
-                <p class="price">R$ 16,90</p>
-                <p>Cheiro Maravilhoso</p>
-                <a href="carrinho.php" class="carrinho">
-                    <i class="fi fi-rr-shopping-cart"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</main>
+<h1>Em desenvolvimento</h1>
 <?php include("_rodape.php"); ?>
 
 

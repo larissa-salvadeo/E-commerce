@@ -27,14 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $_SESSION['sessionConectado'] = TRUE;
-    $_SESSION['sessionId'] = $linha['id_usuario'];
-    $_SESSION['sessionLogin'] = $linha['email'];
-    $_SESSION['sessionNome'] = $linha['nome'];
-    $_SESSION['sessionAdmin'] = $linha['admin'];
-    $_SESSION['sessionImagem'] = $linha['imagem'];
+    $_SESSION['sessionConectado-Lumiere'] = TRUE;
+    $_SESSION['sessionId-Lumiere'] = $linha['id_usuario'];
+    $_SESSION['sessionLogin-Lumiere'] = $linha['email'];
+    $_SESSION['sessionNome-Lumiere'] = $linha['nome'];
+    $_SESSION['sessionAdmin-Lumiere'] = $linha['admin'];
+    $_SESSION['sessionImagem-Lumiere'] = $linha['imagem'];
 
-    setcookie("usuarioLogado", $linha['email'], time() + (30 * 24 * 60 * 60),"/");
+    setcookie("usuarioLogado-Lumiere", $linha['email'], time() + (30 * 24 * 60 * 60),"/");
 
     header("Location: index.php?login=sucesso&nome=" . urlencode($linha['nome'])); 
     exit;

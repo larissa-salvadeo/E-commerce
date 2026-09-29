@@ -6,15 +6,15 @@ include("util.php");
 $conn = conecta();
 
 if (
-    !isset($_SESSION['sessionConectado']) ||
-    $_SESSION['sessionConectado'] !== TRUE ||
-    !isset($_SESSION['sessionId'])
+    !isset($_SESSION['sessionConectado-Lumiere']) ||
+    $_SESSION['sessionConectado-Lumiere'] !== TRUE ||
+    !isset($_SESSION['sessionId-Lumiere'])
 ) {
     header("Location: index.php");
     exit;
 }
 
-$id_usuario = $_SESSION['sessionId'];
+$id_usuario = $_SESSION['sessionId-Lumiere'];
 
 $sql = "UPDATE usuario
         SET excluido = TRUE,
@@ -28,7 +28,7 @@ $update->execute();
 session_unset();
 session_destroy();
 
-setcookie("usuarioLogado", "", time() - 3600, "/");
+setcookie("usuarioLogado-Lumiere", "", time() - 3600, "/");
 
 header("Location: index.php?conta=excluida");
 exit;

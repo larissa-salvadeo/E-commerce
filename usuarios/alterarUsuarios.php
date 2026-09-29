@@ -9,10 +9,11 @@ $paginaAtual = basename($_SERVER['PHP_SELF']);
 $conn = conecta();
 $id_usuario = $_GET['id_usuario'];
 
+SaiseHacker();
 // Login automático pelo cookie
-if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
+if (!isset($_SESSION['sessionConectado-Lumiere']) && isset($_COOKIE['usuarioLogado-Lumiere'])) {
 
-    $email = $_COOKIE['usuarioLogado'];
+    $email = $_COOKIE['usuarioLogado-Lumiere'];
 
     $sql = "SELECT id_usuario, nome, email, admin, imagem FROM usuario WHERE email = :email AND excluido = FALSE";
 
@@ -23,18 +24,18 @@ if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($usuario) {
-        $_SESSION['sessionConectado'] = TRUE;
-        $_SESSION['sessionLogin'] = $usuario['email'];
-        $_SESSION['sessionNome'] = $usuario['nome'];
-        $_SESSION['sessionId'] = $usuario['id_usuario'];
-        $_SESSION['sessionAdmin'] = $usuario['admin'];
-        $_SESSION['sessionImagem'] = $usuario['imagem'];
+        $_SESSION['sessionConectado-Lumiere'] = TRUE;
+        $_SESSION['sessionLogin-Lumiere'] = $usuario['email'];
+        $_SESSION['sessionNome-Lumiere'] = $usuario['nome'];
+        $_SESSION['sessionId-Lumiere'] = $usuario['id_usuario'];
+        $_SESSION['sessionAdmin-Lumiere'] = $usuario['admin'];
+        $_SESSION['sessionImagem-Lumiere'] = $usuario['imagem'];
     }
 }
 
 // Imagem do usuário
-if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE) {
-    $imagemUsuario = $_SESSION['sessionImagem'] ?? 'Imagens/usuario.png';
+if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE) {
+    $imagemUsuario = $_SESSION['sessionImagem-Lumiere'] ?? 'Imagens/usuario.png';
 } else {
     $imagemUsuario = 'Imagens/usuario.png';
 }
@@ -79,7 +80,7 @@ $varSQL ="SELECT id_usuario, nome, email, telefone, admin, imagem FROM usuario W
     <link rel="icon" href="../Imagens/Icone.png" type="image/png">
 </head>
 
-<body id="container">
+<body id="containerCrud">
 
     <!------ HEADER ------>
     <header>
@@ -112,12 +113,12 @@ $varSQL ="SELECT id_usuario, nome, email, telefone, admin, imagem FROM usuario W
                     Sobre nós
                 </a>
 
-                <?php if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE): ?>
+                <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
 
                     <a class="usuario-menu" href="#" id="abrirUsuario">
                         <div class="usuario-logado">
                             <img src="../<?= htmlspecialchars($imagemUsuario ?? 'Imagens/usuario.png', ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário">
-                            <span><?= htmlspecialchars($_SESSION['sessionNome'] ?? '', ENT_QUOTES, 'UTF-8') ?></span>
+                            <span><?= htmlspecialchars($_SESSION['sessionNome-Lumiere'] ?? '', ENT_QUOTES, 'UTF-8') ?></span>
                         </div>
                     </a>
 
@@ -133,6 +134,11 @@ $varSQL ="SELECT id_usuario, nome, email, telefone, admin, imagem FROM usuario W
                     Carrinho <i class="fi fi-rr-shopping-cart"></i>
                 </a>
 
+                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
+                <a class="<?= ($paginaAtual == 'alterarUsuarios.php') ? 'active' : '' ?>" href="../admin.php">
+                    Admin <i class="fi fi-rr-user"></i>
+                </a>
+                <?php endif;?>
             </div>
 
             <!-- Barra de Pesquisa -->
@@ -239,7 +245,7 @@ $varSQL ="SELECT id_usuario, nome, email, telefone, admin, imagem FROM usuario W
         </form>
         <!-- MODAL DE USUÁRIO -->
 
-        <?php if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE): ?>
+        <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
 
             <div id="modalUsuario" class="modal-usuario">
 
@@ -251,9 +257,9 @@ $varSQL ="SELECT id_usuario, nome, email, telefone, admin, imagem FROM usuario W
 
                     <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal">
 
-                    <h3><?= htmlspecialchars($_SESSION['sessionNome'] ?? '', ENT_QUOTES, 'UTF-8') ?></h3>
+                    <h3><?= htmlspecialchars($_SESSION['sessionNome-Lumiere'] ?? '', ENT_QUOTES, 'UTF-8') ?></h3>
 
-                    <p><?= htmlspecialchars($_SESSION['sessionLogin'] ?? '', ENT_QUOTES, 'UTF-8') ?></p>
+                    <p><?= htmlspecialchars($_SESSION['sessionLogin-Lumiere'] ?? '', ENT_QUOTES, 'UTF-8') ?></p>
 
                     <div class="botoes-usuario">
 

@@ -8,53 +8,45 @@ include("_cabecalho.php"); ?>
             <a href="paginaProduto.php" class="single-card">
                 <div class="img-area">
                     <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <button class="categ">Estudo</button>
                 </div>
                 <div class="info">
                     <h3>Vela Aromática Cherry Blossom 70ml</h3>
                     <p class="price">R$ 16,90</p>
-                    <p>Cheiro Maravilhoso</p>
-                    <div class="carrinho">
-                        <i class="fi fi-rr-shopping-cart"></i>
-                    </div>
+                    <button type="button" class="btn-detalhes">Ver detalhes</button>
                 </div>
             </a>
             <a href="paginaProduto.php" class="single-card">
                 <div class="img-area">
                     <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <button class="categ">Estudo</button>
                 </div>
                 <div class="info">
                     <h3>Vela Aromática Cherry Blossom 70ml</h3>
                     <p class="price">R$ 16,90</p>
-                    <p>Cheiro Maravilhoso</p>
-                    <div class="carrinho">
-                        <i class="fi fi-rr-shopping-cart"></i>
-                    </div>
+                    <button type="button" class="btn-detalhes">Ver detalhes</button>
                 </div>
             </a>
             <a href="paginaProduto.php" class="single-card">
                 <div class="img-area">
                     <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <button class="categ">Estudo</button>
                 </div>
                 <div class="info">
                     <h3>Vela Aromática Cherry Blossom 70ml</h3>
                     <p class="price">R$ 16,90</p>
-                    <p>Cheiro Maravilhoso</p>
-                    <div class="carrinho">
-                        <i class="fi fi-rr-shopping-cart"></i>
-                    </div>
+                    <button type="button" class="btn-detalhes">Ver detalhes</button>
                 </div>
             </a>
             <a href="paginaProduto.php" class="single-card">
                 <div class="img-area">
                     <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
+                    <button class="categ">Estudo</button>
                 </div>
                 <div class="info">
                     <h3>Vela Aromática Cherry Blossom 70ml</h3>
                     <p class="price">R$ 16,90</p>
-                    <p>Cheiro Maravilhoso</p>
-                    <div class="carrinho">
-                        <i class="fi fi-rr-shopping-cart"></i>
-                    </div>
+                    <button type="button" class="btn-detalhes">Ver detalhes</button>
                 </div>
             </a>
         </div>

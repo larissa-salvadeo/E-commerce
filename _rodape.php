@@ -1,13 +1,13 @@
 <!-- MODAL DE USUÁRIO -->
-    <?php if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE): ?>
+    <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
     <div id="modalUsuario" class="modal-usuario">
         <div class="modal-usuario-content">
             <span class="fechar-usuario" id="fecharUsuario">&times;</span>
             <h2>Minha conta</h2>
             <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário" class="foto-usuario-modal">
 
-            <h3><?= htmlspecialchars($_SESSION['sessionNome']) ?></h3>
-            <p><?= htmlspecialchars($_SESSION['sessionLogin']) ?></p>
+            <h3><?= htmlspecialchars($_SESSION['sessionNome-Lumiere']) ?></h3>
+            <p><?= htmlspecialchars($_SESSION['sessionLogin-Lumiere']) ?></p>
 
             <div class="botoes-usuario">
                 <a href="logout.php" class="btn-sair">Sair</a>
@@ -74,6 +74,8 @@
             <ul>
                 <li><a href="https://www.instagram.com/lumiere.ltda/" target="_blank"><i class="fi fi-brands-instagram"></i></a></li>
                 <li><a href="https://www.facebook.com/profile.php?id=61593508136608" target="_blank"><i class="fi fi-brands-facebook"></i></a></li>
+                <li><a href="mailto:lumiere.velasaromaticascti@gmail.com" target="_blank"><i class="fi fi-rr-envelope"></i></a></li>
+
             </ul>
         </nav> 
         <hr class="linha">

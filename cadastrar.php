@@ -57,18 +57,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $update->bindParam(":id_usuario", $idUsuario);
 
             $update->execute();
-            $_SESSION['sessionImagem'] = $imagem;
+            $_SESSION['sessionImagem-Lumiere'] = $imagem;
         }
 
         // Cria a sessão
-        $_SESSION['sessionConectado'] = TRUE;
-        $_SESSION['sessionLogin'] = $email;
-        $_SESSION['sessionNome'] = $nome;
-        $_SESSION['sessionId'] = $idUsuario;
+        $_SESSION['sessionConectado-Lumiere'] = TRUE;
+        $_SESSION['sessionLogin-Lumiere'] = $email;
+        $_SESSION['sessionNome-Lumiere'] = $nome;
+        $_SESSION['sessionId-Lumiere'] = $idUsuario;
 
 
         // Cookie
-        setcookie("usuarioLogado", $email, time() + (30 * 24 * 60 * 60), "/");
+        setcookie("usuarioLogado-Lumiere", $email, time() + (30 * 24 * 60 * 60), "/");
 
         header(
             "Location: index.php?cadastro=sucesso&nome=" . urlencode($nome)

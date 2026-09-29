@@ -18,9 +18,9 @@ $paginaAtual = basename($_SERVER['PHP_SELF']);
 
 $mensagem = $_GET['mensagem'] ?? '';
 
-if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
+if (!isset($_SESSION['sessionConectado-Lumiere']) && isset($_COOKIE['usuarioLogado-Lumiere'])) {
 
-    $email = $_COOKIE['usuarioLogado'];
+    $email = $_COOKIE['usuarioLogado-Lumiere'];
 
     $sql = "SELECT id_usuario, nome, email, admin, imagem FROM usuario WHERE email = :email AND excluido = FALSE";
 
@@ -31,17 +31,17 @@ if (!isset($_SESSION['sessionConectado']) && isset($_COOKIE['usuarioLogado'])) {
     $usuario = $select->fetch(PDO::FETCH_ASSOC);
 
     if ($usuario) {
-        $_SESSION['sessionConectado'] = TRUE;
-        $_SESSION['sessionLogin'] = $usuario['email'];
-        $_SESSION['sessionNome'] = $usuario['nome'];
-        $_SESSION['sessionId'] = $usuario['id_usuario'];
-        $_SESSION['sessionAdmin'] = $usuario['admin'];
-        $_SESSION['sessionImagem'] = $usuario['imagem'];
+        $_SESSION['sessionConectado-Lumiere'] = TRUE;
+        $_SESSION['sessionLogin-Lumiere'] = $usuario['email'];
+        $_SESSION['sessionNome-Lumiere'] = $usuario['nome'];
+        $_SESSION['sessionId-Lumiere'] = $usuario['id_usuario'];
+        $_SESSION['sessionAdmin-Lumiere'] = $usuario['admin'];
+        $_SESSION['sessionImagem-Lumiere'] = $usuario['imagem'];
     }
 }
 
-if(isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE) {
-    $imagemUsuario = $_SESSION['sessionImagem'] ?? 'Imagens/usuario.png';
+if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE) {
+    $imagemUsuario = $_SESSION['sessionImagem-Lumiere'] ?? 'Imagens/usuario.png';
 } else {
     $imagemUsuario = 'Imagens/usuario.png';
 }
@@ -101,12 +101,12 @@ if(isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRU
                     Sobre nós
                 </a>
 
-                <?php if (isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRUE): ?>
+                <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
                 <a class="usuario-menu" href="#" id="abrirUsuario">
                     <div class="usuario-logado">
                         <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário">
                         <span>
-                            <?= htmlspecialchars($_SESSION['sessionNome']) ?>
+                            <?= htmlspecialchars($_SESSION['sessionNome-Lumiere']) ?>
                         </span>
                     </div>
                 </a>
@@ -119,6 +119,12 @@ if(isset($_SESSION['sessionConectado']) && $_SESSION['sessionConectado'] === TRU
                 <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" href="carrinho.php">
                     Carrinho <i class="fi fi-rr-shopping-cart"></i>
                 </a>
+
+                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
+                <a class="<?= ($paginaAtual == 'admin.php') ? 'active' : '' ?>" href="admin.php">
+                    Admin <i class="fi fi-rr-user"></i>
+                </a>
+                <?php endif;?>
             </div>
 
             <!-- Barra de Pesquisa -->

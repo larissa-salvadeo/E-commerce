@@ -140,7 +140,7 @@ function EnviaEmail(
     }
     
     function SaiSeHacker(){
-        $autorizadoAdmin = ((isset($_SESSION['sessionAdmin'])) and ($_SESSION['sessionAdmin'] == true));
+        $autorizadoAdmin = ((isset($_SESSION['sessionAdmin-Lumiere'])) and ($_SESSION['sessionAdmin-Lumiere'] == true));
         if (!$autorizadoAdmin) {
             header ("Location: ../index.php");
             exit;
@@ -148,13 +148,13 @@ function EnviaEmail(
     }
 
     function LogaAutomatico ($paramLogin, $paramSenha){
-        $_SESSION['sessionConectado'] = ValidaLogin($paramLogin, $paramSenha, $nome, $foto, $eh_admin);
-        $_SESSION['sessionAdmin'] = $eh_admin;
-        if ( $_SESSION['sessionConectado'] ) {
+        $_SESSION['sessionConectado-Lumiere'] = ValidaLogin($paramLogin, $paramSenha, $nome, $foto, $eh_admin);
+        $_SESSION['sessionAdmin-Lumiere'] = $eh_admin;
+        if ( $_SESSION['sessionConectado-Lumiere'] ) {
             DefineCookie('loginCookie', $login, 60);
-            $_SESSION['sessionLogin'] = $login;
-            $_SESSION['sessionNome'] = $nome;
-            $_SESSION['sessionFoto'] = $foto;
+            $_SESSION['sessionLogin-Lumiere'] = $login;
+            $_SESSION['sessionNome-Lumiere'] = $nome;
+            $_SESSION['sessionFoto-Lumiere'] = $foto;
             header('Location: index.php');
         }
     }

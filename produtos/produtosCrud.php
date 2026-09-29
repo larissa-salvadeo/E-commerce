@@ -1,4 +1,5 @@
 <?php
+
 include "../util.php";
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -6,10 +7,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $paginaAtual = basename($_SERVER['PHP_SELF']);
+
 $conn = conecta();
 
 SaiseHacker();
-// Login automático pelo cookie
+
 if (!isset($_SESSION['sessionConectado-Lumiere']) && isset($_COOKIE['usuarioLogado-Lumiere'])) {
 
     $email = $_COOKIE['usuarioLogado-Lumiere'];
@@ -32,27 +34,24 @@ if (!isset($_SESSION['sessionConectado-Lumiere']) && isset($_COOKIE['usuarioLoga
     }
 }
 
-// Imagem do usuário
 if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE) {
     $imagemUsuario = $_SESSION['sessionImagem-Lumiere'] ?? 'Imagens/usuario.png';
 } else {
     $imagemUsuario = 'Imagens/usuario.png';
 }
 
-// Busca os usuários no banco
 $pesquisa = $_GET['pesquisa'] ?? '';
 
-$varSQL = "SELECT id_usuario, nome, email, senha, telefone, imagem 
-           FROM usuario 
-           WHERE excluido = FALSE 
-           AND (nome ILIKE :pesquisa OR email ILIKE :pesquisa OR telefone ILIKE :pesquisa)
-           ORDER BY id_usuario ASC";
+$varSQL = "SELECT id_produto, nome, descricao, valor_unitario, imagem FROM produto WHERE excluido = FALSE 
+            AND (nome ILIKE :pesquisa OR descricao ILIKE :pesquisa) ORDER BY id_produto ASC";
+
 
 $select = $conn->prepare($varSQL);
 
 $pesquisaBanco = "%" . $pesquisa . "%";
 
-$select->bindParam(":pesquisa", $pesquisaBanco);
+$select->bindParam(':pesquisa',$pesquisaBanco,PDO::PARAM_STR);
+
 $select->execute();
 ?>
 
@@ -136,7 +135,7 @@ $select->execute();
                 </a>
 
                 <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
-                <a class="<?= ($paginaAtual == 'adicionarUsuarios.php') ? 'active' : '' ?>" href="../admin.php">
+                <a class="<?= ($paginaAtual == 'produtosCrud.php') ? 'active' : '' ?>" href="../admin.php">
                     Admin <i class="fi fi-rr-user"></i>
                 </a>
                 <?php endif;?>
@@ -158,17 +157,70 @@ $select->execute();
 
     <!------ CONTEÚDO PRINCIPAL ------>
 
-    <main class="main-cadastrar-usuario">
+    <main style="width: 100%; text-align: center; display: block;">
 
-    <form action="insertUsuarios.php" method="POST" enctype="multipart/form-data">
-                        <h1>Cadastrar Conta</h1>
-                        <input type="text" placeholder="Nome" name="nome" required/>
-                        <input type="email" placeholder="Email" name="email" required/>
-                        <input type="password" placeholder="Senha" name="senha" required />
-                        <input type="text" placeholder="Telefone" name="telefone" required/>
-                        <input type="file" placeholder="Imagem" name="imagem"/>
-                        <button type="submit">Cadastrar</button>
+    <div style="width: 80%; margin: 0 auto 20px auto; text-align: left; display: block;">
+        <form method="GET" action="" style="display: block;">
+            <input type="text" name="pesquisa" placeholder="Pesquisar usuário..." value="<?= htmlspecialchars($pesquisa) ?>" style="width: 300px; padding: 10px; border: 1px solid #5F8565; border-radius: 5px;">
+            <button type="submit" style="padding: 10px 20px; background-color: #5F8565; color: white; border: none; border-radius: 5px; cursor: pointer;">Pesquisar</button>
         </form>
+    </div>
+    
+    <table style="border: 2px #5F8565 dotted; border-collapse: collapse; width: 80%; margin: 0 auto;">
+        <thead style="background-color: #5F8565; color: white;">
+            <tr>
+                <th style="border: 1px #5F8565 dotted; padding: 10px;">ID</th>
+                <th style="border: 1px #5F8565 dotted; padding: 10px;">NOME</th>
+                <th style="border: 1px #5F8565 dotted; padding: 10px;">DESCRIÇÃO</th>
+                <th style="border: 1px #5F8565 dotted; padding: 10px;">VALOR UNITÁRIO</th>
+                <th style="border: 1px #5F8565 dotted; padding: 10px;">QUANTIDADE ESTOQUE</th>
+                <th style="border: 1px #5F8565 dotted; padding: 10px;">IMAGEM</th>
+                <th style="border: 1px #5F8565 dotted; padding: 10px;">AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php while ($linha = $select->fetch(PDO::FETCH_ASSOC)):
+            $id_produto = $linha['id_produto'];
+            $nome = $linha['nome'];
+            $descricao = $linha['descricao'];
+
+            $qtd_estoque = 0;
+
+            $valor = $linha['valor_unitario'];
+            $imagem = $linha['imagem'];
+        ?>
+
+            <tr>
+                <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$id_produto?></td>
+                <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$nome?></td>
+                <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$descricao?></td>
+                <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$valor?></td>
+                <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$qtd_estoque?></td>
+                <td style="border: 1px #5F8565 dotted; padding: 10px;">
+                    <img height="80" src="../<?=$imagem?>" alt="Imagem do Produto"/>
+                </td>
+
+                <td style="border: 1px #5F8565 dotted; padding: 10px;">
+                    <div class="acoes">
+                        <a href="alterarProdutos.php?id_produto=<?= htmlspecialchars($linha['id_produto'], ENT_QUOTES, 'UTF-8') ?>">
+                            <img height="35" src="../Imagens/alterar.png" alt="Alterar"/>
+                        </a>
+                        <a href="excluirProdutos.php?id_produto=<?= htmlspecialchars($linha['id_produto'], ENT_QUOTES, 'UTF-8') ?>">
+                            <img height="35" src="../Imagens/excluir.png" alt="Excluir"/>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+        </tbody>
+    </table>
+
+        <br><br>
+
+        <a href="adicionarProdutos.php">
+            <img height="60" src="../Imagens/adicionar.png" alt="Adicionar Produto"/>
+        </a>
+
 
         <!-- MODAL DE USUÁRIO -->
 
