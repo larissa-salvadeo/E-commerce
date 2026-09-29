@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Verifica se o email já existe
-    $sql = "SELECT email FROM usuario WHERE email = :email";
+    $sql = "SELECT email FROM usuario WHERE email = :email AND excluido = FALSE";
 
     $select = $conn->prepare($sql);
     $select->bindParam(":email", $email);
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert->execute();
         $idUsuario = $conn->lastInsertId();
 
-        $imagem = null;
+        $imagem = 'Imagens/usuario.png';
 
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
             $imagem = salvaUpload($conn, $_FILES, 'imagem');

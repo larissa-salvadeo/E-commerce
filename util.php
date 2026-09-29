@@ -79,19 +79,59 @@ function EnviaEmail(
         return $c;
     }
 
-    function salvaUpload($paramConn, $paramFiles, $paramCampo)
-    {    
-        if(isset( $paramFiles[$paramCampo])) {
-            $ext = pathinfo($paramFiles[$paramCampo]['name'],PATHINFO_EXTENSION);
-            $nomeUnico = uniqid();
-            $arquivoFisico = __DIR__ . "/Imagens/$nomeUnico.$ext";
-            $arquivoNovo = "../Imagens/$nomeUnico.$ext";
-            if (move_uploaded_file($paramFiles[$paramCampo]['tmp_name'],$arquivoFisico)) {
-                return "Imagens/$nomeUnico.$ext";;
-            }    
-        }
+   function salvaUpload($paramConn, $paramFiles, $paramCampo)
+{
+    if (
+        !isset($paramFiles[$paramCampo]) ||
+        $paramFiles[$paramCampo]['error'] !== UPLOAD_ERR_OK
+    ) {
         return null;
     }
+
+    $arquivo = $paramFiles[$paramCampo];
+
+    // Limite de 2 MB
+    if ($arquivo['size'] > 2 * 1024 * 1024) {
+        return null;
+    }
+
+    // Verifica se é realmente uma imagem
+    $infoImagem = getimagesize($arquivo['tmp_name']);
+
+    if ($infoImagem === false) {
+        return null;
+    }
+
+    // Permite somente estes tipos
+    $tiposPermitidos = [
+        'image/jpeg' => 'jpg',
+        'image/png'  => 'png',
+        'image/gif'  => 'gif',
+        'image/webp' => 'webp'
+    ];
+
+    $mime = $infoImagem['mime'];
+
+    if (!isset($tiposPermitidos[$mime])) {
+        return null;
+    }
+
+    $extensao = $tiposPermitidos[$mime];
+
+    // Nome gerado pelo servidor
+    $nomeUnico = bin2hex(random_bytes(16));
+
+    $arquivoFisico = __DIR__ . "/Imagens/$nomeUnico.$extensao";
+
+    if (move_uploaded_file(
+        $arquivo['tmp_name'],
+        $arquivoFisico
+    )) {
+        return "Imagens/$nomeUnico.$extensao";
+    }
+
+    return null;
+}
 
     function ExecutaSQL($Conn, $sql, $parametros = []) {
         $stmt = $Conn->prepare($sql);

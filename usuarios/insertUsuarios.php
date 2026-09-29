@@ -2,7 +2,7 @@
 include("../util.php");
 $conn = conecta();
 include "../_cabecalho.php";
-SaiseHacker();
+//SaiseHacker();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if($insert->execute()){
         $idUsuario = $conn->lastInsertId();
 
-        $imagem = null;
+        $imagem = "/Imagens/usuario.png";
 
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
             $imagem = salvaUpload($conn, $_FILES, 'imagem');

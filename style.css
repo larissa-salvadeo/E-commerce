@@ -1500,6 +1500,730 @@ footer img{
     height: 120px;
 }
 
+main:has(> form[action="insertUsuarios.php"]) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 650px;
+    padding: 60px 20px;
+    background: #f8f5f0;
+}
+
+/* ---------- FORMULÁRIO DE CADASTRO ---------- */
+
+main > form[action="insertUsuarios.php"] {
+    width: 100%;
+    max-width: 550px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    padding: 40px 45px;
+
+    background: #F2E6D8;
+    border: 1px solid rgba(95, 133, 101, 0.25);
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(30, 52, 31, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.06);
+
+    text-align: left;
+}
+
+/* Título */
+
+main > form[action="insertUsuarios.php"] h1 {
+    margin-bottom: 30px;
+
+    color: #1E341F;
+
+    font-family: "EB Garamond", serif;
+    font-size: 34px;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+/* Linha decorativa abaixo do título */
+
+main > form[action="insertUsuarios.php"] h1::after {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+    height: 3px;
+
+    margin: 12px auto 0;
+
+    background-color: #5F8565;
+    border-radius: 10px;
+}
+
+/* ---------- CAMPOS ---------- */
+
+main > form[action="insertUsuarios.php"] input {
+    width: 100%;
+
+    padding: 14px 16px;
+    margin-bottom: 16px;
+
+    background-color: #fff;
+
+    border: 1px solid #d6cec3;
+    border-radius: 8px;
+
+    outline: none;
+
+    color: #3d342f;
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+/* Placeholder */
+
+main > form[action="insertUsuarios.php"] input::placeholder {
+    color: #8a8179;
+}
+
+/* Foco */
+
+main > form[action="insertUsuarios.php"] input:focus {
+    border-color: #5F8565;
+
+    background-color: #fff;
+
+    box-shadow: 0 0 0 3px rgba(95, 133, 101, 0.15);
+}
+
+/* ---------- INPUT DE ARQUIVO ---------- */
+
+main > form[action="insertUsuarios.php"] input[type="file"] {
+    padding: 10px;
+
+    background-color: #fff;
+
+    cursor: pointer;
+}
+
+main > form[action="insertUsuarios.php"] input[type="file"]::file-selector-button {
+    margin-right: 12px;
+
+    padding: 8px 14px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #5F8565;
+    color: #F2E6D8;
+
+    font-family: "Merriweather", serif;
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+main > form[action="insertUsuarios.php"] input[type="file"]::file-selector-button:hover {
+    background-color: #1E341F;
+}
+
+/* ---------- BOTÃO CADASTRAR ---------- */
+
+main > form[action="insertUsuarios.php"] button {
+    width: 100%;
+
+    margin-top: 10px;
+    padding: 14px 20px;
+
+    border: none;
+    border-radius: 25px;
+
+    background-color: #5F8565;
+    color: #F2E6D8;
+
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+main > form[action="insertUsuarios.php"] button:hover {
+    background-color: #1E341F;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(30, 52, 31, 0.2);
+}
+
+main > form[action="insertUsuarios.php"] button:active {
+    transform: translateY(0);
+}
+
+
+/*RESPONSIVIDADE - FORMULÁRIO */
+
+@media (max-width: 780px) {
+
+    main:has(> form[action="insertUsuarios.php"]) {
+        min-height: auto;
+
+        padding: 40px 20px;
+    }
+
+    main > form[action="insertUsuarios.php"] {
+        max-width: 100%;
+
+        padding: 30px 25px;
+
+        border-radius: 14px;
+    }
+
+    main > form[action="insertUsuarios.php"] h1 {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
+    main > form[action="insertUsuarios.php"] input {
+        padding: 13px 14px;
+        font-size: 13px;
+    }
+
+    main > form[action="insertUsuarios.php"] button {
+        padding: 13px;
+    }
+}
+
+/* =========================================================
+   PÁGINA ALTERAR USUÁRIO
+   ========================================================= */
+
+/* ÁREA PRINCIPAL */
+main.main-alterar-usuario {
+    grid-area: main;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    justify-content: flex-start !important;
+    align-items: center !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 650px !important;
+
+    padding: 50px 20px !important;
+
+    background-color: #f8f5f0 !important;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
+main.main-alterar-usuario form.form-editar-usuario {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    width: 100% !important;
+    max-width: 600px !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 auto !important;
+    padding: 40px !important;
+
+    background-color: #F2E6D8 !important;
+
+    border: 1px solid rgba(95, 133, 101, 0.25) !important;
+    border-radius: 18px !important;
+
+    box-shadow:
+        0 10px 30px rgba(30, 52, 31, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.06) !important;
+
+    text-align: left !important;
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario h1 {
+    display: block;
+
+    width: 100%;
+
+    margin: 0 0 8px 0;
+
+    color: #1E341F;
+
+    font-family: "Merriweather", serif;
+    font-size: 28px;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   SUBTÍTULO
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario .subtitulo-editar {
+    display: block;
+
+    width: 100%;
+
+    margin: 0 0 25px 0;
+
+    color: #6b625c;
+
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario > label {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 16px;
+    margin-bottom: 7px;
+
+    color: #3d342f;
+
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   TEXTO PEQUENO DENTRO DO LABEL
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario > label span {
+    color: #777;
+
+    font-size: 11px;
+    font-weight: normal;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario input[type="text"],
+
+main.main-alterar-usuario
+form.form-editar-usuario input[type="email"],
+
+main.main-alterar-usuario
+form.form-editar-usuario input[type="password"] {
+    display: block;
+
+    width: 100% !important;
+    height: 45px;
+
+    margin: 0;
+
+    padding: 12px 14px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #cfc5bb;
+    border-radius: 8px;
+
+    color: #3d342f;
+
+    font-family: "Merriweather", serif;
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario input[type="text"]:focus,
+
+main.main-alterar-usuario
+form.form-editar-usuario input[type="email"]:focus,
+
+main.main-alterar-usuario
+form.form-editar-usuario input[type="password"]:focus {
+    border-color: #5F8565;
+
+    box-shadow: 0 0 0 2px rgba(95, 133, 101, 0.15);
+}
+
+
+/* =========================================================
+   CAMPO ADMINISTRADOR
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario .campo-admin {
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    justify-content: space-between !important;
+    align-items: center !important;
+
+    width: 100%;
+
+    gap: 20px;
+
+    margin-top: 25px;
+    padding: 15px;
+
+    background-color: #f8f5f0;
+
+    border-radius: 10px;
+}
+
+
+/* TEXTO DO ADMIN */
+
+main.main-alterar-usuario
+form.form-editar-usuario .campo-admin > div {
+    flex: 1;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario .campo-admin label {
+    display: block;
+
+    margin: 0;
+
+    color: #3d342f;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario .campo-admin p {
+    margin: 5px 0 0 0;
+
+    color: #777;
+
+    font-family: "Merriweather", serif;
+    font-size: 12px;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   SWITCH
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario .switch {
+    position: relative;
+
+    display: block;
+
+    width: 48px !important;
+    min-width: 48px !important;
+    height: 26px !important;
+
+    margin: 0 !important;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario .switch input {
+    display: none;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario .slider {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: block;
+
+    background-color: #ccc;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario .slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+
+    left: 3px;
+    top: 3px;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario
+.switch input:checked + .slider {
+    background-color: #5F8565;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario
+.switch input:checked + .slider::before {
+    transform: translateX(22px);
+}
+
+
+/* =========================================================
+   LABEL DA IMAGEM
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario label[for="imagem"] {
+    margin-top: 22px;
+}
+
+
+/* =========================================================
+   INPUT DE IMAGEM
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario input[type="file"] {
+    display: block;
+
+    width: 100% !important;
+
+    margin: 0;
+
+    padding: 10px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #cfc5bb;
+    border-radius: 8px;
+
+    color: #3d342f;
+
+    font-family: "Merriweather", serif;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   BOTÃO SALVAR
+   ========================================================= */
+
+main.main-alterar-usuario
+form.form-editar-usuario button[type="submit"] {
+    display: block !important;
+
+    width: 100% !important;
+
+    height: 50px !important;
+
+    min-height: 50px !important;
+
+    margin-top: 30px !important;
+
+    padding: 14px 20px !important;
+
+    background-color: #5F8565 !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+    font-family: "Merriweather", serif !important;
+
+    font-size: 16px !important;
+
+    font-weight: bold !important;
+
+    line-height: normal !important;
+
+    text-align: center !important;
+
+    cursor: pointer !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    position: relative !important;
+
+    z-index: 10 !important;
+}
+
+
+main.main-alterar-usuario
+form.form-editar-usuario button[type="submit"]:hover {
+    background-color: #1E341F !important;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+    main.main-alterar-usuario {
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        justify-content: flex-start !important;
+        align-items: center !important;
+
+        width: 100% !important;
+
+        min-height: 650px !important;
+
+        padding: 35px 15px !important;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario {
+        width: 100% !important;
+
+        max-width: 600px !important;
+
+        padding: 30px 25px !important;
+
+        margin: 0 auto !important;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario h1 {
+        font-size: 24px;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario .campo-admin {
+        gap: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR PEQUENO
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    main.main-alterar-usuario {
+        padding: 25px 10px !important;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario {
+        padding: 25px 18px !important;
+
+        border-radius: 12px !important;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario h1 {
+        font-size: 21px;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario .subtitulo-editar {
+        font-size: 12px;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario .campo-admin {
+        padding: 12px;
+
+        align-items: center !important;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario .campo-admin p {
+        font-size: 11px;
+    }
+
+
+    main.main-alterar-usuario
+    form.form-editar-usuario button[type="submit"] {
+        height: 48px !important;
+
+        font-size: 14px !important;
+    }
+
+}
+
 /* RESPONSIVIDADE */
 @media (max-width:780px) {
     #container{
