@@ -82,7 +82,8 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
             </div>
 
             <!-- Links do Menu -->
-            <div class="menu-links">
+
+        <div class="menu-links">
                 <div class="icon cancel-btn">
                     <i class="fas fa-times"></i>
                 </div>
@@ -101,7 +102,28 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
                     Sobre nós
                 </a>
 
-                <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
+                <div class="pesquisa">
+                    <form action="busca.php" method="GET">
+                        <input type="text" placeholder="Pesquisar..." name="search">
+                        <button type="submit"><i class="fi fi-rr-search"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <!----------LOGIN/CARRINHO---------->
+            <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id = "carrinho" href="carrinho.php" >
+                Carrinho <i class="fi fi-rr-shopping-cart"></i>
+            </a>
+
+            <div class="menu-admin">
+                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
+                    <a class="<?= ($paginaAtual == 'admin.php') ? 'active' : '' ?>" href="admin.php">
+                        Admin <i class="fi fi-rr-user"></i>
+                    </a>
+                <?php endif;?>
+            </div>
+
+            <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
                 <a class="usuario-menu" href="#" id="abrirUsuario">
                     <div class="usuario-logado">
                         <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário">
@@ -115,24 +137,5 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
                     Login <i class="fi fi-rr-user"></i>
                 </a>
                 <?php endif; ?>
-
-                <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" href="carrinho.php">
-                    Carrinho <i class="fi fi-rr-shopping-cart"></i>
-                </a>
-
-                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
-                <a class="<?= ($paginaAtual == 'admin.php') ? 'active' : '' ?>" href="admin.php">
-                    Admin <i class="fi fi-rr-user"></i>
-                </a>
-                <?php endif;?>
-            </div>
-
-            <!-- Barra de Pesquisa -->
-            <div class="pesquisa">
-                <form action="busca.php" method="GET">
-                    <input type="text" placeholder="Pesquisar..." name="search">
-                    <button type="submit"><i class="fi fi-rr-search"></i></button>
-                </form>
-            </div>
         </nav>
     </header>

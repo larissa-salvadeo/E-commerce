@@ -1012,6 +1012,16 @@ body {
     margin: 0;
 }
 
+.usuario-menu {
+    text-decoration: none;
+    color: #F2E6D8;
+}
+
+.usuario-menu span {
+    color: #F2E6D8;
+    text-decoration: none;
+}
+
 /* Modal e Máscara de Fundo */
 .modal {
     display: none;
@@ -1030,6 +1040,45 @@ body {
     position: relative;
     width: 768px;
     max-width: 90%;
+}
+
+.btn-open, #carrinho{
+    display: inline-block;
+    color: #F2E6D8;
+    text-align: center;
+    padding: 12px 18px;
+    text-decoration: none;
+    font-size: 16px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+#carrinho.active, .btn-open.active{
+    background-color: #1E341F;
+    transform: scale(1.02);
+    border-bottom: 3px solid #1E341F;
+}
+
+#carrinho {
+    margin-left: auto;
+}
+
+#carrinho:hover, .btn-open:hover{
+    border-bottom: 3px solid #1E341F;
+}
+
+.btn-open, .usuario-menu {
+    padding: 12px 18px;
+}
+
+.btn-open.active {
+    background-color: #1E341F;
+    transform: scale(1.02);
+    border-bottom: 3px solid #1E341F;
+}
+
+.btn-open:hover {
+    border-bottom: 3px solid #1E341F;
 }
 
 /* Botão Fechar (X) */
@@ -2968,4 +3017,31 @@ main.main-gerenciamento {
     background-color: #5F8565;
     color: #F2E6D8;
     transform: translateX(3px);
+}
+
+.menu-admin {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-admin a {
+    display: inline-block;
+    color: #F2E6D8;
+    text-align: center;
+    padding: 12px 18px;
+    text-decoration: none;
+    font-size: 16px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-admin a.active {
+    background-color: #1E341F;
+    transform: scale(1.02);
+    border-bottom: 3px solid #1E341F;
+}
+
+.menu-admin a:hover {
+    border-bottom: 3px solid #1E341F;
 }
