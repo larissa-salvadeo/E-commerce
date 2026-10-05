@@ -45,24 +45,19 @@ html{
 }
 
 /*----------SOBRE NÓS----------*/
-.sobre{
+.sobre {
     display: grid;
-
     grid-template-areas:
         "quem"
         "mvv"
         "devs";
 
     grid-template-columns: 1fr;
-
-    gap: 10px;
-    
-    width: 100%;             
-    padding: 60px 4%;        
+    width: 100%;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
-    
-    background-color: #fff8ec;
-    text-align: center;
+    background-color: #f8f5f0;
 }
 
 .sobre h1{
@@ -70,41 +65,50 @@ html{
     font-size: 32px;
     font-weight: 500;
     letter-spacing: 2px;
-    color: #464646;
-}
-
-.quem {
-    display: grid;
-
-    grid-template-areas:
-        "titulo-quem titulo-quem"
-        "texto foto";
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 50px;
-    text-align: center;
-    width: 100%;
+    color: #3d342f;
 }
 
 .quem h1{
     grid-area: titulo-quem;
-}
-
-#texto-quem {
-    grid-area: texto;
+  
+    font-size: 50px;
 }
 
 #img-quem {
     grid-area: foto;
 }
 
+.quem {
+    display: grid;
+    grid-template-areas:
+        "imagem imagem"
+        "foto texto";
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.quem-somos {
+    grid-area: imagem;
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    margin-bottom: 100px;
+}
+
+.img-mvv {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    margin-bottom: 100px;
+}
 .mvv {
   display: grid;
   grid-template-areas: 
-                        "titulo-mvv titulo-mvv"
-                        "missao visao" 
-                        "valores valores";
+        "titulo-mvv titulo-mvv"
+        "missao visao" 
+        "valores valores";
   grid-template-columns: repeat(2, 1fr);
   gap: 50px;
   justify-items: center; 
@@ -118,9 +122,9 @@ html{
 }
 
  #missao, #visao, #valores {
-    color: #fff8ec;
-    background-color: #5F8565;
-    border: 2px solid #5F8565;
+    color: #3d342f;
+    background-color: #ffffff;
+    border: 2px solid #175322;
     border-radius: 18px;
     padding: 35px;
     
@@ -367,7 +371,7 @@ header.rolou:hover{
 .pesquisa button:hover{
     background-color: #5F8565;
 }
- 
+
 .menu-links{
     display: flex;
     flex-wrap: nowrap;
@@ -375,6 +379,25 @@ header.rolou:hover{
     gap: 10px;
 }
  
+
+.menu-links a {
+    vertical-align: middle;
+    background-image: linear-gradient(#1E341F, #1E341F);
+    background-position: center bottom;
+    background-size: 0% 3px;
+    background-repeat: no-repeat; 
+}
+
+.menu-links a:hover {
+    background-size: 100% 3px;
+}
+
+.menu-links a.active {
+    background-color: #1E341F;
+    transform: scale(1.02);
+    background-size: 100% 3px;
+}
+
 .menu-links a, .btn-open , #carrinho{
     display: inline-block;
     color: #F2E6D8;
@@ -3545,4 +3568,18 @@ main.main-gerenciamento {
 
 .menu-admin a:hover {
     border-bottom: 3px solid #1E341F;
+}
+
+#texto-quem {
+    grid-area: texto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+
+    font-size: 12px;
+    text-align: justify;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }

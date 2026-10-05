@@ -1,11 +1,14 @@
-<?php 
-include("util.php");
-include("_cabecalho.php");
+<?php
+    include("util.php");
+    $_SESSION["raiz"] = "/loja2b/";
+    include("_cabecalho.php");
+    $_SESSION["sessaoSite"]="https://eq.projetoscti.com.br". $_SESSION["raiz"]; 
 ?>
     <!------MAIN------>
     <main class="sobre">
         <!------------QUEM SOMOS?------------>
         <div class="quem">
+            <img src="Imagens/Sobre2.png" alt="Imagem - Quem somos" class="quem-somos">
             <section id="texto-quem">
                 <h1 id="titulo-quem"><b>Quem somos?</b></h1><br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis inventore incidunt magni itaque accusamus excepturi possimus. Porro, veniam. Suscipit illo natus dolor assumenda recusandae tenetur delectus aut totam cumque ipsa. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto molestias, voluptas delectus ipsum dolorem quos temporibus consequatur magni explicabo itaque a eaque amet tempora dignissimos, asperiores nam. Ex, optio impedit!LoremLor  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas veritatis saepe corrupti cumque natus magnam? Beatae officiis, quasi sapiente iure porro maxime, voluptas provident corporis voluptatum ea error earum inventore.</p>                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis inventore incidunt magni itaque accusamus excepturi possimus. Porro, veniam. Suscipit illo natus dolor assumenda recusandae tenetur delectus aut totam cumque ipsa. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto molestias, voluptas delectus ipsum dolorem quos temporibus consequatur magni explicabo itaque a eaque amet tempora dignissimos, asperiores nam. Ex, optio impedit!LoremLor  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas veritatis saepe corrupti cumque natus magnam? Beatae officiis, quasi sapiente iure porro maxime, voluptas provident corporis voluptatum ea error earum inventore.</p>
@@ -15,6 +18,7 @@ include("_cabecalho.php");
             </section>
         </div><br><br>
         <!------------NOSSA MISSÃO, VISÃO E VALORES------------>
+        <img src="Imagens/Sobre2.png" alt="Imagem - Missão, Visão e Valores" class="img-mvv">
         <div class="mvv">
             <h1 id="titulo-mvv"><b>Nossa missão, visão e valores</b></h1><br>
             <section id="missao">

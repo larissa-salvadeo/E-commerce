@@ -20,14 +20,6 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main class="produtos">
-    <h2>
-        <?php if (!empty($pesquisa)): ?>
-            Resultados da busca por: "<em><?= htmlspecialchars($pesquisa) ?></em>"
-        <?php else: ?>
-            Todos os Produtos
-        <?php endif; ?>
-    </h2>
-
     <div class="wrapper">
         <?php if (count($produtos) > 0): ?>
             <?php foreach ($produtos as $prod): ?>
