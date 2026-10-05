@@ -67,7 +67,14 @@
         <a href="index.php"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
         <nav>
             <ul>
-                <li><a href="sobre.php">Sobre Nós</a></li>
+                <li>Sobre a Lumière</li>
+            </ul>
+        </nav>
+        <nav>
+            <ul  class="sobreLinks">
+                <li><a href="sobre.php">Quem Somos?</a></li>
+                <li><a href="sobre.php">Missão, Visão e Valores</a></li>
+                <li><a href="sobre.php">Desenvolvedores</a></li>
             </ul>
         </nav>
         <nav>
@@ -75,7 +82,6 @@
                 <li><a href="https://www.instagram.com/lumiere.ltda/" target="_blank"><i class="fi fi-brands-instagram"></i></a></li>
                 <li><a href="https://www.facebook.com/profile.php?id=61593508136608" target="_blank"><i class="fi fi-brands-facebook"></i></a></li>
                 <li><a href="mailto:lumiere.velasaromaticascti@gmail.com" target="_blank"><i class="fi fi-rr-envelope"></i></a></li>
-
             </ul>
         </nav> 
         <hr class="linha">

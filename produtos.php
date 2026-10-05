@@ -1,5 +1,5 @@
 <?php 
-    include ("util.php");
+    include("util.php");
     include("_cabecalho.php");
 
     $sql = "SELECT id_produto, nome, descricao, valor_unitario, imagem 
@@ -10,8 +10,8 @@
     $select->execute();
 
     $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
+
 <main class="produtos">          
     <div class="wrapper">
         <?php foreach ($produtos as $produto): ?>
@@ -25,15 +25,15 @@
             <div class="single-card">
                 <a href="paginaProduto.php?id=<?= $produto['id_produto'] ?>">
                     <div class="img-area">
-                        <img src="<?= $produto['imagem']?>" alt="<?= $produto['nome'] ?>">
-                        <button class="categ"><?=$categ ?></button>
+                        <img src="<?= htmlspecialchars($produto['imagem']) ?>" alt="<?= htmlspecialchars($produto['nome']) ?>">
+                        <button class="categ"><?= $categ ?></button>
                     </div>
                 </a>
                 <div class="info">
-                    <h3><?=$produto['nome']?></h3>
+                    <h3><?= htmlspecialchars($produto['nome']) ?></h3>
                     <p class="price">R$ <?= number_format($produto['valor_unitario'], 2, ',', '.') ?></p>
-                    <p><?= $produto['descricao']?></p>
-                    <a href="paginaProduto.php?add=<?= $produto['id_produto'] ?>" class="carrinho">
+                    
+                    <a href="paginaProduto.php?id=<?= $produto['id_produto'] ?>" class="carrinho">
                          <button type="button" class="btn-detalhes">Ver detalhes</button>
                     </a>
                 </div>

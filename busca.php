@@ -47,6 +47,9 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Nenhum produto foi encontrado com a pesquisa realizada.</p>
         <?php endif; ?>
     </div>
+
+
+    
 </main>
 
 <?php 

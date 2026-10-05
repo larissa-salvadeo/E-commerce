@@ -102,6 +102,12 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
                     Sobre nós
                 </a>
 
+                <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
+                <a class="<?= ($paginaAtual == 'paginaUsuario.php') ? 'active' : '' ?>" href="paginaUsuario.php">
+                    Minha conta
+                </a>
+                <?php endif; ?>
+
                 <div class="pesquisa">
                     <form action="busca.php" method="GET">
                         <input type="text" placeholder="Pesquisar..." name="search">
