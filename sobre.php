@@ -39,32 +39,37 @@ include("_cabecalho.php");
             </section>
         </div>
         <!------------CONHEÇA OS DESENVOLVEDORES------------>
-        <div class="desenvolvedores">
-            <h1 id="titulo-devs"><b>Conheça os Desenvolvedores</b></h1>
-            <section id="dev1"> 
-                <img src="Imagens/dev1.png" alt="Desenvolvedor 1">
-                <h3>Ana Júlia Pereira da Silva Leal</h3>
-            </section>
-            <section id="dev2"> 
-                <img src="Imagens/dev2.png" alt="Desenvolvedor 2">
-                <h3>Julia Gonçalves de Souza Campos</h3>
-            </section>
-            <section id="dev3">
-                <img src="Imagens/dev3.png" alt="Desenvolvedor 3">
-                <h3>Larissa Salvadeo Santana</h3>
-            </section>
-            <section id="dev4"> 
-                <img src="Imagens/dev4.png" alt="Desenvolvedor 4">
-                <h3>Pietra Borgo Bernardi</h3>
-            </section>    
-            <section id="dev5"> 
-                <img src="Imagens/dev5.png" alt="Desenvolvedor 5">
-                <h3>Thales Navarro Neves</h3>
-            </section>    
-            <section id="devs">     
-                <!--<img src="Imagens/devs.png" alt="Desenvolvedores">-->
-            </section> 
-        </div>   
+        <div class="desenvolvedores"> 
+
+    <h1 id="titulo-devs"><b>Conheça os Desenvolvedores</b></h1> 
+
+    <div class="lista-devs">
+        <section id="dev1">  
+            <img src="Imagens/dev1.png" alt="Desenvolvedor 1"> 
+            <h3>Ana Júlia Pereira da Silva Leal</h3> 
+        </section> 
+
+        <section id="dev2">  
+            <img src="Imagens/dev2.png" alt="Desenvolvedor 2"> 
+            <h3>Julia Gonçalves de Souza Campos</h3> 
+        </section> 
+
+        <section id="dev3"> 
+            <img src="Imagens/dev3.png" alt="Desenvolvedor 3"> 
+            <h3>Larissa Salvadeo Santana</h3> 
+        </section> 
+
+        <section id="dev4">  
+            <img src="Imagens/dev4.png" alt="Desenvolvedor 4"> 
+            <h3>Pietra Borgo Bernardi</h3> 
+        </section>     
+
+        <section id="dev5">  
+            <img src="Imagens/dev5.png" alt="Desenvolvedor 5"> 
+            <h3>Thales Navarro Neves</h3> 
+        </section>
+    </div>
+</div>
     </main>
     
     <?php include("_rodape.php");?>

@@ -1,6 +1,8 @@
 <?php
 include("../util.php");
 $conn = conecta();
+include "../_cabecalho.php";
+//SaiseHacker();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

@@ -4,7 +4,7 @@ $_SESSION["raiz"] = "/loja2b/";
 include("_cabecalho.php");
 $_SESSION["sessaoSite"]="https://eq.projetoscti.com.br". $_SESSION["raiz"]; ?>
 <!------MAIN------>
-    <main>
+    <main class="index">
         <!------------CARROSSEL------------>
         <div class="slideshow-container">
             <div class="slides-track" id="track">
@@ -32,14 +32,14 @@ $_SESSION["sessaoSite"]="https://eq.projetoscti.com.br". $_SESSION["raiz"]; ?>
         </div>
         <!------------CATEGORIAS------------>
         <section id="catAmb"> 
-            <a href="catAmb.php"><img src="Imagens/Ambiente.png" alt="Categoria Ambiente"></a>
+            <img src="Imagens/Ambiente.png" alt="Categoria Ambiente">
             <div class="texto">ambiente</div>
-            <button class="verMais">ver mais</button>
+            <a href="catAmb.php" class="verMais" >ver mais</a>
         </section>
         <section id="catEst"> 
-            <a href="catEst.php"><img src="Imagens/Estudos.png" alt="Categoria Estudo"></a>
+            <img src="Imagens/Estudos.png" alt="Categoria Estudo">
             <div class="texto">estudo</div>
-            <button class="verMais">ver mais</button>
+            <a href="catEst.php" class="verMais">ver mais</a>
         </section>
 
         <!------------VÍDEO------------>

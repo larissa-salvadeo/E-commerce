@@ -26,15 +26,22 @@ body.disabled {
 }
 
 #container{
+    box-sizing: border-box;
     min-height: 100vh;
+    padding-top: 60px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 1fr auto; 
-    grid-template-areas: 
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
         "header header header"
         "main main main"
         "footer footer footer";
     text-align: center;
+}
+ 
+/* Links com âncora (#) não ficam escondidos atrás do header */
+html{
+    scroll-padding-top: 60px;
 }
 
 /*----------SOBRE NÓS----------*/
@@ -110,13 +117,18 @@ body.disabled {
     grid-area: titulo-mvv;
 }
 
-#missao, #visao, #valores{
+ #missao, #visao, #valores {
     color: #3d342f;
-    background: #f8f5f0;
-    border: 3px solid #5F8565;
-    border-radius: 10px;
-    padding: 30px;
-}
+    background-color: #ffffff;
+    border: 2px solid #175322;
+    border-radius: 18px;
+    padding: 35px;
+    
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+    }
 
 #missao { 
     grid-area: missao;
@@ -132,8 +144,24 @@ body.disabled {
     grid-area: valores;
 }
 
-#valores ul li {
+#valores ul {
+    padding: 0;
+    margin: 0;
+}
+
+#valores li {
     text-align: left;
+    padding: 8px 0;
+    line-height: 1.6;
+}
+
+#valores li:not(:last-child) {
+    border-bottom: 1px solid #e5ddd5;
+}
+
+#missao:hover, #visao:hover, #valores:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .desenvolvedores {
@@ -239,68 +267,96 @@ body.disabled {
 
 /* HEADER & NAVBAR DESKTOP */
 header{
-    grid-area: header;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 900;
+ 
+    height: 60px;
     background-color: #5F8565;
+    transition: background-color .3s ease, box-shadow .3s ease;
+ 
+    box-sizing: border-box;
+    padding: 0 24px;
+ 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: "logo nav nav nav nav";
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "logo nav";
+    column-gap: 30px;
     align-items: center;
-    
 }
+ 
+header.rolou{
+    background-color: rgba(95, 133, 101, 0.541);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+ 
+/* Ao passar o mouse, volta quase opaco */
+header.rolou:hover{
+    background-color: rgba(95, 133, 101, 0.97);
+}
+ 
 
 .bloco-titulo{
     grid-area: logo;
     display: flex;
+    justify-self: center;
 }
-
+ 
 .bloco-titulo img{
     width: auto;
-    height: 100px;
-    padding: 3px;
+    height: 44px;
+    padding: 2px;
 }
-
+ 
 .bloco-titulo a{
-    margin: 0; 
+    margin: 0;
 }
-
+ 
 .navheader{
     grid-area: nav;
-    height: 85%;
-    background-color: #5F8565;
+    box-sizing: border-box;
+    min-width: 0;
+    height: 60px;
+    padding: 0;
+    gap: 12px;
+ 
     display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 20px 0 0;
+    background-color: transparent;
 }
-
-.pesquisa {
+ 
+.pesquisa{
     width: auto;
-    display: flex; 
+    display: flex;
 }
-
-.pesquisa form {
+ 
+.pesquisa form{
     display: flex;
     align-items: center;
     width: 100%;
     max-width: 500px;
 }
-
-.pesquisa input[type="text"] {
+ 
+.pesquisa input[type="text"]{
     width: 100%;
-    padding: 8px 14px;
-    font-size: 15px;
+    padding: 6px 12px;
+    font-size: 14px;
     border: 1px solid #ccc;
-    border-radius: 20px 0 0 20px; 
+    border-radius: 20px 0 0 20px;
     background-color: #fff;
     outline: none;
 }
-
-.pesquisa button {
-    padding: 8px 16px;
-    background-color: #1E341F; 
+ 
+.pesquisa button{
+    padding: 6px 14px;
+    background-color: #446446ad;
     color: white;
-    font-size: 15px;
-    border: 1px solid white;  
+    font-size: 14px;
+    border: 1px solid white;
     border-radius: 0 20px 20px 0;
     cursor: pointer;
     display: flex;
@@ -308,36 +364,58 @@ header{
     justify-content: center;
     transition: background-color 0.2s;
 }
-
-.pesquisa button:hover {
-    background-color: #5F8565;
+ 
+.pesquisa button:hover{
+    background-color: #446446ad;
 }
-
-.menu-links {
+ 
+.menu-links{
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
-
-.menu-links a {
+ 
+.menu-links a{
     display: inline-block;
     color: #F2E6D8;
     text-align: center;
-    padding: 12px 18px;
+    padding: 8px 14px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
     border-bottom: 3px solid transparent;
     transition: all 0.2s ease-in-out;
 }
-
-.menu-links a.active {
-    background-color: #1E341F;
+ 
+.menu-links a.active{
+    background-color: #446446ad;
     transform: scale(1.02);
-    border-bottom: 3px solid #1E341F;
+    border-bottom: 3px solid #446446;
 }
+ 
+.menu-links a:hover{
+    border-bottom: 3px solid #446446ad;;
+}
+ 
+/* Foto e nome do usuário lado a lado, para caber no header menor.
+   Se você já tem regras para .usuario-logado, ajuste estas ou apague. */
 
-.menu-links a:hover {
-    border-bottom: 3px solid #1E341F;
+.usuario-logado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1px;
+}
+ 
+.usuario-logado img{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+ 
+.usuario-logado span{
+    font-size: 12px;
 }
 
 /* ÍCONES DE MENU MOBILE */
@@ -349,7 +427,7 @@ header{
 }
 
 /* MAIN CONTENT */
-main{
+.index{
     grid-area: main;
     background-color: #F2E6D8;
     display: grid;
@@ -472,7 +550,7 @@ main{
     display: inline-block;
 }
 
-section a img{
+section img{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -480,7 +558,7 @@ section a img{
     transition: transform 0.6s ease;
 }
 
-section a img:hover{
+section img:hover{
     transform: scale(1.02);
 }
 
@@ -509,6 +587,15 @@ section a img:hover{
     border-radius: 50px;   
     color:#fff;
     text-align: center;
+    text-decoration: none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verMais:hover{
+    color:#ffffff71;
+    border: 1.5px solid #ffffff71;
 }
 
 /* VÍDEO */
@@ -518,7 +605,7 @@ figure{
     background-color: black;
 }
 
-main figure video {
+.index figure video {
     width: 50%;
     height: 360px;
     object-fit: cover;
@@ -2267,6 +2354,436 @@ main > form[action="updateProdutos.php"] input[type="submit"]:hover {
     background-color: #1E341F;
 }
 
+/*PÁGINA DO USUÁRIO*/
+.user{
+    background-color: antiquewhite;
+    border:none;
+    padding:5%;
+
+    width:100%;
+    height:70vh;
+
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Cormorant Garamond', serif;
+    overflow-wrap: break-word; 
+    word-break: break-word;
+}
+
+@property --deg {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 45deg;
+}
+
+
+.blocoFoto{
+    width:30%;
+    height:100%;
+    border-radius: 8px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    padding: 0 10px;
+    gap:10px;
+
+    background: linear-gradient(var(--deg), #1f4d33, #6f9a7a 60%, #faebd7);
+    transition: --deg 2s ease;
+}
+
+
+.blocoFoto:hover{
+    --deg: 120deg;
+}
+
+.blocoFoto img{
+    width:60%;
+    height:60%;
+    border: 1px solid #a0a0a5;
+    object-fit: cover;
+    box-shadow: 2px 4px 1px rgba(0, 0, 0, 0.15);
+
+    transition: transform 0.3s ease;
+
+    border-radius: 4%;
+}
+
+.blocoFoto img:hover,.imagemEditar img:hover{
+    transform: scale(1.05);
+    border-color: #e7f1eb;
+}
+
+.blocoFoto h1{
+    font-size:20px;
+    color:antiquewhite;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.blocoFoto h1:hover{
+    transform: scale(1.01);
+}
+
+.blocoFoto p{
+    font-size: 11px;
+    font-weight: 400;
+
+    width: 100px;
+    letter-spacing: 0.10em;
+    background-color:rgba(59, 112, 72, 0.5);
+    transition: background-color 0.3s ease;
+    padding: 4px 5px;
+    border: 2px solid rgba(153, 219, 150, 0.25);
+    border-radius: 10px;       
+    color:#d1c7c7;
+
+    text-justify: center;
+    text-align: center;
+}
+
+.blocoFoto p:hover{
+    background-color: rgba(59, 112, 72, 0.788);
+}
+.blocoInfo{
+    width:50%;
+    height:100%;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    background-color: rgba(252, 255, 252, 0.568);
+
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    
+    gap:4%;
+    padding:0 50px;
+}
+
+.blocoNome{
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.blocoNome h1{
+    font-size:20px;
+    color:rgb(34, 34, 34);
+    border-bottom: 1.8px solid #44a060;
+}
+
+
+.blocoDado{
+    width:80%;
+    padding:12px 10px;
+    background: linear-gradient(var(--deg), #1f4d33, #6f9a7a 60%, #faebd7);
+    text-align: center;
+    border-radius:5px;
+    transition: transform 0.5s ease;
+}
+
+.blocoDado:hover{
+    transform: scale(1.06);
+}
+
+.blocoDado div{
+    display:flex;    
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    gap: 10px;
+    color:#0f5013f6;
+}
+
+
+.blocoDado div h1{
+    font-size: 15px;
+    font-weight:200;
+}
+
+.blocoDado p{
+    color:#eeeded;
+    font-size:14px;
+    margin: 8px 0 0; 
+}
+
+.user button, .blocoPopup button{
+    font-family: 'Cormorant Garamond', serif;
+
+    background-color: #2a4431;
+    color: antiquewhite;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 40px;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.user button:hover, .blocoPopup button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/*Editar Usuário Pop-up*/
+.editarPopup {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; 
+    height: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(6px);
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+@property --degE {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 240deg;
+}
+
+
+.blocoPopup{
+    position: absolute;
+    top: 50%; left: 50%;
+    height:auto;
+    width:40%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(var(--degE), #1f4d33, #6f9a7a 60%, #faebd7);
+    transition: --degE 2s ease;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
+}
+
+.blocoPopup:hover{
+    --degE: 315deg;
+}
+
+.tituloEditar {
+    text-align: left;
+}
+
+.tituloEditar i{
+    color: antiquewhite;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+.tituloEditar i:hover{
+    transform: translateX(-4px);
+}
+
+.tituloEditar h1{
+    color: antiquewhite;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 8px;
+}
+
+.imagemEditar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:40px;
+    padding:10px 5px;
+}
+
+.imagemEditar div{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    gap:15px;
+}
+
+.imagemEditar img{
+    width:30%;
+    height:30%;
+    border-radius: 50%;
+
+    object-fit: cover;
+    border: 1px solid #a0a0a5;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+
+input[type="text"], input[type="tel"] {
+    width: 80%;
+    padding: 10px;
+
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+input[type="text"]:focus, input[type="tel"]:focus{
+    border-color: #2e9e57;
+    box-shadow: 0 0 0 3px rgba(46, 158, 87, 0.25);
+}
+.input-escondido {
+    display: none;
+}
+
+.botao-customizado {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color .2s;
+}
+
+
+.botao-customizado:hover{
+    background-color: rgba(255, 255, 255, 0.35);
+}
+.blocoPopup form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mostrar {
+    display: block !important;
+}
+
+@media (max-width:780px){
+    /*Página do Usuário*/
+    .user{
+        padding:10px;
+
+        width:90%;
+        height:70vh;
+        border-radius:10px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .blocoFoto{
+        width:70%;
+        height:40%;
+        border-radius: 10px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        justify-content: center;
+        padding: 10px 30px;
+        gap:0;
+    }
+
+
+    .blocoFoto img{
+        width:50%;
+        height:50%;
+        border-radius: 50%;
+    }
+
+    .blocoFoto h1{
+        font-size:18px;
+    }
+
+    .blocoFoto p{
+        font-size: 10px;
+        font-weight: 300;
+    }
+
+    .blocoInfo{
+        width:70%;
+        height:60%;
+        border-radius: 10px;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        
+        gap:8%;
+        padding:0 30px;
+    }
+ 
+    .blocoNome h1{
+        font-size:18px;
+        border-bottom: 2.3px solid #44a060;
+    }
+
+    .blocoDado{
+        width:80%;
+    }
+
+    .blocoDado div{
+        font-size: 10px;
+    }
+
+
+    .blocoDado div h1{
+        font-size: 12px;
+    }
+
+    .blocoDado p{
+        font-size:13px;
+    }
+
+    .user button{
+        padding:8px 8px ;
+        font-size:12px;
+    }
+
+
+
+
+    /*Editar User Pop-up*/
+    .blocoPopup{
+        height:auto;
+        width:60%;
+        padding: 30px;
+    }
+
+    .tituloEditar h1{
+        font-size: 1.3rem;
+    }
+
+    .imagemEditar{
+        flex-direction: column;
+        gap:20px;
+        padding:10px 3px;
+    }
+
+    .imagemEditar div{
+        gap:20px;
+    }
+
+    .imagemEditar img{
+        width:55%;
+        height:50%;
+    }
+
+
+    input[type="text"], input[type="tel"] {
+        width: 90%;
+    }
+
+    .botao-customizado {
+        border-radius: 10px;
+        padding: 7px 14px;
+    }
+
+}
 /* RESPONSIVIDADE */
 @media (max-width:780px) {
     
@@ -2362,9 +2879,9 @@ main > form[action="updateProdutos.php"] input[type="submit"]:hover {
         left:60%;
     }
 
-    main {
+    index {
         grid-area:main;
-        width:100vw;
+        width:100%;
         display:grid;
         grid-template-columns: 1fr;
         grid-template-areas: 
@@ -2411,12 +2928,12 @@ main > form[action="updateProdutos.php"] input[type="submit"]:hover {
         width: 6px;
     }
 
-    main figure{
+    .index figure{
         grid-area:figure;
         height: 20vh;
     }
 
-    main figure video {
+    .index figure video {
         width: 100%;
         height:100%;
     }

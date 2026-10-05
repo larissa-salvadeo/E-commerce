@@ -1,3 +1,19 @@
+/*ROLAGEM DO HEADER*/
+(function () {
+    var header = document.querySelector("header");
+    if (!header) return;
+ 
+    function atualizarHeader() {
+        header.classList.toggle("rolou", window.scrollY > 20);
+    }
+ 
+    window.addEventListener("scroll", atualizarHeader, { passive: true });
+    atualizarHeader(); // caso a página já abra rolada
+})();
+ 
+
+
+
 /* CARROSSEL */
 
 let slideIndex = 0;
@@ -204,3 +220,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+/*Página do Usuário*/
+// Tudo fica dentro de uma função para não conflitar com variáveis do script.js
+// (duas variáveis com o mesmo nome em arquivos diferentes causam erro)
+(function () {
+    var popup = document.querySelector(".editarPopup");
+    var form = popup ? popup.querySelector("form") : null;
+    var inputArquivo = document.getElementById("arquivo-upload");
+    var previa = document.getElementById("previaImagem");
+    var srcOriginal = previa ? previa.getAttribute("src") : "";
+
+    // Fecha o popup e descarta o que não foi salvo
+    function fechar() {
+        popup.classList.remove("mostrar");
+        form.reset();
+        previa.src = srcOriginal;
+    }
+
+    // Chamada pelo onclick do botão "Editar" e pela setinha de voltar
+    window.editarUser = function () {
+        if (popup.classList.contains("mostrar")) {
+            fechar();
+        } else {
+            popup.classList.add("mostrar");
+        }
+    };
+
+    if (!popup) return;
+
+    // Fecha ao clicar fora do bloco
+    popup.addEventListener("click", function (e) {
+        if (e.target === popup) {
+            fechar();
+        }
+    });
+
+    // Fecha com Esc
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && popup.classList.contains("mostrar")) {
+            fechar();
+        }
+    });
+
+    // Prévia da foto escolhida
+    if (inputArquivo && previa) {
+        inputArquivo.addEventListener("change", function () {
+            if (inputArquivo.files && inputArquivo.files[0]) {
+                previa.src = URL.createObjectURL(inputArquivo.files[0]);
+            }
+        });
+    }
+})();
