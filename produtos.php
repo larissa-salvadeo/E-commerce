@@ -1,61 +1,5 @@
 <?php 
-include("util.php");
-include("_cabecalho.php"); ?>     
-
-    <!------MAIN------>
-    <main class="produtos">          
-        <div class="wrapper">
-            <a href="paginaProduto.php" class="single-card">
-                <div class="img-area">
-                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
-                    <button class="categ">Estudo</button>
-                </div>
-                <div class="info">
-                    <h3>Vela Aromática Cherry Blossom 70ml</h3>
-                    <p class="price">R$ 16,90</p>
-                    <button type="button" class="btn-detalhes">Ver detalhes</button>
-                </div>
-            </a>
-            <a href="paginaProduto.php" class="single-card">
-                <div class="img-area">
-                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
-                    <button class="categ">Estudo</button>
-                </div>
-                <div class="info">
-                    <h3>Vela Aromática Cherry Blossom 70ml</h3>
-                    <p class="price">R$ 16,90</p>
-                    <button type="button" class="btn-detalhes">Ver detalhes</button>
-                </div>
-            </a>
-            <a href="paginaProduto.php" class="single-card">
-                <div class="img-area">
-                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
-                    <button class="categ">Estudo</button>
-                </div>
-                <div class="info">
-                    <h3>Vela Aromática Cherry Blossom 70ml</h3>
-                    <p class="price">R$ 16,90</p>
-                    <button type="button" class="btn-detalhes">Ver detalhes</button>
-                </div>
-            </a>
-            <a href="paginaProduto.php" class="single-card">
-                <div class="img-area">
-                    <img src="Imagens/exemplo.jpeg" alt="Vela Aromática Cherry Blossom">
-                    <button class="categ">Estudo</button>
-                </div>
-                <div class="info">
-                    <h3>Vela Aromática Cherry Blossom 70ml</h3>
-                    <p class="price">R$ 16,90</p>
-                    <button type="button" class="btn-detalhes">Ver detalhes</button>
-                </div>
-            </a>
-        </div>
-    </main>
-
-<?php include("_rodape.php"); ?>
-
-<!--CÓDIGO PARA QUANDO O BANCO DE DADOS JÁ ESTIVER COM OS PRODUTOS CADASTRADOS -->
-<?php /*
+    include ("util.php");
     include("_cabecalho.php");
 
     $sql = "SELECT id_produto, nome, descricao, valor_unitario, imagem 
@@ -65,29 +9,37 @@ include("_cabecalho.php"); ?>
     $select = $conn->prepare($sql);
     $select->execute();
 
-    $produtos = $select->fetchAll(PDO::FETCH_ASSOC);*/
+    $produtos = $select->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
-<!--
 <main class="produtos">          
     <div class="wrapper">
-        </*?php foreach ($produtos as $produto): ?>
+        <?php foreach ($produtos as $produto): ?>
+            <?php 
+                if ($produto['id_produto'] == 1 || $produto['id_produto'] == 2) { 
+                    $categ = "Estudo"; 
+                } else { 
+                    $categ = "Ambiente"; 
+                } 
+            ?>
             <div class="single-card">
-                <a href="paginaProduto.php?id=</*?= $produto['id_produto'] ?>">
+                <a href="paginaProduto.php?id=<?= $produto['id_produto'] ?>">
                     <div class="img-area">
-                        <img src="</*?= $produto['imagem']?>" alt="</*?= $produto['nome'] ?>">
+                        <img src="<?= $produto['imagem']?>" alt="<?= $produto['nome'] ?>">
+                        <button class="categ"><?=$categ ?></button>
                     </div>
                 </a>
                 <div class="info">
-                    <h3></*?=$produto['nome']?></h3>
-                    <p class="price">R$ </*?= number_format($produto['valor_unitario'], 2, ',', '.') ?></p>
-                    <p></*?= $produto['descricao']?></p>
-                    <a href="carrinho.php?add=</*?= $produto['id_produto'] ?>" class="carrinho">
-                        <i class="fi fi-rr-shopping-cart"></i>
+                    <h3><?=$produto['nome']?></h3>
+                    <p class="price">R$ <?= number_format($produto['valor_unitario'], 2, ',', '.') ?></p>
+                    <p><?= $produto['descricao']?></p>
+                    <a href="paginaProduto.php?add=<?= $produto['id_produto'] ?>" class="carrinho">
+                         <button type="button" class="btn-detalhes">Ver detalhes</button>
                     </a>
                 </div>
             </div>
-        </*?php endforeach; ?>
+        <?php endforeach; ?>
     </div>   
 </main>
- -->
+
 <?php include("_rodape.php"); ?>

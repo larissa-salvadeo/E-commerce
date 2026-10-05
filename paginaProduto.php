@@ -35,10 +35,15 @@ include("_cabecalho.php"); ?>
 
                 <div class="pdp-actions">
                     <button type="button" class="pdp-btn pdp-btn-buy" id="pdpBuyBtn">Comprar Agora</button>
-                    <button type="button" class="pdp-btn pdp-btn-cart" id="pdpAddBtn">
-                       <i class="fi fi-rr-shopping-cart">   </i>
-                        Adicionar ao carrinho
-                    </button>
+                    <form action="carrinho.php" method="POST">
+                        <input type="hidden" name="produto_id" value="1">
+                        <input type="hidden" name="quantidade" value="1">
+                        
+                        <!-- Nome da ação para o PHP validar que o botão foi clicado -->
+                        <input type="hidden" name="acao" value="incluir">
+
+                        <button type="submit">Adicionar ao carrinho</button>
+                    </form>
                 </div>
             </div>
         
