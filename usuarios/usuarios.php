@@ -114,6 +114,34 @@ $select->execute();
                     Sobre nós
                 </a>
 
+                 <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
+                <a class="<?= ($paginaAtual == 'paginaUsuario.php') ? 'active' : '' ?>" href="paginaUsuario.php">
+                    Minha conta
+                </a>
+                <?php endif; ?>
+
+                  <!-- Barra de Pesquisa -->
+
+                <div class="pesquisa">
+                    <form action="../busca.php" method="GET">
+                        <input type="text" placeholder="Pesquisar..." name="search">
+                        <button type="submit"><i class="fi fi-rr-search"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id = "carrinho" href="../carrinho.php" >
+                Carrinho <i class="fi fi-rr-shopping-cart"></i>
+            </a>
+
+            <div class="menu-admin">
+                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
+                    <a class="<?= ($paginaAtual == 'usuarios.php') ? 'active' : '' ?>" href="../admin.php">
+                        Admin <i class="fi fi-rr-user"></i>
+                    </a>
+                <?php endif;?>
+            </div>
+
                 <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
 
                     <a class="usuario-menu" href="#" id="abrirUsuario">
@@ -128,33 +156,11 @@ $select->execute();
                     <a class="btn-open" id="openModalBtn" href="#">
                         Login <i class="fi fi-rr-user"></i>
                     </a>
-
                 <?php endif; ?>
-
-                <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" href="../carrinho.php">
-                    Carrinho <i class="fi fi-rr-shopping-cart"></i>
-                </a>
-
-                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
-                <a class="<?= ($paginaAtual == 'usuarios.php') ? 'active' : '' ?>" href="../admin.php">
-                    Admin <i class="fi fi-rr-user"></i>
-                </a>
-                <?php endif;?>
-            </div>
-
-            <!-- Barra de Pesquisa -->
-
-            <div class="pesquisa">
-                <form action="../busca.php" method="GET">
-                    <input type="text" placeholder="Pesquisar..." name="search">
-                    <button type="submit"><i class="fi fi-rr-search"></i></button>
-                </form>
-            </div>
 
         </nav>
 
     </header>
-
 
     <!------ CONTEÚDO PRINCIPAL ------>
 

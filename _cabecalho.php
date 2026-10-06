@@ -83,7 +83,7 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
 
             <!-- Links do Menu -->
 
-        <div class="menu-links">
+            <div class="menu-links">
                 <div class="icon cancel-btn">
                     <i class="fas fa-times"></i>
                 </div>
@@ -142,6 +142,6 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
                 <a class="btn-open" id="openModalBtn" href="#">
                     Login <i class="fi fi-rr-user"></i>
                 </a>
-                <?php endif; ?>
+            <?php endif; ?>
         </nav>
     </header>
