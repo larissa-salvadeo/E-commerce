@@ -42,7 +42,7 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
 // Busca os usuários no banco
 $pesquisa = $_GET['pesquisa'] ?? '';
 
-$varSQL = "SELECT id_usuario, nome, email, senha, telefone, imagem 
+$varSQL = "SELECT id_usuario, nome, email, telefone, imagem 
            FROM usuario 
            WHERE excluido = FALSE 
            AND (nome ILIKE :pesquisa OR email ILIKE :pesquisa OR telefone ILIKE :pesquisa)
@@ -179,7 +179,6 @@ $select->execute();
                 <th style="border: 1px #5F8565 dotted; padding: 10px;">ID</th>
                 <th style="border: 1px #5F8565 dotted; padding: 10px;">NOME</th>
                 <th style="border: 1px #5F8565 dotted; padding: 10px;">EMAIL</th>
-                <th style="border: 1px #5F8565 dotted; padding: 10px;">SENHA</th>
                 <th style="border: 1px #5F8565 dotted; padding: 10px;">TELEFONE</th>
                 <th style="border: 1px #5F8565 dotted; padding: 10px;">IMAGEM</th>
                 <th style="border: 1px #5F8565 dotted; padding: 10px;">AÇÕES</th>
@@ -197,8 +196,6 @@ $select->execute();
                         <td style="border: 1px #5F8565 dotted; padding: 10px;"><?= htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8') ?></td>
 
                         <td style="border: 1px #5F8565 dotted; padding: 10px;"><?= htmlspecialchars($linha['email'], ENT_QUOTES, 'UTF-8') ?></td>
-
-                        <td style="border: 1px #5F8565 dotted; padding: 10px;"><?= htmlspecialchars($linha['senha'], ENT_QUOTES, 'UTF-8') ?></td>
 
                         <td style="border: 1px #5F8565 dotted; padding: 10px;"><?= htmlspecialchars($linha['telefone'], ENT_QUOTES, 'UTF-8') ?></td>
 

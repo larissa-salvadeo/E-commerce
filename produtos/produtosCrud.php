@@ -168,7 +168,7 @@ $select->execute();
 
     <div style="width: 80%; margin: 0 auto 20px auto; text-align: left; display: block;">
         <form method="GET" action="" style="display: block;">
-            <input type="text" name="pesquisa" placeholder="Pesquisar usuário..." value="<?= htmlspecialchars($pesquisa) ?>" style="width: 300px; padding: 10px; border: 1px solid #5F8565; border-radius: 5px;">
+            <input type="text" name="pesquisa" placeholder="Pesquisar produto..." value="<?= htmlspecialchars($pesquisa) ?>" style="width: 300px; padding: 10px; border: 1px solid #5F8565; border-radius: 5px;">
             <button type="submit" style="padding: 10px 20px; background-color: #5F8565; color: white; border: none; border-radius: 5px; cursor: pointer;">Pesquisar</button>
         </form>
     </div>
