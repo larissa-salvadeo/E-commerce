@@ -107,6 +107,17 @@ if (modal && openBtn && closeBtn) {
     });
 }
 
+//Esqueci e Redefinir - Seta de voltar
+const params = new URLSearchParams(window.location.search);
+
+if (modal && params.get('login') === '1') {
+    modal.style.display = 'flex';
+    if (container) container.classList.remove('right-panel-active'); // garante o painel "Entrar"
+
+    // limpa o ?login=1 da URL para não reabrir ao recarregar
+    history.replaceState(null, '', window.location.pathname);
+}
+
 // MENSAGEM DE SUCESSO
 
 const mensagemLogin = document.getElementById('mensagemLogin');
@@ -222,24 +233,27 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/*Página do Usuário*/
-// Tudo fica dentro de uma função para não conflitar com variáveis do script.js
-// (duas variáveis com o mesmo nome em arquivos diferentes causam erro)
+
+/* PÁGINA DO USUÁRIO - EDITAR DADOS */
 (function () {
     var popup = document.querySelector(".editarPopup");
-    var form = popup ? popup.querySelector("form") : null;
-    var inputArquivo = document.getElementById("arquivo-upload");
+    if (!popup) return;
+
+    var form = popup.querySelector("form");
+    var inputArquivo = document.getElementById("imagemEditar");
     var previa = document.getElementById("previaImagem");
     var srcOriginal = previa ? previa.getAttribute("src") : "";
+    var textoLabel = popup.querySelector(".arquivo-texto");
+    var labelArquivo = textoLabel ? textoLabel.closest(".arquivo-label") : null;
 
-    // Fecha o popup e descarta o que não foi salvo
     function fechar() {
         popup.classList.remove("mostrar");
         form.reset();
-        previa.src = srcOriginal;
+        if (previa) previa.src = srcOriginal;
+        if (textoLabel) textoLabel.textContent = "Escolher imagem";
+        if (labelArquivo) labelArquivo.classList.remove("selecionado");
     }
 
-    // Chamada pelo onclick do botão "Editar" e pela setinha de voltar
     window.editarUser = function () {
         if (popup.classList.contains("mostrar")) {
             fechar();
@@ -248,23 +262,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    if (!popup) return;
-
-    // Fecha ao clicar fora do bloco
     popup.addEventListener("click", function (e) {
-        if (e.target === popup) {
-            fechar();
-        }
+        if (e.target === popup) fechar();
     });
 
-    // Fecha com Esc
     document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && popup.classList.contains("mostrar")) {
+            // se a câmera estiver aberta, o Esc fecha só a câmera
+            var cam = document.getElementById("cameraBox");
+            if (cam && !cam.hidden) return;
             fechar();
         }
     });
 
-    // Prévia da foto escolhida
     if (inputArquivo && previa) {
         inputArquivo.addEventListener("change", function () {
             if (inputArquivo.files && inputArquivo.files[0]) {
@@ -273,3 +283,153 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 })();
+
+/*  ARQUICO DE FOTO*/
+/*Input type file - arquivo de foto */
+document.querySelectorAll('.campo-arquivo input[type="file"]').forEach(input => {
+    input.addEventListener('change', () => {
+        const label = input.nextElementSibling;
+        const texto = label.querySelector('.arquivo-texto');
+
+        if (input.files.length > 0) {
+            texto.textContent = input.files[0].name;
+            label.classList.add('selecionado');
+        } else {
+            texto.textContent = 'Escolher imagem';
+            label.classList.remove('selecionado');
+        }
+    });
+});
+
+/*ABRIR CAMERA EM COMPUTADOR*/
+/* ABRIR CAMERA EM COMPUTADOR (cadastro e edição) */
+(function () {
+    const cameraBox    = document.getElementById('cameraBox');
+    const cameraVideo  = document.getElementById('cameraVideo');
+    const cameraCanvas = document.getElementById('cameraCanvas');
+    const btnCapturar  = document.getElementById('btnCapturar');
+    const btnCancelar  = document.getElementById('btnCancelarCamera');
+
+    if (!cameraBox || !cameraVideo || !cameraCanvas || !btnCapturar || !btnCancelar) return;
+
+    let cameraStream = null;
+    let cameraAberta = false;
+    let inputAtual   = null; // input de arquivo que vai receber a foto
+
+    // descobre uma vez se existe câmera
+    const temCamera = (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices)
+        ? navigator.mediaDevices.enumerateDevices()
+            .then(d => d.some(x => x.kind === 'videoinput'))
+            .catch(() => false)
+        : Promise.resolve(false);
+
+    function fecharCamera() {
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(t => t.stop());
+            cameraStream = null;
+        }
+        cameraVideo.srcObject = null;
+        cameraBox.hidden = true;
+        inputAtual = null;
+        setTimeout(() => { cameraAberta = false; }, 400);
+    }
+
+    document.querySelectorAll('.campo-arquivo').forEach(campo => {
+        const fileInput = campo.querySelector('input[type="file"]');
+        const btnCamera = campo.querySelector('.btn-camera');
+        if (!fileInput || !btnCamera) return;
+
+        temCamera.then(ok => { if (ok) btnCamera.hidden = false; });
+
+        // enquanto a câmera estiver aberta, o seletor de arquivos não abre
+        fileInput.addEventListener('click', (e) => {
+            if (cameraAberta) e.preventDefault();
+        });
+
+        btnCamera.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (cameraAberta) return;
+
+            cameraAberta = true;
+            inputAtual = fileInput;
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'user' },
+                    audio: false
+                });
+                cameraVideo.srcObject = cameraStream;
+                cameraBox.hidden = false;
+            } catch (erro) {
+                cameraAberta = false;
+                inputAtual = null;
+
+                let msg = 'Não foi possível acessar a câmera.';
+                if (erro.name === 'NotAllowedError') {
+                    msg = 'A permissão da câmera está bloqueada. Clique no ícone à esquerda da URL, permita a câmera e recarregue a página.';
+                } else if (erro.name === 'NotFoundError') {
+                    msg = 'Nenhuma câmera foi encontrada neste computador.';
+                } else if (erro.name === 'NotReadableError') {
+                    msg = 'A câmera está sendo usada por outro programa. Feche-o e tente novamente.';
+                }
+                alert(msg);
+                console.error(erro);
+            }
+        });
+    });
+
+    btnCapturar.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!inputAtual) return;
+
+        cameraCanvas.width  = cameraVideo.videoWidth;
+        cameraCanvas.height = cameraVideo.videoHeight;
+        cameraCanvas.getContext('2d').drawImage(cameraVideo, 0, 0);
+
+        const destino = inputAtual; // guarda antes de fechar a câmera
+        cameraCanvas.toBlob(blob => {
+            if (!blob) { fecharCamera(); return; }
+            const arquivo = new File([blob], 'foto-' + Date.now() + '.jpg', { type: 'image/jpeg' });
+
+            const dt = new DataTransfer();
+            dt.items.add(arquivo);
+            destino.files = dt.files;
+
+            // atualiza o nome no label e a prévia
+            destino.dispatchEvent(new Event('change', { bubbles: true }));
+
+            fecharCamera();
+        }, 'image/jpeg', 0.9);
+    });
+
+    btnCancelar.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        fecharCamera();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !cameraBox.hidden) fecharCamera();
+    });
+})();
+
+/*PÁGINA DE CATEGORIA*/
+
+// Parallax do hero
+const heroBg = document.getElementById("heroBg");
+addEventListener("scroll", () => {
+  heroBg.style.transform = `translateY(${scrollY * 0.25}px)`;
+}, { passive:true });
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add("revelado");
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold:.15 });
+
+document.querySelectorAll(".reveal").forEach(el => obs.observe(el));

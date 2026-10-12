@@ -114,13 +114,7 @@ $select->execute();
                     Sobre nós
                 </a>
 
-                 <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
-                <a class="<?= ($paginaAtual == 'paginaUsuario.php') ? 'active' : '' ?>" href="paginaUsuario.php">
-                    Minha conta
-                </a>
-                <?php endif; ?>
-
-                  <!-- Barra de Pesquisa -->
+                 <!-- Barra de Pesquisa -->
 
                 <div class="pesquisa">
                     <form action="../busca.php" method="GET">
@@ -131,13 +125,13 @@ $select->execute();
             </div>
 
             <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id = "carrinho" href="../carrinho.php" >
-                Carrinho <i class="fi fi-rr-shopping-cart"></i>
+                <i class="fi fi-rr-shopping-cart"></i>
             </a>
 
             <div class="menu-admin">
                 <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
                     <a class="<?= ($paginaAtual == 'adicionarUsuarios.php') ? 'active' : '' ?>" href="../admin.php">
-                        Admin <i class="fi fi-rr-user"></i>
+                        <i class="fi fi-rr-user"></i>
                     </a>
                 <?php endif;?>
             </div>
@@ -177,7 +171,7 @@ $select->execute();
                         <button type="submit">Cadastrar</button>
         </form>
 
-        <!-- MODAL DE USUÁRIO -->
+    <!-- MODAL DE USUÁRIO -->
 
         <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
 
@@ -189,7 +183,7 @@ $select->execute();
 
                     <h2>Minha conta</h2>
 
-                    <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal">
+                    <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal" width="150" height="150">
 
                     <h3><?= htmlspecialchars($_SESSION['sessionNome-Lumiere'] ?? '', ENT_QUOTES, 'UTF-8') ?></h3>
 

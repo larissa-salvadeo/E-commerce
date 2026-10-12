@@ -1,6 +1,8 @@
 <?php
+
  include "util.php";
  include "_cabecalho.php";
+ /*
  include "carrinho_util.php";
 
  $conn = conecta();  
@@ -92,6 +94,10 @@
    // se chamou o link carrinho pela home
    $total = AtualizaGride( $conn, $id_compra, $statusCompra );
  }
- 
- include "_rodape.php)";
+ */
+
 ?>
+<main>
+   <h1>Em desenvolvimento</h1>
+</main>
+ <?php include("_rodape.php");?>

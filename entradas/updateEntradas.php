@@ -1,5 +1,5 @@
 <?php
-    include "util.php";       
+    include ("../util.php");       
     $conn = conecta();
 
     $id_entrada = $_POST['id_entrada'];
@@ -19,10 +19,8 @@
     $update->bindParam(':data_entrada', $data_entrada);
     $update->bindParam(':id_entrada', $id_entrada);
 
-    if ( $update ->execute() ) {
-        salvaUploadId($conn, $_FILES, 'arquivo', $_POST['id_entrada']);
+    if ($update ->execute()) {
+        header("Location: entradas.php");
     }
-
-    header("Location: entradas.php");
     
 ?>

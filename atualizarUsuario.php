@@ -14,22 +14,37 @@
     $imagemPadrao = 'Imagens/usuario.png';
 
     $id       = $_SESSION['sessionId-Lumiere'];
-    $nome     = trim($_POST['nome']);
-    $telefone = trim($_POST['telefone']);
+
+    $nome     = trim($_POST['nome'] ?? '');
+    $telefone = trim($_POST['telefone'] ?? '');
+
+    // Busca os dados atuais para manter o que não for alterado
+    $busca = $conn->prepare("SELECT nome, telefone FROM usuario WHERE id_usuario = :id AND excluido = FALSE");
+    $busca->bindParam(':id', $id);
+    $busca->execute();
+    $atual = $busca->fetch(PDO::FETCH_ASSOC);
+
+    if (!$atual) {
+        header("Location: index.php");
+        exit;
+    }
 
     // ---------- Validações ----------
-    if ($nome === '' || $telefone === '') {
-        header("Location: paginaUsuario.php?msg=" . urlencode("Preencha nome e telefone"));
-        exit;
+    // Campo vazio = mantém o valor atual
+    if ($nome === '') {
+        $nome = $atual['nome'];
     }
 
-    // Telefone: só números, parênteses, espaço, + e - (10 ou 11 dígitos)
-    $digitos = preg_replace('/\D/', '', $telefone);
-    if (!preg_match('/^[0-9()\s+-]+$/', $telefone) || strlen($digitos) < 10 || strlen($digitos) > 11) {
-        header("Location: paginaUsuario.php?msg=" . urlencode("Telefone inválido. Use DDD + número"));
-        exit;
+    if ($telefone === '') {
+        $telefone = $atual['telefone'];
+    } else {
+        // Telefone: só números, parênteses, espaço, + e - (10 ou 11 dígitos)
+        $digitos = preg_replace('/\D/', '', $telefone);
+        if (!preg_match('/^[0-9()\s+-]+$/', $telefone) || strlen($digitos) < 10 || strlen($digitos) > 11) {
+            header("Location: index.php?msg=" . urlencode("Telefone inválido. Use DDD + número"));
+            exit;
+        }
     }
-
     // ---------- Imagem ----------
     // Por padrão mantém a imagem atual
     $imagemAntiga = isset($_SESSION['sessionImagem-Lumiere']) ? $_SESSION['sessionImagem-Lumiere'] : $imagemPadrao;
@@ -40,12 +55,12 @@
         $permitidos = ['image/jpeg', 'image/png', 'image/webp'];
 
         if (!in_array(mime_content_type($_FILES['imagem']['tmp_name']), $permitidos)) {
-            header("Location: paginaUsuario.php?msg=" . urlencode("Envie uma imagem JPG, PNG ou WEBP"));
+            header("Location: index.php?msg=" . urlencode("Envie uma imagem JPG, PNG ou WEBP"));
             exit;
         }
 
         if ($_FILES['imagem']['size'] > 3 * 1024 * 1024) {
-            header("Location: paginaUsuario.php?msg=" . urlencode("A imagem deve ter no máximo 3 MB"));
+            header("Location: index.php?msg=" . urlencode("A imagem deve ter no máximo 3 MB"));
             exit;
         }
 
@@ -53,7 +68,7 @@
         $novaImagem = salvaUpload($conn, $_FILES, 'imagem');
 
         if ($novaImagem == null) {
-            header("Location: paginaUsuario.php?msg=" . urlencode("Não foi possível salvar a imagem"));
+            header("Location: index.php?msg=" . urlencode("Não foi possível salvar a imagem"));
             exit;
         }
 
@@ -74,7 +89,7 @@
         if ($imagem !== $imagemAntiga && file_exists($imagem)) {
             unlink($imagem);
         }
-        header("Location: paginaUsuario.php?msg=" . urlencode("Erro ao salvar os dados. Tente novamente"));
+        header("Location: index.php?msg=" . urlencode("Erro ao salvar os dados. Tente novamente"));
         exit;
     }
 
@@ -87,6 +102,6 @@
     $_SESSION['sessionNome-Lumiere']   = $nome;
     $_SESSION['sessionImagem-Lumiere'] = $imagem;
 
-    header("Location: paginaUsuario.php?msg=" . urlencode("Dados atualizados com sucesso"));
+    header("Location: index.php?msg=" . urlencode("Dados atualizados com sucesso"));
     exit;
 ?>

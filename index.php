@@ -34,12 +34,12 @@ $_SESSION["sessaoSite"]="https://eq.projetoscti.com.br". $_SESSION["raiz"]; ?>
         <section id="catAmb"> 
             <img src="Imagens/Ambiente.png" alt="Categoria Ambiente">
             <div class="texto">ambiente</div>
-            <a href="catAmb.php" class="verMais" >ver mais</a>
+            <a href="categoria.php?cat=ambiente" class="verMais" >ver mais</a>
         </section>
         <section id="catEst"> 
             <img src="Imagens/Estudos.png" alt="Categoria Estudo">
             <div class="texto">estudo</div>
-            <a href="catEst.php" class="verMais">ver mais</a>
+            <a href="categoria.php?cat=estudo" class="verMais">ver mais</a>
         </section>
 
         <!------------VÍDEO------------>

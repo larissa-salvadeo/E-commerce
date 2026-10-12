@@ -7,10 +7,12 @@
     <!------MAIN------>
     <main class="sobre">
         <!------------QUEM SOMOS?------------>
+        <div class="img-sobre">
+            <h1 class="titulo-img">quem somos?</h1>
+            <img src="Imagens/Sobre.jpg" alt="Imagem - Missão, Visão e Valores" class="img-mvv">
+        </div>
         <div class="quem">
-            <img src="Imagens/Sobre2.png" alt="Imagem - Quem somos" class="quem-somos">
             <section id="texto-quem">
-                <h1 id="titulo-quem"><b>Quem somos?</b></h1><br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis inventore incidunt magni itaque accusamus excepturi possimus. Porro, veniam. Suscipit illo natus dolor assumenda recusandae tenetur delectus aut totam cumque ipsa. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto molestias, voluptas delectus ipsum dolorem quos temporibus consequatur magni explicabo itaque a eaque amet tempora dignissimos, asperiores nam. Ex, optio impedit!LoremLor  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas veritatis saepe corrupti cumque natus magnam? Beatae officiis, quasi sapiente iure porro maxime, voluptas provident corporis voluptatum ea error earum inventore.</p>                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis inventore incidunt magni itaque accusamus excepturi possimus. Porro, veniam. Suscipit illo natus dolor assumenda recusandae tenetur delectus aut totam cumque ipsa. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto molestias, voluptas delectus ipsum dolorem quos temporibus consequatur magni explicabo itaque a eaque amet tempora dignissimos, asperiores nam. Ex, optio impedit!LoremLor  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas veritatis saepe corrupti cumque natus magnam? Beatae officiis, quasi sapiente iure porro maxime, voluptas provident corporis voluptatum ea error earum inventore.</p>
             </section>
             <section id="img-quem">
@@ -18,9 +20,11 @@
             </section>
         </div><br><br>
         <!------------NOSSA MISSÃO, VISÃO E VALORES------------>
-        <img src="Imagens/Sobre2.png" alt="Imagem - Missão, Visão e Valores" class="img-mvv">
+        <div class="img-sobre">
+            <h1 class="titulo-img">missão, visão e valores</h1>
+            <img src="Imagens/Sobre.jpg" alt="Imagem - Missão, Visão e Valores" class="img-mvv">
+        </div>
         <div class="mvv">
-            <h1 id="titulo-mvv"><b>Nossa missão, visão e valores</b></h1><br>
             <section id="missao">
                 <h1><b>Missão</b></h1><br>
                 <p>Proporcionar momentos de conforto, tranquilidade e concentração por meio de velas aromáticas que transformam ambientes de estudo e convivência em espaços mais agradáveis e acolhedores.</p><br>

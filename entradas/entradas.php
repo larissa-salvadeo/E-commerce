@@ -38,6 +38,9 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
 } else {
     $imagemUsuario = 'Imagens/usuario.png';
 }
+
+$varSQL = "SELECT * FROM entrada";
+$select = $conn->query($varSQL);
 ?>
 
 <!DOCTYPE html>
@@ -97,13 +100,7 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
                 <a class="<?= ($paginaAtual == 'sobre.php') ? 'active' : '' ?>" href="../sobre.php">
                     Sobre nós
                 </a>
-
-                 <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
-                <a class="<?= ($paginaAtual == 'paginaUsuario.php') ? 'active' : '' ?>" href="paginaUsuario.php">
-                    Minha conta
-                </a>
-                <?php endif; ?>
-
+                
                   <!-- Barra de Pesquisa -->
 
                 <div class="pesquisa">
@@ -115,13 +112,13 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
             </div>
 
             <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id = "carrinho" href="../carrinho.php" >
-                Carrinho <i class="fi fi-rr-shopping-cart"></i>
+                <i class="fi fi-rr-shopping-cart"></i>
             </a>
 
             <div class="menu-admin">
                 <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
                     <a class="<?= ($paginaAtual == 'entradas.php') ? 'active' : '' ?>" href="../admin.php">
-                        Admin <i class="fi fi-rr-user"></i>
+                        <i class="fi fi-rr-user"></i>
                     </a>
                 <?php endif;?>
             </div>
@@ -150,13 +147,6 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
     <!------ CONTEÚDO PRINCIPAL ------>
 
     <main style="width: 100%; text-align: center; display: block;">
-
-    <div style="width: 80%; margin: 0 auto 20px auto; text-align: left; display: block;">
-        <form method="GET" action="" style="display: block;">
-            <input type="text" name="pesquisa" placeholder="Pesquisar produto..." value="<?= htmlspecialchars($pesquisa) ?>" style="width: 300px; padding: 10px; border: 1px solid #5F8565; border-radius: 5px;">
-            <button type="submit" style="padding: 10px 20px; background-color: #5F8565; color: white; border: none; border-radius: 5px; cursor: pointer;">Pesquisar</button>
-        </form>
-    </div>
     
     <table style="border: 2px #5F8565 dotted; border-collapse: collapse; width: 80%; margin: 0 auto;">
         <thead style="background-color: #5F8565; color: white;">
@@ -171,6 +161,7 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
             </tr>
         </thead>
         <tbody>
+
         <?php while ($linha = $select->fetch(PDO::FETCH_ASSOC)):
             $id_entrada = $linha['id_entrada'];
             $quantidade = $linha['quantidade'];
@@ -190,10 +181,10 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
 
                 <td style="border: 1px #5F8565 dotted; padding: 10px;">
                     <div class="acoes">
-                        <a href="alterarProdutos.php?id_produto=<?= htmlspecialchars($linha['id_produto'], ENT_QUOTES, 'UTF-8') ?>">
+                        <a href="alterarEntradas.php?id_entrada=<?= htmlspecialchars($linha['id_entrada'], ENT_QUOTES, 'UTF-8') ?>">
                             <img height="35" src="../Imagens/alterar.png" alt="Alterar"/>
                         </a>
-                        <a href="excluirProdutos.php?id_produto=<?= htmlspecialchars($linha['id_produto'], ENT_QUOTES, 'UTF-8') ?>">
+                        <a href="excluirEntradas.php?id_entrada=<?= htmlspecialchars($linha['id_entrada'], ENT_QUOTES, 'UTF-8') ?>">
                             <img height="35" src="../Imagens/excluir.png" alt="Excluir"/>
                         </a>
                     </div>
@@ -205,8 +196,8 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
 
         <br><br>
 
-        <a href="adicionarProdutos.php">
-            <img height="60" src="../Imagens/adicionar.png" alt="Adicionar Produto"/>
+        <a href="adicionarEntradas.php">
+            <img height="60" src="../Imagens/adicionar.png" alt="Adicionar Entrada"/>
         </a>
 
 
@@ -222,7 +213,7 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
 
                     <h2>Minha conta</h2>
 
-                    <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal">
+                    <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal" width="150" height="150">
 
                     <h3><?= htmlspecialchars($_SESSION['sessionNome-Lumiere'] ?? '', ENT_QUOTES, 'UTF-8') ?></h3>
 

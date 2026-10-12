@@ -1,20 +1,92 @@
 <!-- MODAL DE USUÁRIO -->
-    <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
+    <?php 
+        if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): 
+        
+        if(($_SESSION['sessionAdmin-Lumiere'])== true)
+            $tipo="Administrador";
+        else
+            $tipo="Cliente";
+
+        $varSQL = "SELECT telefone FROM usuario WHERE id_usuario = :id AND excluido = FALSE";
+        $select = $conn->prepare($varSQL);
+        $select->bindParam(':id', $_SESSION['sessionId-Lumiere']);
+        $select->execute();
+        $telefone = $select->fetchColumn(); // retorna direto o valor, ou false se não achar
+    
+        if($telefone == null)
+            $telefone="Não foi cadastrado!"
+
+    ?>
     <div id="modalUsuario" class="modal-usuario">
         <div class="modal-usuario-content">
             <span class="fechar-usuario" id="fecharUsuario">&times;</span>
-            <h2>Minha conta</h2>
-            <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário" class="foto-usuario-modal">
-
-            <h3><?= htmlspecialchars($_SESSION['sessionNome-Lumiere']) ?></h3>
-            <p><?= htmlspecialchars($_SESSION['sessionLogin-Lumiere']) ?></p>
-
+    
+            <div class="blocoImg">
+                <h2>Minha conta</h2>
+                <img src="<?= $_SESSION['sessionImagem-Lumiere'] ?>" alt="Foto do usuário" class="foto-usuario-modal">
+                <p class="tipoConta"><?= $tipo ?></p>
+                <h3><?= htmlspecialchars($_SESSION['sessionNome-Lumiere']) ?></h3>
+            </div>
+            <div>
+                <div class="blocoNome">
+                    <h1>Dados</h1>
+                </div>
+                <div class="dado">
+                    <div class="blocoDado">
+                        <div>
+                            <i class="fi fi-rr-phone-call"></i>
+                            <h1>Telefone</h1>
+                        </div>
+                        <p><?= htmlspecialchars($telefone)  ?></p>
+                    </div>
+                    <div class="blocoDado">
+                        <div>
+                            <i class="fi fi-rr-envelope"></i>
+                            <h1>Email</h1>
+                        </div>
+                        <p><?= htmlspecialchars($_SESSION['sessionLogin-Lumiere']) ?></p>
+                    </div>
+                </div>               
+                <button class="btnSalvar" type="button" onclick="editarUser()">Editar</button>
+            </div>
             <div class="botoes-usuario">
                 <a href="logout.php" class="btn-sair">Sair</a>
                 <a href="excluirConta.php" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir sua conta?');">Excluir conta</a>
             </div>
         </div>
     </div>
+
+    <div class="editarPopup">
+            <div class="blocoPopup">
+                <div class="tituloEditar">
+                    <i class="fi fi-rr-arrow-small-left" onclick="editarUser()"></i>
+                    <h1>Altere seus dados</h1>
+                </div>
+                <form action="atualizarUsuario.php" method="POST" enctype="multipart/form-data">
+                    <div class="imagemEditar">
+                        <img id="previaImagem" src="<?= $_SESSION['sessionImagem-Lumiere'] ?>" alt="Foto do usuário">
+                        <div>
+                            <div class="campo-arquivo">
+                                <input type="file" name="imagem" id="imagemEditar" accept="image/*">
+                                <label for="imagemEditar" class="arquivo-label">
+                                    <i class="fi fi-rr-picture"></i>
+                                    <span class="arquivo-texto">Escolher imagem</span>
+                                </label>
+
+                                <label for="imagemEditar" class="arquivo-label btn-camera" hidden>
+                                    <i class="fi fi-rr-camera"></i> Tirar foto
+                                </label>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Nome" name="nome" value="<?= $_SESSION['sessionNome-Lumiere']?>"/>
+                                <input type="tel" placeholder="Telefone" name="telefone" value="<?= htmlspecialchars($telefone) ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <button class="botao-customizado" type="submit">Salvar</button>
+                </form>
+            </div>
+        </div>
     <?php endif; ?>
 
     <!-- MODAL POP-UP DE LOGIN/CADASTRO -->
@@ -30,9 +102,19 @@
                         <input type="text" placeholder="Nome" name="nome" required/>
                         <input type="email" placeholder="Email" name="email" required/>
                         <input type="password" placeholder="Senha" name="senha" required />
-                        <input type="text" placeholder="Telefone" name="telefone" required/>
-                        <input type="file" placeholder="Imagem" name="imagem" />
-                        <button type="submit">Cadastrar</button>
+                        <input type="tel" placeholder="Telefone" name="telefone" required/>
+                        <div class="campo-arquivo">
+                            <input type="file" name="imagem" id="imagemCadastro" accept="image/*">
+                            <label for="imagemCadastro" class="arquivo-label">
+                                <i class="fi fi-rr-picture"></i>
+                                <span class="arquivo-texto">Escolher imagem</span>
+                            </label>
+
+                            <label for="imagemCadastro" class="arquivo-label btn-camera" hidden>
+                                <i class="fi fi-rr-camera"></i> Tirar foto
+                            </label>
+                        </div>
+                        <button  type="submit">Cadastrar</button>
                     </form>
                 </div>
                 <div class="form-container sign-in-container">
@@ -58,6 +140,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cameraBox" class="camera-box" hidden>
+        <div class="camera-conteudo">
+            <video id="cameraVideo" autoplay playsinline muted></video>
+            <canvas id="cameraCanvas" hidden></canvas>
+            <div class="camera-acoes">
+                <button type="button" id="btnCapturar" class="camera-capturar">Capturar</button>
+                <button type="button" id="btnCancelarCamera" class="camera-cancelar">Cancelar</button>
             </div>
         </div>
     </div>

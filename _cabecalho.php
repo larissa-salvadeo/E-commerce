@@ -83,14 +83,14 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
 
             <!-- Links do Menu -->
 
-            <div class="menu-links">
+        <div class="menu-links">
                 <div class="icon cancel-btn">
                     <i class="fas fa-times"></i>
                 </div>
                 
                 <!-- Condicionais para a classe active -->
                 <a class="<?= ($paginaAtual == 'index.php' || $paginaAtual == 'busca.php' || $paginaAtual == 'catAmb.php' || $paginaAtual == 'catEst.php') ? 'active' : '' ?>" href="index.php">
-                    Home <i class="fi fi-rr-home"></i>
+                    Home
                 </a>
 
                 <a class="<?= ($paginaAtual == 'produtos.php' || $paginaAtual == 'paginaProduto.php') ? 'active' : '' ?>" href="produtos.php">
@@ -101,13 +101,7 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
                 <a class="<?= ($paginaAtual == 'sobre.php') ? 'active' : '' ?>" href="sobre.php">
                     Sobre nós
                 </a>
-
-                <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
-                <a class="<?= ($paginaAtual == 'paginaUsuario.php') ? 'active' : '' ?>" href="paginaUsuario.php">
-                    Minha conta
-                </a>
-                <?php endif; ?>
-
+                
                 <div class="pesquisa">
                     <form action="busca.php" method="GET">
                         <input type="text" placeholder="Pesquisar..." name="search">
@@ -118,13 +112,13 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
 
             <!----------LOGIN/CARRINHO---------->
             <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id = "carrinho" href="carrinho.php" >
-                Carrinho <i class="fi fi-rr-shopping-cart"></i>
+                <i class="fi fi-rr-shopping-cart"></i>
             </a>
 
             <div class="menu-admin">
                 <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
-                    <a class="<?= ($paginaAtual == 'admin.php') ? 'active' : '' ?>" href="admin.php">
-                        Admin <i class="fi fi-rr-user"></i>
+                    <a class="<?= ($paginaAtual == 'admin.php') ? 'active' : '' ?>"   href="admin.php">
+                        <i class="fi fi-rr-user"></i>
                     </a>
                 <?php endif;?>
             </div>
@@ -140,8 +134,8 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
                 </a>
                 <?php else: ?>
                 <a class="btn-open" id="openModalBtn" href="#">
-                    Login <i class="fi fi-rr-user"></i>
+                    <i class="fi fi-rr-user"></i>
                 </a>
-            <?php endif; ?>
+                <?php endif; ?>
         </nav>
     </header>

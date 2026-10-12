@@ -66,7 +66,6 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
 
 <body id="container">
 
-    <!------ HEADER ------>
     <header>
         <!-- Logo -->
         <div class="bloco-titulo">
@@ -97,6 +96,28 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
                     Sobre nós
                 </a>
 
+                 <!-- Barra de Pesquisa -->
+
+                <div class="pesquisa">
+                    <form action="../busca.php" method="GET">
+                        <input type="text" placeholder="Pesquisar..." name="search">
+                        <button type="submit"><i class="fi fi-rr-search"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id = "carrinho" href="../carrinho.php" >
+                <i class="fi fi-rr-shopping-cart"></i>
+            </a>
+
+            <div class="menu-admin">
+                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
+                    <a class="<?= ($paginaAtual == 'adicionarProdutos.php') ? 'active' : '' ?>" href="../admin.php">
+                        <i class="fi fi-rr-user"></i>
+                    </a>
+                <?php endif;?>
+            </div>
+
                 <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
 
                     <a class="usuario-menu" href="#" id="abrirUsuario">
@@ -111,39 +132,19 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
                     <a class="btn-open" id="openModalBtn" href="#">
                         Login <i class="fi fi-rr-user"></i>
                     </a>
-
                 <?php endif; ?>
-
-                <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" href="../carrinho.php">
-                    Carrinho <i class="fi fi-rr-shopping-cart"></i>
-                </a>
-
-                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
-                <a class="<?= ($paginaAtual == 'adicionarProdutos.php') ? 'active' : '' ?>" href="../admin.php">
-                    Admin <i class="fi fi-rr-user"></i>
-                </a>
-                <?php endif;?>
-            </div>
-
-            <!-- Barra de Pesquisa -->
-
-            <div class="pesquisa">
-                <form action="../busca.php" method="GET">
-                    <input type="text" placeholder="Pesquisar..." name="search">
-                    <button type="submit"><i class="fi fi-rr-search"></i></button>
-                </form>
-            </div>
 
         </nav>
 
     </header>
 
 
+
     <!------ CONTEÚDO PRINCIPAL ------>
 
     <main>
 
-    <form action = "insertProdutos.php" method = "POST" enctype="multipart/form-data">
+    <form action = "insertProdutos.php" method = "POST" enctype="multipart/form-data" class="form-adicionar-produto">
             <h1>Cadastrar Produto</h1>
             
             <label for = "nome">Nome: </label>
@@ -159,7 +160,7 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
             <input type='file' name='imagem'><br>
 
             <input type="submit" value="Adicionar"/>
-        </form>
+    </form>
 
 
         <!-- MODAL DE USUÁRIO -->
@@ -174,7 +175,7 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
 
                     <h2>Minha conta</h2>
 
-                    <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal">
+                    <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal" width="150" height="150">
 
                     <h3><?= htmlspecialchars($_SESSION['sessionNome-Lumiere'] ?? '', ENT_QUOTES, 'UTF-8') ?></h3>
 

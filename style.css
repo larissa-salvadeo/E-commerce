@@ -2791,6 +2791,117 @@ input[type="text"]:focus, input[type="tel"]:focus{
     }
 
 }
+
+/*---------- CRUD - CADASTRAR ENTRADA ----------*/
+
+main:has(> form[action="insertEntradas.php"]), main:has(> form[action="updateEntradas.php"]) {
+    width: 100%;
+    padding: 30px 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    box-sizing: border-box;
+}
+
+/* Formulário */
+main > form[action="insertEntradas.php"], main > form[action="updateEntradas.php"] {
+    width: 100%;
+    max-width: 600px;
+    padding: 25px 30px;
+    margin: 0 auto;
+
+    background-color: #F2E6D8;
+    border-radius: 14px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+/* Título */
+main > form[action="insertEntradas.php"] h1, main > form[action="updateEntradas.php"] h1 {
+    color: #1E341F;
+    font-size: 28px;
+    text-align: center;
+
+    width: fit-content;
+    margin: 0 auto 15px;
+    padding-bottom: 10px;
+
+    border-bottom: 3px solid #5F8565;
+}
+
+/* Labels */
+main > form[action="insertEntradas.php"] label, main > form[action="updateEntradas.php"] label {
+    color: #1E341F;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Campos e lista de produtos */
+main > form[action="insertEntradas.php"] input:not([type="submit"]),
+main > form[action="insertEntradas.php"] select,
+main > form[action="updateEntradas.php"] input:not([type="submit"]),
+main > form[action="updateEntradas.php"] select {
+    width: 100%;
+    padding: 12px 14px;
+
+    font-size: 13px;
+    font-family: "Merriweather", serif;
+
+    border: 1px solid #5F8565;
+    border-radius: 8px;
+
+    background-color: white;
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+/* Efeito de foco */
+main > form[action="insertEntradas.php"] input:not([type="submit"]):focus,
+main > form[action="insertEntradas.php"] select:focus,
+main > form[action="updateEntradas.php"] input:not([type="submit"]):focus,
+main > form[action="updateEntradas.php"] select:focus {
+    border-color: #1E341F;
+    box-shadow: 0 0 5px rgba(95, 133, 101, 0.4);
+}
+
+/* Botão Adicionar */
+main > form[action="insertEntradas.php"] input[type="submit"], main > form[action="updateEntradas.php"] input[type="submit"] {
+    width: 100%;
+    margin-top: 15px;
+    padding: 13px;
+
+    background-color: #5F8565;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: "Merriweather", serif;
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+/* Hover do botão */
+main > form[action="insertEntradas.php"] input[type="submit"]:hover,
+main > form[action="updateEntradas.php"] input[type="submit"]:hover {
+    background-color: #1E341F;
+}
+
 /* RESPONSIVIDADE */
 @media (max-width:780px) {
     

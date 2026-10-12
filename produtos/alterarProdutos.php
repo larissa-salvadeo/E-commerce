@@ -112,6 +112,28 @@ $varSQL ="SELECT * FROM produto WHERE id_produto = :id_produto";
                     Sobre nós
                 </a>
 
+                 <!-- Barra de Pesquisa -->
+
+                <div class="pesquisa">
+                    <form action="../busca.php" method="GET">
+                        <input type="text" placeholder="Pesquisar..." name="search">
+                        <button type="submit"><i class="fi fi-rr-search"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id = "carrinho" href="../carrinho.php" >
+                <i class="fi fi-rr-shopping-cart"></i>
+            </a>
+
+            <div class="menu-admin">
+                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
+                    <a class="<?= ($paginaAtual == 'alterarProdutos.php') ? 'active' : '' ?>" href="../admin.php">
+                        <i class="fi fi-rr-user"></i>
+                    </a>
+                <?php endif;?>
+            </div>
+
                 <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
 
                     <a class="usuario-menu" href="#" id="abrirUsuario">
@@ -126,28 +148,7 @@ $varSQL ="SELECT * FROM produto WHERE id_produto = :id_produto";
                     <a class="btn-open" id="openModalBtn" href="#">
                         Login <i class="fi fi-rr-user"></i>
                     </a>
-
                 <?php endif; ?>
-
-                <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" href="../carrinho.php">
-                    Carrinho <i class="fi fi-rr-shopping-cart"></i>
-                </a>
-
-                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
-                <a class="<?= ($paginaAtual == 'alterarProdutos.php') ? 'active' : '' ?>" href="../admin.php">
-                    Admin <i class="fi fi-rr-user"></i>
-                </a>
-                <?php endif;?>
-            </div>
-
-            <!-- Barra de Pesquisa -->
-
-            <div class="pesquisa">
-                <form action="../busca.php" method="GET">
-                    <input type="text" placeholder="Pesquisar..." name="search">
-                    <button type="submit"><i class="fi fi-rr-search"></i></button>
-                </form>
-            </div>
 
         </nav>
 
@@ -193,7 +194,7 @@ $varSQL ="SELECT * FROM produto WHERE id_produto = :id_produto";
 
                     <h2>Minha conta</h2>
 
-                    <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal">
+                    <img src="../<?= htmlspecialchars($imagemUsuario, ENT_QUOTES, 'UTF-8') ?>" alt="Foto do usuário" class="foto-usuario-modal" width="150" height="150">
 
                     <h3><?= htmlspecialchars($_SESSION['sessionNome-Lumiere'] ?? '', ENT_QUOTES, 'UTF-8') ?></h3>
 
@@ -308,38 +309,21 @@ $varSQL ="SELECT * FROM produto WHERE id_produto = :id_produto";
     <!------ FOOTER ------>
 
     <footer>
-
         <a href="../index.php"><img src="../Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
-
         <nav>
-
             <ul>
                 <li><a href="../sobre.php">Sobre Nós</a></li>
             </ul>
-
         </nav>
-
         <nav>
-
             <ul>
-
                 <li><a href="https://www.instagram.com/lumiere.ltda/" target="_blank"><i class="fi fi-brands-instagram"></i></a></li>
-
                 <li><a href="https://www.facebook.com/profile.php?id=61593508136608" target="_blank"><i class="fi fi-brands-facebook"></i></a></li>
-
             </ul>
-
         </nav>
-
         <hr class="linha">
-
         <p>&copy; 2026. Todos os direitos reservados.</p>
-
     </footer>
-
-
     <script src="../script.js"></script>
-
 </body>
-
 </html>

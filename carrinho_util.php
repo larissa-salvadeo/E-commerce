@@ -1,5 +1,5 @@
 <?php
-
+/*
  function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra) 
  {
    // existe alguma registro compra associada ao session_id ??
@@ -155,5 +155,8 @@
       }  
       return $total;
  }
-
+*/
 ?>
+<main>
+      <h1>Em desenvolvimento</h1>
+</main>
