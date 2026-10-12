@@ -4258,6 +4258,8 @@ main.main-gerenciamento {
     }
 }
 
+/*-----Responsividade Carrinho-----*/
+
 @media (max-width: 780px) {
     .pagina-carrinho {
         padding: 28px 4%;
