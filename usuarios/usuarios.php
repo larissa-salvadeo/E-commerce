@@ -155,7 +155,9 @@ $select->execute();
 
     <!------ CONTEÚDO PRINCIPAL ------>
 
-    <main style="width: 100%; text-align: center; display: block;">
+    <main style="width: 100%; text-align: center; display: block;" class="main-usuarios">
+
+        <h1 style="margin-top: 20px;">Gerenciamento de Usuários</h1>
 
     <div style="width: 80%; margin: 0 auto 20px auto; text-align: left; display: block;">
         <form method="GET" action="" style="display: block;">

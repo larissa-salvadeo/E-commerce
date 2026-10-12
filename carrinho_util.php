@@ -1,162 +1,323 @@
+
 <?php
-/*
- function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra) 
- {
-   // existe alguma registro compra associada ao session_id ??
-   // ou seja é a primeira vez que abre o carrinho ?
-   $session_id = session_id();
-   $existe = intval ( ValorSQL($paramConn," select count(*) from compra 
-                                            where sessao = '$session_id' ") );
 
-   if ( $existe > 0 ) {   
+function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra)
+{
+    $paramIdCompra = 0;
+    $paramStatusCompra = '';
 
-      // retorna id de compra
-      $paramIdCompra = intval ( ValorSQL($paramConn," select id_compra from compra
-                                                  where sessao = '$session_id' and
-                                                  status='carrinho' "));
-      // obtem o status dessa compra, se criou agora, entao eh "Pendente"
-      $paramStatusCompra = ValorSQL($paramConn, " select status from compra 
-                                             where id_compra = $paramIdCompra ");   
-                                          
-   } else {
-      
-      $paramStatusCompra = 'carrinho';
+    $session_id = session_id();
 
-      if ( isset( $_SESSION ['sessaoLogin'] ) and 
-         ( $_SESSION ['sessaoLogin'] != "" ) ) {
-           $login = $_SESSION ['sessaoLogin'];
-           $id_usuario = ValorSQL($paramConn, " select id_usuario from usuario 
-                                                where email = '$login' " );
-           $paramIdCompra = intval ( ValorSQL($paramConn," select id_compra from compra
-                                                  where fk_usuario = $id_usuario and
-                                                  status='carrinho' "));
-     
-      } else {
-         // SE NAO EXISTE, CRIA REGISTRO DE COMPRA
-         $dataHoje = date('Y/m/d');
-         // cria um registro de compras sem usuario
-         ExecutaSQL($paramConn," insert into compra (data, status, sessao) 
-                                 values ('$dataHoje', '$paramStatusCompra', '$session_id') ");
-         // recupera o id de compra  
-         $paramIdCompra = $paramConn->lastInsertId();
-      }       
-   } 
+    $login = $_SESSION['sessionLogin-Lumiere'] ?? '';
 
-   //// se estiver logado/conectado atualiza o  /////
-   //// campo fk_usuario na compra com id_usuario ///
-   if ( isset( $_SESSION ['sessaoLogin'] ) and 
-      ( $_SESSION ['sessaoLogin'] != "" ) ) {
-         $login = $_SESSION ['sessaoLogin'];
-         $id_usuario = ValorSQL($paramConn, " select id_usuario from usuario 
-                                              where email = '$login' " );
-         ExecutaSQL($paramConn, "update compra 
-                                  set fk_usuario = $id_usuario 
-                                where 
-                                 fk_usuario is null and 
-                                 id_compra = $id_compra"); 
-   }
-  
- }
- 
- function AtualizaGride( $paramConn, $paramIdCompra, $paramStatusCompra ) 
- {
-      // faz a selecao pra montar a tabela
-      $sql = " select produto.id_produto, 
-                     produto.descricao as descprod, 
-                     compra_produto.quantidade, 
-                     compra_produto.valor_unitario, 
-                     compra_produto.valor_unitario * compra_produto.quantidade as sub, 
-                     produto.imagem   
-               from produto 
-                     inner join compra_produto on 
-                     produto.id_produto = compra_produto.fk_produto 
-               where compra_produto.fk_compra = $paramIdCompra  
-               order by produto.descricao ";
-      ?>
+    $conectado = !empty($_SESSION['sessionConectado-Lumiere']) && !empty($login);
 
-      <center><h1>Compras</h1></center>
-      <table id='tabela'>
-            <tr>
-                  <th>Item</th>
-                  <th></th>
-                  <th>Produto</th>
-                  <th>Qtd</th>
-                  <th>$ unit</th>
-                  <th>$ sub</th>
-                  <th></th><th></th>
-            </tr>
-      <?php
-                  
-      $select = $paramConn->query($sql);
-         
-      // cria table com itens no carrinho e seus subtotais
-      $item = 0;
+    $id_usuario = null;
 
-      while ( $linha = $select->fetch() ) {
-            $item++;
-            $id_produto    = $linha['id_produto']; 
-            $descProd      = $linha['descprod'];
-            $quant         = $linha['quantidade'];
-            $vunit         = $linha['valor_unitario'];
-            $sub           = $linha['sub'];
-            $arq_foto      = $linha['imagem'];
+    // Busca o usuário conectado pelo e-mail.
+    if ($conectado) {
+        $sqlUsuario = "SELECT id_usuario FROM usuario
+                        WHERE email = :email AND excluido = FALSE
+                        LIMIT 1";
 
-            // caminho da foto e criacao do html p mesclar na td
-             // cria html com foto ou sem foto
+        $stmtUsuario = $paramConn->prepare($sqlUsuario);
+        $stmtUsuario->execute([':email' => $login]);
 
-            $htmlFoto = ( ImagemJaExiste( $arq_foto ) ? 
-                        "<img src='$arq_foto' width=30>" : 
-                        "<img src='/imagens/semimg.jpg' width=30>" );
-            ?>
+        $resultadoUsuario = $stmtUsuario->fetchColumn();
 
-            <tr>
-                  <td align='right'><?= $item ?></td>
-                  <td><?= $htmlFoto ?></td>
-                  <td><?= $descProd ?></td>
-                  <td align='right'><?= $quant ?></td>
-                  <td align='right'>R$ <?= number_format($vunit,2) ?></td>
-                  <td align='right'>R$ <?= number_format($sub,2) ?></td>
-                  <td><a href='/carrinho.php?operacao=incluir&id_produto=<?= $id_produto ?>'>
-                  Incluir</a></td>
-                  <td><a href='/carrinho.php?operacao=excluir&id_produto=<?= $id_produto ?>'>
-                  Excluir</a></td>
-            </tr>
-            
-            <?php   
-      }
-      
-      $_SESSION['sessaoQtItens'] = $item;
-      
-      echo "</table>";
-      
-      // calcula o total e mostra junto com o status da compra     
-      $total = ValorSQL($paramConn," select sum(valor_unitario * quantidade)  
-                                     from compra_produto 
-                                     where fk_compra = $paramIdCompra ");
-                                    
-      $total += 0; // atribuir zero caso $total = '' (carrinho vazio)                           
-      echo "Status da compra: <b>$paramStatusCompra</b><br>
-            Total: <b>R$ ".number_format($total,2)."</b>
-            <br><br>";         
+        if ($resultadoUsuario !== false) {
+            $id_usuario = (int) $resultadoUsuario;
+        }
+    }
 
-      // fecha compra apenas se logado, carrinho com pelo menos 1 item
-      if ( ( $total > 0 ) and ( isset( $_SESSION ['sessaoLogin'] ) ) and  
-           ( $paramStatusCompra == 'carrinho' ) ) {
+    // Primeiro, procura um carrinho aberto da sessão atual.
+    $sql = "SELECT id_compra, status FROM compra
+        WHERE sessao = :sessao AND status = 'carrinho'
+        ORDER BY id_compra DESC
+        LIMIT 1";
 
-            $_SESSION['sessaoTotal'] = $total;
-            echo "<a href='carrinho.php?operacao=cancelar&id_produto=0'>
-                  Esvaziar e cancelar</a><br><br>";                  
-            echo "<a href='carrinho.php?operacao=fechar&id_produto=0'>
-                  Fechar e RESERVAR !</a>";                  
-      } else {
-            if ( $total > 0 ) { // se tiver algum item no carrinho
-               echo "Para fechar o carrinho e reservar seu produto, clique no login";
-            }            
-      }  
-      return $total;
- }
-*/
+    $stmt = $paramConn->prepare($sql);
+    $stmt->execute([':sessao' => $session_id]);
+
+    $compra = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Se não encontrou, procura um carrinho aberto do usuário.
+    if (!$compra && $id_usuario !== null) {
+        $sql = "SELECT id_compra, status FROM compra
+                WHERE fk_usuario = :id_usuario
+                AND status = 'carrinho'
+                ORDER BY id_compra DESC
+                LIMIT 1";
+
+        $stmt = $paramConn->prepare($sql);
+        $stmt->execute([':id_usuario' => $id_usuario]);
+
+        $compra = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Associa o carrinho à sessão atual.
+        if ($compra) {
+            $sql = "UPDATE compra SET sessao = :sessao
+                    WHERE id_compra = :id_compra AND status = 'carrinho'";
+
+            $stmt = $paramConn->prepare($sql);
+            $stmt->execute([
+                ':sessao' => $session_id,
+                ':id_compra' => (int) $compra['id_compra']
+            ]);
+        }
+    }
+
+    if ($compra) {
+        $paramIdCompra = (int) $compra['id_compra'];
+        $paramStatusCompra = $compra['status'];
+
+    } else {
+        // Cria um carrinho novo no PostgreSQL.
+        $sql = "INSERT INTO compra (data, status, sessao, fk_usuario)
+            VALUES (CURRENT_TIMESTAMP, 'carrinho', :sessao, :id_usuario)
+            RETURNING id_compra";
+
+        $stmt = $paramConn->prepare($sql);
+
+        $stmt->execute([
+            ':sessao' => $session_id,
+            ':id_usuario' => $id_usuario
+        ]);
+
+        $paramIdCompra = (int) $stmt->fetchColumn();
+        $paramStatusCompra = 'carrinho';
+    }
+
+    // Vincula o usuário ao carrinho, se ainda não estiver associado.
+    if ($id_usuario !== null && $paramIdCompra > 0) {
+        $sql = "UPDATE compra SET fk_usuario = :id_usuario
+            WHERE id_compra = :id_compra AND status = 'carrinho' AND fk_usuario IS NULL";
+
+        $stmt = $paramConn->prepare($sql);
+        $stmt->execute([
+            ':id_usuario' => $id_usuario,
+            ':id_compra' => $paramIdCompra
+        ]);
+    }
+}
+
+function AtualizaGride($paramConn, $paramIdCompra, $paramStatusCompra)
+{
+    $paramIdCompra = (int) $paramIdCompra;
+    $paramStatusCompra = (string) ($paramStatusCompra ?? '');
+
+    if ($paramIdCompra <= 0) {
+        echo '<div class="carrinho-vazio">';
+        echo '<h3>Não foi possível localizar o pedido.</h3>';
+        echo '</div>';
+        return 0;
+    }
+
+    $sql = "SELECT
+            produto.id_produto,
+            produto.nome,
+            produto.descricao,
+            produto.imagem,
+            compra_produto.quantidade,
+            compra_produto.valor_unitario,
+            compra_produto.quantidade * compra_produto.valor_unitario AS subtotal
+        FROM compra_produto
+        INNER JOIN produto
+            ON produto.id_produto = compra_produto.fk_produto
+        WHERE compra_produto.fk_compra = :id_compra
+        ORDER BY produto.nome
+    ";
+
+    $stmt = $paramConn->prepare($sql);
+    $stmt->execute([':id_compra' => $paramIdCompra]);
+
+    $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $total = 0;
+    $quantidadeTotal = 0;
+
+    $podeAlterar = ($paramStatusCompra === 'carrinho');
+
+    $conectado = !empty($_SESSION['sessionConectado-Lumiere']) && !empty($_SESSION['sessionLogin-Lumiere']);
+
+    echo '<div class="carrinho-layout">';
+
+    echo '<section class="carrinho-lista">';
+
+    echo '<div class="carrinho-lista-cabecalho">';
+    echo '<h2>Produtos do carrinho</h2>';
+    echo '<span>' . count($produtos) . ' item(ns)</span>';
+    echo '</div>';
+
+    if (empty($produtos)) {
+        echo '<div class="carrinho-vazio">';
+
+        echo '<div class="carrinho-vazio-icone">';
+        echo '<i class="fi fi-rr-shopping-cart"></i>';
+        echo '</div>';
+
+        echo '<h3>Seu carrinho está vazio</h3>';
+
+        echo '<p>Encontre suas velas favoritas</p>';
+
+        echo '<a href="produtos.php" class="botao-continuar">';
+        echo 'Explorar produtos';
+        echo '</a>';
+
+        echo '</div>';
+    }
+
+    foreach ($produtos as $linha) {
+        $id_produto = (int) $linha['id_produto'];
+
+        $nome = htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8');
+
+        $descricao = htmlspecialchars(($linha['descricao'] ?? ''), ENT_QUOTES, 'UTF-8');
+
+        $quantidade = (int) $linha['quantidade'];
+        $valorUnitario = (float) $linha['valor_unitario'];
+        $subtotal = (float) $linha['subtotal'];
+        $imagem = $linha['imagem'] ?? '';
+
+        $total += $subtotal;
+        $quantidadeTotal += $quantidade;
+
+        echo '<article class="carrinho-produto">';
+
+        // Imagem.
+        echo '<div class="carrinho-produto-imagem">';
+
+        if (!empty($imagem)) {
+            echo '<img src=" '.htmlspecialchars($imagem, ENT_QUOTES, 'UTF-8') .' " alt="'.$nome.'">';
+        } else {
+            echo '<div class="carrinho-sem-imagem">';
+            echo '<i class="fi fi-rr-picture"></i>';
+            echo '</div>';
+        }
+
+        echo '</div>';
+
+        // Informações do produto.
+        echo '<div class="carrinho-produto-info">';
+
+        echo '<h3>' . $nome . '</h3>';
+
+        if ($descricao !== '') {
+            echo '<p class="carrinho-produto-descricao">';
+            echo $descricao;
+            echo '</p>';
+        }
+
+        echo '<p class="carrinho-produto-unitario">';
+        echo 'R$ ' . number_format($valorUnitario, 2, ',', '.') . ' por unidade';
+        echo '</p>';
+
+        if ($podeAlterar) {
+            echo '<div class="carrinho-produto-acoes">';
+
+            echo '<div class="carrinho-quantidade">';
+
+            echo '<a href="carrinho.php?operacao=diminuir&id_produto=' .
+                $id_produto .
+                '" aria-label="Diminuir quantidade">−</a>';
+
+            echo '<span>' . $quantidade . '</span>';
+
+            echo '<a href="carrinho.php?operacao=incluir&id_produto=' .
+                $id_produto .
+                '" aria-label="Aumentar quantidade">+</a>';
+
+            echo '</div>';
+
+            echo '<a class="carrinho-remover" href="carrinho.php?operacao=excluir&id_produto='.$id_produto.'"">';
+
+            echo '<i class="fi fi-rr-trash"></i> Excluir';
+            echo '</a>';
+
+            echo '</div>';
+
+        } else {
+            echo '<p class="carrinho-quantidade-reservada">';
+            echo 'Quantidade: ' . $quantidade;
+            echo '</p>';
+        }
+
+        echo '</div>';
+
+        // Subtotal.
+        echo '<div class="carrinho-produto-subtotal">';
+        echo '<span>Subtotal</span>';
+        echo '<strong>R$ ' .
+            number_format($subtotal, 2, ',', '.') .
+            '</strong>';
+        echo '</div>';
+
+        echo '</article>';
+    }
+
+    echo '</section>';
+
+    /*RESUMO DO PEDIDO*/
+    echo '<aside class="carrinho-resumo">';
+
+    echo '<h2>Resumo do pedido</h2>';
+
+    echo '<div class="carrinho-resumo-linha">';
+    echo '<span>Quantidade de produtos</span>';
+    echo '<span>' . $quantidadeTotal . '</span>';
+    echo '</div>';
+
+    echo '<div class="carrinho-resumo-linha">';
+    echo '<span>Subtotal</span>';
+    echo '<span>R$ ' . number_format($total, 2, ',', '.') . '</span>';
+    echo '</div>';
+
+    echo '<div class="carrinho-resumo-total">';
+    echo '<span>Total</span>';
+    echo '<strong>R$ ' . number_format($total, 2, ',', '.') . '</strong>';
+    echo '</div>';
+
+    if ($podeAlterar && $total > 0) {
+        if ($conectado) {
+            echo '<a class="carrinho-finalizar" ';
+            echo 'href="carrinho.php?operacao=fechar">';
+            echo 'Fechar e reservar';
+            echo '</a>';
+        } else {
+        echo '<a class="carrinho-finalizar" href="#" id="abrirLoginCarrinho">';
+        echo 'Fechar e reservar';
+        echo '</a>';
+}
+
+        echo '<a class="carrinho-cancelar" ';
+        echo 'href="carrinho.php?operacao=cancelar" >';
+        echo 'Esvaziar carrinho';
+        echo '</a>';
+    }
+
+    if ($paramStatusCompra === 'reservado') {
+        echo '<p class="carrinho-status">';
+        echo 'Pedido reservado com sucesso.';
+        echo '</p>';
+        
+
+    } elseif ($paramStatusCompra === 'cancelado') {
+        echo '<p class="carrinho-status">';
+        echo 'Este pedido foi cancelado.';
+        echo '</p>';
+    }
+
+    echo '<a class="carrinho-continuar" href="produtos.php">';
+    echo '← Continuar comprando';
+    echo '</a>';
+
+    echo '</aside>';
+
+    echo '</div>';
+
+    $_SESSION['sessaoQtItens'] = $quantidadeTotal;
+    $_SESSION['sessaoTotal'] = $total;
+
+    return $total;
+}
 ?>
-<main>
-      <h1>Em desenvolvimento</h1>
-</main>

@@ -51,11 +51,16 @@
             <span class="pdp-price">R$ <?= $valor_unitario ?></span> 
         </div> 
         <div class="pdp-actions"> 
-            <a href="carrinho.php?add=<?= $id_produto ?>" class="pdp-btn pdp-btn-cart" id="pdpAddBtn"> 
-                <i class="fi fi-rr-shopping-cart"></i> Adicionar ao carrinho 
-            </a> 
+            
+        <a
+            href="carrinho.php?operacao=incluir&id_produto=<?= (int) $id_produto ?>"
+            class="pdp-btn pdp-btn-cart"
+            id="pdpAddBtn"
+        >
+            <i class="fi fi-rr-shopping-cart"></i>
+            Adicionar ao carrinho
+        </a>
+
         </div> 
     </div> 
 </main> 
-
-<?php include("_rodape.php"); ?>

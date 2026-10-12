@@ -94,6 +94,24 @@ const modal = document.getElementById('modalLogin');
 const openBtn = document.getElementById('openModalBtn');
 const closeBtn = document.getElementById('closeModalBtn');
 
+/* ABRIR LOGIN PELO CARRINHO */
+
+const abrirLoginCarrinho = document.getElementById('abrirLoginCarrinho');
+
+if (abrirLoginCarrinho && modal) {
+    abrirLoginCarrinho.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Garante que apareça o painel de login, não o de cadastro
+        if (container) {
+            container.classList.remove('right-panel-active');
+        }
+
+        // Abre o modal existente
+        modal.style.display = 'flex';
+    });
+}
+
 if (modal && openBtn && closeBtn) {
     openBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -433,3 +451,45 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold:.15 });
 
 document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+
+
+/*POP-UP RESERVA*/
+document.addEventListener('DOMContentLoaded', function () {
+    const popup = document.getElementById('popupPedidoReservado');
+
+    // Executa somente nas páginas que possuem o pop-up.
+    if (!popup) {
+        return;
+    }
+
+    const botaoFechar = popup.querySelector('.popup-reserva-fechar');
+    const botaoEntendi = popup.querySelector('.popup-reserva-botao');
+
+    const parametros = new URLSearchParams(window.location.search);
+
+    // Abre somente depois de uma reserva confirmada pelo PHP.
+    if (parametros.get('reservado') === '1') {
+        popup.style.display = 'flex';
+    }
+
+    // Fecha pelo X.
+    if (botaoFechar) {
+        botaoFechar.addEventListener('click', function () {
+            popup.style.display = 'none';
+        });
+    }
+
+    // Fecha pelo botão Entendi.
+    if (botaoEntendi) {
+        botaoEntendi.addEventListener('click', function () {
+            popup.style.display = 'none';
+        });
+    }
+
+    // Fecha ao clicar fora do cartão.
+    popup.addEventListener('click', function (event) {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+});

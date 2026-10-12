@@ -159,15 +159,10 @@
     <footer>
         <a href="index.php"><img src="Imagens/Logo.png" alt="Logo" width="120px" height="90px"></a>
         <nav>
-            <ul>
-                <li>Sobre a Lumière</li>
-            </ul>
-        </nav>
-        <nav>
             <ul  class="sobreLinks">
-                <li><a href="sobre.php">Quem Somos?</a></li>
-                <li><a href="sobre.php">Missão, Visão e Valores</a></li>
-                <li><a href="sobre.php">Desenvolvedores</a></li>
+                <li><a href="sobre.php#linkQuem">Nossa História</a></li>
+                <li><a href="sobre.php#linkMvv">Missão, Visão e Valores</a></li>
+                <li><a href="sobre.php#linkDev">Desenvolvedores</a></li>
             </ul>
         </nav>
         <nav>
