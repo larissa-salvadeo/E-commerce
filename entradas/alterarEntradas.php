@@ -171,8 +171,6 @@ $data_entrada   = date('Y-m-d', strtotime($linha['data_entrada']));
             <input type='number' name='custo_unitario' value='<?php echo $custo_unitario; ?>' step="0.01"><br>
             Observação<br>
             <input type='text' name='obs' value='<?php echo $obs; ?>'><br>
-            Data de Entrada<br>
-            <input type='date' name='data_entrada' value='<?php echo $data_entrada; ?>' required><br>
             <input type='submit' value='Salvar'>
         </form>
 

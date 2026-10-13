@@ -25,6 +25,9 @@
     $descricao = $linha['descricao'];
     $valor_unitario = number_format($linha['valor_unitario'], 2, ',', '.');
     $imagem = $linha['imagem'];
+
+    $qtd_estoque = calculaEstoqueProduto($conn, $id_produto);
+    $disponivel = $qtd_estoque > 0;
 ?> 
 
 <main class="pdp-container"> 
@@ -52,15 +55,22 @@
         </div> 
         <div class="pdp-actions"> 
             
-        <a
-            href="carrinho.php?operacao=incluir&id_produto=<?= (int) $id_produto ?>"
-            class="pdp-btn pdp-btn-cart"
-            id="pdpAddBtn"
-        >
-            <i class="fi fi-rr-shopping-cart"></i>
-            Adicionar ao carrinho
-        </a>
+            <?php if ($disponivel): ?>
+
+            <a href="carrinho.php?operacao=incluir&id_produto=<?= (int) $id_produto ?>" class="pdp-btn pdp-btn-cart" id="pdpAddBtn">
+                Adicionar ao carrinho
+                <i class="fi fi-rr-shopping-cart"></i>
+            </a>
+
+            <?php else: ?>
+
+            <a href="produtos.php" class="pdp-btn pdp-btn-cart" id="pdpAddBtn" style="background-color: #c55151; cursor: not-allowed;" disabled>
+                Produto Indisponível
+            </a>
+
+            <?php endif; ?>
 
         </div> 
     </div> 
 </main> 
+<?php include("_rodape.php"); ?>

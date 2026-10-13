@@ -185,7 +185,29 @@ $select->execute();
             $nome = $linha['nome'];
             $descricao = $linha['descricao'];
 
-            $qtd_estoque = 0;
+            $varSQL = "SELECT SUM(quantidade) AS qtde_estoque FROM (
+            SELECT e.quantidade AS quantidade FROM entrada e WHERE e.fk_produto = :id_entrada
+
+            UNION ALL
+
+            SELECT -cp.quantidade AS quantidade FROM compra_produto cp
+            INNER JOIN compra c ON c.id_compra = cp.fk_compra
+            WHERE cp.fk_produto = :id_compra AND c.status IN ('reservado', 'entregue')) AS movimentacoes";
+
+            $selectQtd = $conn->prepare($varSQL);
+
+            $selectQtd->bindValue(':id_entrada', $id_produto, PDO::PARAM_INT);
+            $selectQtd->bindValue(':id_compra', $id_produto, PDO::PARAM_INT);
+
+            $selectQtd->execute();
+
+            $qtd_estoque = $selectQtd->fetchColumn();
+
+            if ($qtd_estoque === false || $qtd_estoque === null) {
+                $qtd_estoque = 0;
+            }
+
+            $disponivel = (float) $qtd_estoque > 0;
 
             $valor = $linha['valor_unitario'];
             $imagem = $linha['imagem'];
@@ -196,7 +218,11 @@ $select->execute();
                 <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$nome?></td>
                 <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$descricao?></td>
                 <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$valor?></td>
-                <td style="border: 1px #5F8565 dotted; padding: 10px;"><?=$qtd_estoque?></td>
+                <td style="border: 1px #5F8565 dotted; padding: 10px;"><?= htmlspecialchars((string) $qtd_estoque)?><br>
+                    <strong style="color: <?= $disponivel ? '#2e7d32' : '#c62828' ?>;">
+                        <?= $disponivel ? 'Disponível' : 'Indisponível' ?>
+                    </strong>
+                </td>
                 <td style="border: 1px #5F8565 dotted; padding: 10px;">
                     <img height="80" src="../<?=$imagem?>" alt="Imagem do Produto"/>
                 </td>

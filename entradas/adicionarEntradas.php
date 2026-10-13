@@ -39,7 +39,7 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
     $imagemUsuario = 'Imagens/usuario.png';
 }
 
-$varSQL = "SELECT * FROM produto";
+$varSQL = "SELECT * FROM produto WHERE excluido = FALSE";
 $select = $conn->query($varSQL);
 ?>
 
@@ -170,9 +170,6 @@ $select = $conn->query($varSQL);
             <br><br>
             <label for = 'obs'>Observação: </label>
             <input type='text' name='obs'><br>
-            <br><br>
-            <label for = 'data_entrada'>Data de Entrada: </label>
-            <input type='date' name='data_entrada'><br>
             <br><br>
             <input type="submit" value="Adicionar"/>
         </form>

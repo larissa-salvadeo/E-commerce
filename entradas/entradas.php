@@ -39,7 +39,7 @@ if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-
     $imagemUsuario = 'Imagens/usuario.png';
 }
 
-$varSQL = "SELECT * FROM entrada";
+$varSQL = "SELECT * FROM entrada ORDER BY id_entrada ASC";
 $select = $conn->query($varSQL);
 ?>
 
