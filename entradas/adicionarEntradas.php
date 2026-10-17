@@ -118,7 +118,7 @@ $select = $conn->query($varSQL);
             <div class="menu-admin">
                 <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
                     <a class="<?= ($paginaAtual == 'adicionarEntradas.php') ? 'active' : '' ?>" href="../admin.php">
-                        <i class="fi fi-rr-user"></i>
+                        <i class="fi fi-rr-users-alt"></i>
                     </a>
                 <?php endif;?>
             </div>

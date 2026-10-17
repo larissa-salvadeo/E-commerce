@@ -130,7 +130,7 @@ $data_entrada   = date('Y-m-d', strtotime($linha['data_entrada']));
             <div class="menu-admin">
                 <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
                     <a class="<?= ($paginaAtual == 'alterarEntradas.php') ? 'active' : '' ?>" href="../admin.php">
-                        <i class="fi fi-rr-user"></i>
+                        <i class="fi fi-rr-users-alt"></i>
                     </a>
                 <?php endif;?>
             </div>

@@ -3,47 +3,103 @@ include("util.php");
 include("_cabecalho.php");
 
 $conn = conecta();
-$pesquisa = "";
+
+$notasPorAroma = [
+    'cerejeira' => ['Floral', 'Suave', 'Calmante'],
+    'baunilha'  => ['Doce', 'Cremoso', 'Acolhedor'],
+    'manga'     => ['Frutal', 'Floral', 'Doce'],
+    'bambu'     => ['Verde', 'Fresco', 'Amadeirado'],
+];
+
+$pesquisa   = trim($_GET['search'] ?? '');
 $parametros = [];
 
-if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
-    $pesquisa = trim($_GET['search']);
-    $sql = "SELECT * FROM produto WHERE nome ILIKE :termo AND excluido = FALSE";
-    $parametros = [':termo' => '%' . $pesquisa . '%'];
-} else {
-    $sql = "SELECT * FROM produto WHERE excluido = FALSE";
+$sql = "SELECT id_produto, nome, descricao, valor_unitario, imagem
+        FROM produto
+        WHERE excluido = FALSE";
+
+if ($pesquisa !== '') {
+    $sql .= " AND nome ILIKE :termo";
+    $parametros[':termo'] = '%' . $pesquisa . '%';
 }
 
-// Executa a consulta
-$stmt = ExecutaSQL($conn, $sql, $parametros);
+$sql .= " ORDER BY nome";
+
+$stmt     = ExecutaSQL($conn, $sql, $parametros);
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$total    = count($produtos);
 ?>
 
-<main class="produtos">
-    <div class="wrapper">
-        <?php if (count($produtos) > 0): ?>
-            <?php foreach ($produtos as $prod): ?>
-                <a href="paginaProduto.php" class="single-card">
-                    <div class="img-area">
-                        <img src="<?= htmlspecialchars($prod['imagem'] ?? 'Imagens/produto-default.png') ?>" alt="<?= htmlspecialchars($prod['nome']) ?>">
-                        <button class="categ">Estudo</button>
-                    </div>
+<main class="cat-page">
+
+    <section id="produtosCateg">
+        <div class="titulo-secao reveal">
+            <span>Velas Aromáticas</span>
+            <?php if ($pesquisa !== ''): ?>
+                <h2>Resultados para "<?= htmlspecialchars($pesquisa) ?>"</h2>
+            <?php else: ?>
+                <h2>Catálogo</h2>
+            <?php endif; ?>
+            <div class="fioCateg"></div>
+        </div>
+
+        <div class="grade">
+            <?php $contador = 0; ?>
+            <?php foreach ($produtos as $produto): ?>
+                <?php
+                    $contador++;
+
+                    $nomeCateg = in_array($produto['id_produto'], [1, 2]) ? 'Estudo' : 'Ambiente';
+
+                    $notas = [];
+                    foreach ($notasPorAroma as $aroma => $lista) {
+                        if (stripos($produto['nome'], $aroma) !== false) {
+                            $notas = $lista;
+                            break;
+                        }
+                    }
+
+                    $imagem = $produto['imagem'] ?: 'Imagens/produto-default.png';
+                ?>
+                <article class="card reveal <?= $contador % 2 == 0 ? 'd2' : '' ?>">
+                    <a href="paginaProduto.php?id=<?= $produto['id_produto'] ?>">
+                        <div class="foto">
+                            <span class="selo"><?= htmlspecialchars($nomeCateg) ?></span>
+                            <img src="<?= htmlspecialchars($imagem) ?>" alt="<?= htmlspecialchars($produto['nome']) ?>">
+                        </div>
+                    </a>
                     <div class="info">
-                        <h3><?= htmlspecialchars($prod['nome']) ?></h3>
-                        <p class="price">R$ <?= number_format($prod['valor_unitario'], 2, ',', '.') ?></p>
-                        <button type="button" class="btn-detalhes">Ver detalhes</button>
+                        <h3><?= htmlspecialchars($produto['nome']) ?></h3>
+                        <p class="descricao"><?= htmlspecialchars($produto['descricao']) ?></p>
+
+                        <?php if ($notas): ?>
+                            <div class="notas">
+                                <?php foreach ($notas as $nota): ?>
+                                    <span class="nota"><?= htmlspecialchars($nota) ?></span>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <p class="preco">R$ <?= number_format($produto['valor_unitario'], 2, ',', '.') ?></p>
+
+                        <a href="paginaProduto.php?id=<?= $produto['id_produto'] ?>" class="btn">Ver detalhes</a>
                     </div>
-                </a>
+                </article>
             <?php endforeach; ?>
-        <?php else: ?>
-            <p>Nenhum produto foi encontrado com a pesquisa realizada.</p>
-        <?php endif; ?>
-    </div>
+        </div>
+            <?php if ($contador == 0): ?>
+                <p class="vazio">
+                    <?= $pesquisa !== ''
+                        ? 'Nenhum produto foi encontrado com a pesquisa realizada.'
+                        : 'Nenhum produto cadastrado por enquanto.' ?>
+                </p>
+            <?php endif; ?>
+        <br>
+        <div class="fioCateg"></div>
+    </section>
 
-
-    
 </main>
 
-<?php 
-include("_rodape.php"); 
-?>
+<script src="categoria.js"></script>
+
+<?php include("_rodape.php"); ?>

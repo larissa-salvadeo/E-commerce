@@ -493,3 +493,40 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const containerLogin = document.getElementById('container-login');
+    const abaEntrar = document.getElementById('abaEntrar');
+    const abaCadastrar = document.getElementById('abaCadastrar');
+
+    // Clique na aba Cadastrar
+    if (abaCadastrar) {
+        abaCadastrar.addEventListener('click', () => {
+            containerLogin.classList.add('right-panel-active');
+            abaCadastrar.classList.add('ativa');
+            abaEntrar.classList.remove('ativa');
+        });
+    }
+
+    // Clique na aba Entrar
+    if (abaEntrar) {
+        abaEntrar.addEventListener('click', () => {
+            containerLogin.classList.remove('right-panel-active');
+            abaEntrar.classList.add('ativa');
+            abaCadastrar.classList.remove('ativa');
+        });
+    }
+});
+
+
+/*Telefone*/
+const telefone = document.getElementById("telefone"); 
+telefone.addEventListener("input", function () {
+    let valor = telefone.value.replace(/\D/g, "");
+    valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
+    valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+
+    telefone.value = valor;
+});

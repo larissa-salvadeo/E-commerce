@@ -97,6 +97,9 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
                     Produtos
                 </a>
                 
+                <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?> carrinhoMobile" href="carrinho.php">
+                    Meu carrinho
+                </a>
 
                 <a class="<?= ($paginaAtual == 'sobre.php') ? 'active' : '' ?>" href="sobre.php">
                     Sobre nós
@@ -110,32 +113,34 @@ if(isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-L
                 </div>
             </div>
 
-            <!----------LOGIN/CARRINHO---------->
-            <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id = "carrinho" href="carrinho.php" >
-                <i class="fi fi-rr-shopping-cart"></i>
-            </a>
+                       <!----------LOGIN/CARRINHO---------->
+            <div class="menu-acoes">
+                <a class="<?= ($paginaAtual == 'carrinho.php') ? 'active' : '' ?>" id="carrinho" href="carrinho.php">
+                    <i class="fi fi-rr-shopping-cart"></i>
+                </a>
 
-            <div class="menu-admin">
-                <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
-                    <a class="<?= ($paginaAtual == 'admin.php') ? 'active' : '' ?>"   href="admin.php">
+                <div class="menu-admin">
+                    <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
+                        <a class="<?= ($paginaAtual == 'admin.php') ? 'active' : '' ?>" href="admin.php">
+                            <i class="fi fi-rr-users-alt"></i>
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+                <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
+                    <a class="usuario-menu" href="#" id="abrirUsuario">
+                        <div class="usuario-logado">
+                            <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário">
+                            <span>
+                                <?= htmlspecialchars($_SESSION['sessionNome-Lumiere']) ?>
+                            </span>
+                        </div>
+                    </a>
+                <?php else: ?>
+                    <a class="btn-open" id="openModalBtn" href="#">
                         <i class="fi fi-rr-user"></i>
                     </a>
-                <?php endif;?>
-            </div>
-
-            <?php if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): ?>
-                <a class="usuario-menu" href="#" id="abrirUsuario">
-                    <div class="usuario-logado">
-                        <img src="<?= htmlspecialchars($imagemUsuario) ?>" alt="Foto do usuário">
-                        <span>
-                            <?= htmlspecialchars($_SESSION['sessionNome-Lumiere']) ?>
-                        </span>
-                    </div>
-                </a>
-                <?php else: ?>
-                <a class="btn-open" id="openModalBtn" href="#">
-                    <i class="fi fi-rr-user"></i>
-                </a>
                 <?php endif; ?>
+            </div>
         </nav>
     </header>

@@ -1,5 +1,6 @@
 <!-- MODAL DE USUÁRIO -->
     <?php 
+
         if (isset($_SESSION['sessionConectado-Lumiere']) && $_SESSION['sessionConectado-Lumiere'] === TRUE): 
         
         if(($_SESSION['sessionAdmin-Lumiere'])== true)
@@ -79,7 +80,7 @@
                             </div>
                             <div>
                                 <input type="text" placeholder="Nome" name="nome" value="<?= $_SESSION['sessionNome-Lumiere']?>"/>
-                                <input type="tel" placeholder="Telefone" name="telefone" value="<?= htmlspecialchars($telefone) ?>" />
+                                <input type="tel" id="telefone" placeholder="(14) 99999-9999" maxlength="15" minlength="15" pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" title="Telefone inválido. Use DDD + número" name="telefone" value="<?= htmlspecialchars($telefone) ?>" />
                             </div>
                         </div>
                     </div>
@@ -94,7 +95,10 @@
         <div class="modal-content animate">
             <span class="close-btn" id="closeModalBtn">&times;</span>
             <div id="mensagemLogin" class="mensagem-login"></div>
-
+            <div class="abas-login" id="abasLogin">
+                <button type="button" id="abaEntrar" class="ativa">Entrar</button>
+                <button type="button" id="abaCadastrar">Cadastrar</button>
+            </div>
             <div class="container-login" id="container-login">
                 <div class="form-container sign-up-container">
                     <form action="cadastrar.php" method="POST" enctype="multipart/form-data">
@@ -102,7 +106,7 @@
                         <input type="text" placeholder="Nome" name="nome" required/>
                         <input type="email" placeholder="Email" name="email" required/>
                         <input type="password" placeholder="Senha" name="senha" required />
-                        <input type="tel" placeholder="Telefone" name="telefone" required/>
+                        <input type="tel" id="telefone" placeholder="(14) 99999-9999" maxlength="15" minlength="15" pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" title="Telefone inválido. Use DDD + número" name="telefone" required/>
                         <div class="campo-arquivo">
                             <input type="file" name="imagem" id="imagemCadastro" accept="image/*">
                             <label for="imagemCadastro" class="arquivo-label">

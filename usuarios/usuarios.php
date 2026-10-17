@@ -131,7 +131,7 @@ $select->execute();
             <div class="menu-admin">
                 <?php if (isset($_SESSION['sessionAdmin-Lumiere']) && $_SESSION['sessionAdmin-Lumiere'] === TRUE): ?>
                     <a class="<?= ($paginaAtual == 'usuarios.php') ? 'active' : '' ?>" href="../admin.php">
-                        <i class="fi fi-rr-user"></i>
+                        <i class="fi fi-rr-users-alt"></i>
                     </a>
                 <?php endif;?>
             </div>
@@ -155,9 +155,7 @@ $select->execute();
 
     <!------ CONTEÚDO PRINCIPAL ------>
 
-    <main style="width: 100%; text-align: center; display: block;" class="main-usuarios">
-
-        <h1 style="margin-top: 20px;">Gerenciamento de Usuários</h1>
+    <main style="width: 100%; text-align: center; display: block;">
 
     <div style="width: 80%; margin: 0 auto 20px auto; text-align: left; display: block;">
         <form method="GET" action="" style="display: block;">
