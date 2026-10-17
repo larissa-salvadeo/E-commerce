@@ -26,11 +26,10 @@ function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra)
         $resultadoUsuario = $stmtUsuario->fetchColumn();
 
         if ($resultadoUsuario !== false) {
-            $id_usuario = (int) $resultadoUsuario;
+            $id_usuario = $resultadoUsuario;
         }
     }
 
-    // Primeiro, procura um carrinho aberto da sessão atual.
     $sql = "SELECT id_compra, status FROM compra
         WHERE sessao = :sessao AND status = 'carrinho'
         ORDER BY id_compra DESC
@@ -41,7 +40,6 @@ function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra)
 
     $compra = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Se não encontrou, procura um carrinho aberto do usuário.
     if (!$compra && $id_usuario !== null) {
         $sql = "SELECT id_compra, status FROM compra
                 WHERE fk_usuario = :id_usuario
@@ -54,7 +52,6 @@ function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra)
 
         $compra = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Associa o carrinho à sessão atual.
         if ($compra) {
             $sql = "UPDATE compra SET sessao = :sessao
                     WHERE id_compra = :id_compra AND status = 'carrinho'";
@@ -62,17 +59,16 @@ function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra)
             $stmt = $paramConn->prepare($sql);
             $stmt->execute([
                 ':sessao' => $session_id,
-                ':id_compra' => (int) $compra['id_compra']
+                ':id_compra' => $compra['id_compra']
             ]);
         }
     }
 
     if ($compra) {
-        $paramIdCompra = (int) $compra['id_compra'];
+        $paramIdCompra = $compra['id_compra'];
         $paramStatusCompra = $compra['status'];
 
     } else {
-        // Cria um carrinho novo no PostgreSQL.
         $sql = "INSERT INTO compra (data, status, sessao, fk_usuario)
             VALUES (CURRENT_TIMESTAMP, 'carrinho', :sessao, :id_usuario)
             RETURNING id_compra";
@@ -84,11 +80,10 @@ function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra)
             ':id_usuario' => $id_usuario
         ]);
 
-        $paramIdCompra = (int) $stmt->fetchColumn();
+        $paramIdCompra = $stmt->fetchColumn();
         $paramStatusCompra = 'carrinho';
     }
 
-    // Vincula o usuário ao carrinho, se ainda não estiver associado.
     if ($id_usuario !== null && $paramIdCompra > 0) {
         $sql = "UPDATE compra SET fk_usuario = :id_usuario
             WHERE id_compra = :id_compra AND status = 'carrinho' AND fk_usuario IS NULL";
@@ -103,8 +98,8 @@ function carrinhoCria($paramConn, &$paramIdCompra, &$paramStatusCompra)
 
 function AtualizaGride($paramConn, $paramIdCompra, $paramStatusCompra)
 {
-    $paramIdCompra = (int) $paramIdCompra;
-    $paramStatusCompra = (string) ($paramStatusCompra ?? '');
+    $paramIdCompra = $paramIdCompra;
+    $paramStatusCompra = ($paramStatusCompra ?? '');
 
     if ($paramIdCompra <= 0) {
         echo '<div class="carrinho-vazio">';
@@ -113,27 +108,39 @@ function AtualizaGride($paramConn, $paramIdCompra, $paramStatusCompra)
         return 0;
     }
 
+    
     $sql = "SELECT
-            produto.id_produto,
-            produto.nome,
-            produto.descricao,
-            produto.imagem,
-            compra_produto.quantidade,
-            compra_produto.valor_unitario,
-            compra_produto.quantidade * compra_produto.valor_unitario AS subtotal
-        FROM compra_produto
-        INNER JOIN produto
-            ON produto.id_produto = compra_produto.fk_produto
-        WHERE compra_produto.fk_compra = :id_compra
-        ORDER BY produto.nome
-    ";
+                p.id_produto,
+                p.nome,
+                p.descricao,
+                p.imagem,
+                cp.quantidade,
+                cp.valor_unitario,
+                cp.quantidade * cp.valor_unitario AS subtotal
+            FROM compra_produto cp
+            INNER JOIN produto p
+                ON p.id_produto = cp.fk_produto
+            WHERE cp.fk_compra = :id_compra
+            ORDER BY p.nome";
 
     $stmt = $paramConn->prepare($sql);
     $stmt->execute([':id_compra' => $paramIdCompra]);
 
     $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $total = 0;
+
+    
+    $sqlTotal = "SELECT valor_total_compra
+                FROM vw_valor_total_compra
+                WHERE id_compra = :id_compra";
+
+    $stmtTotal = $paramConn->prepare($sqlTotal);
+    $stmtTotal->execute([':id_compra' => $paramIdCompra]);
+
+    $resultadoTotal = $stmtTotal->fetchColumn();
+    $totalCompra = ($resultadoTotal === false) ? 0 : (float) $resultadoTotal;
+
+
     $quantidadeTotal = 0;
 
     $podeAlterar = ($paramStatusCompra === 'carrinho');
@@ -168,7 +175,7 @@ function AtualizaGride($paramConn, $paramIdCompra, $paramStatusCompra)
     }
 
     foreach ($produtos as $linha) {
-        $id_produto = (int) $linha['id_produto'];
+        $id_produto = $linha['id_produto'];
 
         $nome = htmlspecialchars($linha['nome'], ENT_QUOTES, 'UTF-8');
 
@@ -179,7 +186,6 @@ function AtualizaGride($paramConn, $paramIdCompra, $paramStatusCompra)
         $subtotal = (float) $linha['subtotal'];
         $imagem = $linha['imagem'] ?? '';
 
-        $total += $subtotal;
         $quantidadeTotal += $quantidade;
 
         echo '<article class="carrinho-produto">';
@@ -269,15 +275,15 @@ function AtualizaGride($paramConn, $paramIdCompra, $paramStatusCompra)
 
     echo '<div class="carrinho-resumo-linha">';
     echo '<span>Subtotal</span>';
-    echo '<span>R$ ' . number_format($total, 2, ',', '.') . '</span>';
+    echo '<span>R$ ' . number_format($totalCompra, 2, ',', '.') . '</span>';
     echo '</div>';
 
     echo '<div class="carrinho-resumo-total">';
     echo '<span>Total</span>';
-    echo '<strong>R$ ' . number_format($total, 2, ',', '.') . '</strong>';
+    echo '<strong>R$ ' . number_format($totalCompra, 2, ',', '.') . '</strong>';
     echo '</div>';
 
-    if ($podeAlterar && $total > 0) {
+    if ($podeAlterar && $totalCompra > 0) {
         if ($conectado) {
             echo '<a class="carrinho-finalizar" ';
             echo 'href="carrinho.php?operacao=fechar">';
@@ -316,8 +322,8 @@ function AtualizaGride($paramConn, $paramIdCompra, $paramStatusCompra)
     echo '</div>';
 
     $_SESSION['sessaoQtItens'] = $quantidadeTotal;
-    $_SESSION['sessaoTotal'] = $total;
+    $_SESSION['sessaoTotal'] = $totalCompra;
 
-    return $total;
+    return $totalCompra;
 }
 ?>

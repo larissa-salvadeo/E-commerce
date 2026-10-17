@@ -958,6 +958,12 @@ figure {
 }
 
 /*-------------------PÁGINA DE PRODUTO-----------------------*/
+.estoque{
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+}
+
 .pdp-container {
     position: relative;
     z-index: 0;

@@ -90,8 +90,12 @@ if ($operacao === 'incluir') {
         $erro = 'Produto inválido.';
 
     } else {
-        $sql = "SELECT id_produto, valor_unitario FROM produto
-            WHERE id_produto = :id_produto AND excluido = FALSE";
+
+        // 1. Busca o produto e seu preço
+        $sql = "SELECT id_produto, valor_unitario
+                FROM produto
+                WHERE id_produto = :id_produto
+                AND excluido = FALSE";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute([':id_produto' => $id_produto]);
@@ -102,47 +106,60 @@ if ($operacao === 'incluir') {
             $erro = 'Produto não encontrado ou indisponível.';
 
         } else {
-            $sql = "SELECT quantidade FROM compra_produto
-                WHERE fk_compra = :id_compra AND fk_produto = :id_produto";
+            $sql = "SELECT qtde_estoque
+                    FROM vw_estoque
+                    WHERE id_produto = :id_produto";
 
             $stmt = $conn->prepare($sql);
+            $stmt->execute([':id_produto' => $id_produto]);
 
-            $stmt->execute([
-                ':id_compra' => $id_compra,
-                ':id_produto' => $id_produto
-            ]);
+            $resultadoEstoque = $stmt->fetchColumn();
+            $qtdEstoque = ($resultadoEstoque === false) ? 0 : $resultadoEstoque;
+
+            $sql = "SELECT quantidade
+                    FROM compra_produto
+                    WHERE fk_compra = :id_compra
+                    AND fk_produto = :id_produto";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([':id_compra' => $id_compra, ':id_produto' => $id_produto]);
 
             $quantidadeAtual = $stmt->fetchColumn();
 
-            if ($quantidadeAtual !== false) {
-                $sql = "UPDATE compra_produto SET quantidade = quantidade + 1
-                    WHERE fk_compra = :id_compra AND fk_produto = :id_produto";
+            $qtdCarrinho = ($quantidadeAtual === false) ? 0 : $quantidadeAtual;
 
-                $stmt = $conn->prepare($sql);
-
-                $stmt->execute([
-                    ':id_compra' => $id_compra,
-                    ':id_produto' => $id_produto
-                ]);
+            if ($qtdCarrinho >= $qtdEstoque) {
+                $erro = 'Estoque insuficiente';
 
             } else {
-                $sql = "INSERT INTO compra_produto (quantidade, valor_unitario, fk_produto, fk_compra)
-                    VALUES (1, :valor, :id_produto, :id_compra)";
+                if ($quantidadeAtual !== false) {
 
-                $stmt = $conn->prepare($sql);
+                    $sql = "UPDATE compra_produto
+                            SET quantidade = quantidade + 1
+                            WHERE fk_compra = :id_compra
+                            AND fk_produto = :id_produto";
 
-                $stmt->execute([
-                    ':valor' => $produto['valor_unitario'],
-                    ':id_produto' => $id_produto,
-                    ':id_compra' => $id_compra
-                ]);
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute([':id_compra' => $id_compra, ':id_produto' => $id_produto]);
+                } else {
+
+                    $sql = "INSERT INTO compra_produto (quantidade, valor_unitario, fk_produto, fk_compra)
+                            VALUES (1, :valor, :id_produto, :id_compra)";
+
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute([
+                        ':valor' => $produto['valor_unitario'],
+                        ':id_produto' => $id_produto,
+                        ':id_compra' => $id_compra
+                    ]);
+                }
+                header("Location: carrinho.php?adicionado=1");
+                exit;
             }
-
-            header("Location: carrinho.php?adicionado=1");
-            exit;
         }
     }
 }
+
 
 
 if ($operacao === 'diminuir') {
@@ -378,7 +395,7 @@ if (isset($_GET['reservado']) && $statusCompra === 'reservado'
                 <div class="popup-reserva-item">
                     <div class="popup-reserva-icone">&#128205;</div>
                     <div>
-                        <h3>Local de retirada</h3>
+                        <h3>Local de pagamento e retirada</h3>
                         <p>SALA X</p>
                     </div>
                 </div>

@@ -177,49 +177,4 @@ function EnviaEmail(
        return "0"; 
    }
   }
-
-  if (!function_exists('calculaEstoqueProduto')) {
-    function calculaEstoqueProduto($conn, $id_produto) {
-
-        $sql = "SELECT SUM(quantidade) AS qtde_estoque
-                FROM (
-                    SELECT e.quantidade AS quantidade
-                    FROM entrada e
-                    WHERE e.fk_produto = :id_entrada
-
-                    UNION ALL
-
-                    SELECT -cp.quantidade AS quantidade
-                    FROM compra_produto cp
-                    INNER JOIN compra c
-                        ON c.id_compra = cp.fk_compra
-                    WHERE cp.fk_produto = :id_compra
-                      AND c.status IN ('reservado', 'entregue')
-                ) AS movimentacoes";
-
-        $stmt = $conn->prepare($sql);
-
-        $stmt->bindValue(
-            ':id_entrada',
-            $id_produto,
-            PDO::PARAM_INT
-        );
-
-        $stmt->bindValue(
-            ':id_compra',
-            $id_produto,
-            PDO::PARAM_INT
-        );
-
-        $stmt->execute();
-
-        $qtd_estoque = $stmt->fetchColumn();
-
-        if ($qtd_estoque === false || $qtd_estoque === null) {
-            return 0;
-        }
-
-        return (float) $qtd_estoque;
-    }
-}
 ?>

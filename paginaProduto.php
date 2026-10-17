@@ -26,7 +26,15 @@
     $valor_unitario = number_format($linha['valor_unitario'], 2, ',', '.');
     $imagem = $linha['imagem'];
 
-    $qtd_estoque = calculaEstoqueProduto($conn, $id_produto);
+    $varSQL =  "SELECT p.id_produto, p.nome, p.descricao, p.valor_unitario, p.imagem, v.qtde_estoque FROM produto p 
+            LEFT JOIN vw_estoque v ON p.id_produto = v.id_produto WHERE p.id_produto = :id_produto AND p.excluido = FALSE";
+    $selectQtd = $conn->prepare($varSQL);
+    $selectQtd->bindParam(':id_produto', $id_produto);
+    $selectQtd->execute();
+    
+    $estoque = $selectQtd->fetch(PDO::FETCH_ASSOC);
+    
+    $qtd_estoque = $estoque['qtde_estoque'] ?? 0;
     $disponivel = $qtd_estoque > 0;
 ?> 
 
@@ -53,11 +61,12 @@
         <div class="pdp-price-box"> 
             <span class="pdp-price">R$ <?= $valor_unitario ?></span> 
         </div> 
+        <b><p class="estoque">Estoque disponível: <?= $qtd_estoque ?></p></b>
         <div class="pdp-actions"> 
             
             <?php if ($disponivel): ?>
 
-            <a href="carrinho.php?operacao=incluir&id_produto=<?= (int) $id_produto ?>" class="pdp-btn pdp-btn-cart" id="pdpAddBtn">
+            <a href="carrinho.php?operacao=incluir&id_produto=<?= $id_produto ?>" class="pdp-btn pdp-btn-cart" id="pdpAddBtn">
                 Adicionar ao carrinho
                 <i class="fi fi-rr-shopping-cart"></i>
             </a>

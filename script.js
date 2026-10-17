@@ -486,12 +486,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Fecha ao clicar fora do cartão.
-    popup.addEventListener('click', function (event) {
-        if (event.target === popup) {
-            popup.style.display = 'none';
-        }
-    });
 });
 
 
