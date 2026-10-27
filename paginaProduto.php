@@ -43,16 +43,6 @@
         <div class="pdp-main-image-box"> 
             <img src="<?= htmlspecialchars($imagem) ?>" alt="<?= htmlspecialchars($nome) ?>" class="pdp-main-image" id="pdpMainPreview"> 
         </div> 
-        <div class="pdp-thumbnails-box"> 
-            <ul class="pdp-thumbnails-list"> 
-                <li class="pdp-thumb-item pdp-thumb-active"> 
-                    <img src="<?= htmlspecialchars($imagem) ?>" alt="Vela - Vista Principal" class="pdp-thumb-img"> 
-                </li> 
-                <li class="pdp-thumb-item"> 
-                    <img src="<?= htmlspecialchars($imagem) ?>" alt="Vela - Vista Secundária" class="pdp-thumb-img"> 
-                </li> 
-            </ul> 
-        </div> 
     </div> 
     
     <div class="pdp-info"> 

@@ -73,6 +73,7 @@
                                     <i class="fi fi-rr-picture"></i>
                                     <span class="arquivo-texto">Escolher imagem</span>
                                 </label>
+                                <p id="erroTamanho" style="color: #e74c3c; font-weight: bold; margin-top: 10px; display: none;"></p>
 
                                 <label for="imagemEditar" class="arquivo-label btn-camera" hidden>
                                     <i class="fi fi-rr-camera"></i> Tirar foto
@@ -84,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="botao-customizado" type="submit">Salvar</button>
+                    <button id="btnEnviar" class="botao-customizado" type="submit">Salvar</button>
                 </form>
             </div>
         </div>
@@ -103,6 +104,7 @@
                 <div class="form-container sign-up-container">
                     <form action="cadastrar.php" method="POST" enctype="multipart/form-data">
                         <h1>Cadastrar Conta</h1>
+                        <p id="erroCadastro" class="erro-login"></p>
                         <input type="text" placeholder="Nome" name="nome" required/>
                         <input type="email" placeholder="Email" name="email" required/>
                         <input type="password" placeholder="Senha" name="senha" required />
@@ -113,17 +115,19 @@
                                 <i class="fi fi-rr-picture"></i>
                                 <span class="arquivo-texto">Escolher imagem</span>
                             </label>
+                            <p id="erroTamanho" style="color: #e74c3c; font-weight: bold; margin-top: 10px; display: none;"></p>
 
                             <label for="imagemCadastro" class="arquivo-label btn-camera" hidden>
                                 <i class="fi fi-rr-camera"></i> Tirar foto
                             </label>
                         </div>
-                        <button  type="submit">Cadastrar</button>
+                        <button  id="btnEnviar" type="submit">Cadastrar</button>
                     </form>
                 </div>
                 <div class="form-container sign-in-container">
                     <form action="login.php" method="POST">
                         <h1>Entrar</h1>
+                        <p id="erroLogin" class="erro-login"></p>
                         <input type="email" name="usuario" placeholder="Email" required/>
                         <input type="password" name="senha" placeholder="Senha" required/>
                         <a href="esqueci.php">Esqueci minha senha</a>

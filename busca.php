@@ -70,7 +70,6 @@ $total    = count($produtos);
                     </a>
                     <div class="info">
                         <h3><?= htmlspecialchars($produto['nome']) ?></h3>
-                        <p class="descricao"><?= htmlspecialchars($produto['descricao']) ?></p>
 
                         <?php if ($notas): ?>
                             <div class="notas">

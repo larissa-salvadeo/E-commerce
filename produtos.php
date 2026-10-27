@@ -7,7 +7,7 @@
         'cerejeira' => ['Floral', 'Suave', 'Calmante'],
         'baunilha'  => ['Doce', 'Cremoso', 'Acolhedor'],
         'manga'     => ['Frutal', 'Floral', 'Doce'],
-        'bambu'     => ['Verde', 'Fresco', 'Amadeirado'],
+        'bambu'     => ['Sereno', 'Fresco', 'Amadeirado'],
     ];
 
     $sql = "SELECT id_produto, nome, descricao, valor_unitario, imagem 
@@ -61,7 +61,6 @@
                     </a>
                     <div class="info">
                         <h3><?= htmlspecialchars($produto['nome']) ?></h3>
-                        <p class="descricao"><?= htmlspecialchars($produto['descricao']) ?></p>
 
                         <?php if ($notas): ?>
                             <div class="notas">

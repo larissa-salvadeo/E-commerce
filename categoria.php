@@ -6,12 +6,12 @@
     $categorias = [
         'ambiente' => [
             'nome'  => 'Ambiente',
-            'imgBanner'  => 'Imagens/categAmb.jpg',
+            'imgBanner'  => 'Imagens/categAmb.png',
             'frase' => 'Aromas que transformam o seu espaço em um abrigo.',
         ],
         'estudo' => [
             'nome'  => 'Estudo',
-            'imgBanner'  => 'Imagens/categEst.jpg',
+            'imgBanner'  => 'Imagens/categEst.png',
             'frase' => 'Aromas que acalmam a mente e despertam o foco.',
         ],
     ];
@@ -20,7 +20,7 @@
         'cerejeira' => ['Floral', 'Suave', 'Calmante'],
         'baunilha'  => ['Doce', 'Cremoso', 'Acolhedor'],
         'manga'     => ['Frutal', 'Floral', 'Doce'],
-        'bambu'     => ['Verde', 'Fresco', 'Amadeirado'],
+        'bambu'     => ['Sereno', 'Fresco', 'Amadeirado'],
     ];
 
     $slug = $_GET['cat'] ?? 'ambiente';
@@ -100,7 +100,6 @@
                     </a>
                     <div class="info">
                         <h3><?= htmlspecialchars($produto['nome']) ?></h3>
-                        <p class="descricao"><?= htmlspecialchars($produto['descricao']) ?></p>
 
                         <?php if ($notas): ?>
                             <div class="notas">

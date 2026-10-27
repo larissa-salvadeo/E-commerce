@@ -15,17 +15,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Verifica se o email já existe
-    $sql = "SELECT email FROM usuario WHERE email = :email AND excluido = FALSE";
+    $sql = "SELECT excluido FROM usuario WHERE email = :email LIMIT 1";
 
     $select = $conn->prepare($sql);
     $select->bindParam(":email", $email);
     $select->execute();
 
-    if ($select->fetch()){
-        header("Location: index.php?cadastro=erro&msg=Este%20email%20ja%20esta%20cadastrado");
-        exit;
-    }
+    $usuarioExistente = $select->fetch(PDO::FETCH_ASSOC);
 
+    if ($usuarioExistente) {
+
+        if ((int)$usuarioExistente['excluido'] === 1) {
+            header("Location: index.php?cadastro=erro&msg=conta_excluida");
+            exit;
+        } else {
+            header("Location: index.php?cadastro=erro&msg=email_ja_cadastrado");
+            exit;
+        }
+    }
     // Cadastra o usuário
     $varSQL = "INSERT INTO usuario (nome, email, senha, telefone)
                VALUES (:nome, :email, :senha, :telefone)";
@@ -78,8 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
 
     header(
-        "Location: index.php?cadastro=erro&msg=Erro%20ao%20realizar%20o%20cadastro"
-    );
+        "Location: index.php?cadastro=erro&msg=Erro%20ao%20realizar%20o%20cadastro");
     exit;
 }
 }

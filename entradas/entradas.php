@@ -148,7 +148,7 @@ $select = $conn->query($varSQL);
 
     <main style="width: 100%; text-align: center; display: block;">
     
-    <table style="border: 2px #5F8565 dotted; border-collapse: collapse; width: 80%; margin: 0 auto;">
+    <table style="border: 2px #5F8565 dotted; border-collapse: collapse; width: 80%; margin: 20px auto;">
         <thead style="background-color: #5F8565; color: white;">
             <tr>
                 <th style="border: 1px #5F8565 dotted; padding: 10px;">ID</th>

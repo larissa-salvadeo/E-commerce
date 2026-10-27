@@ -9,15 +9,37 @@ $_SESSION["sessaoSite"]="https://eq.projetoscti.com.br". $_SESSION["raiz"]; ?>
         <div class="slideshow-container">
             <div class="slides-track" id="track">
                 <div class="mySlides">
-                    <img src="Imagens/Slide1.png" alt="Slide 1">
+                    <picture>
+                        <img src="Imagens/carrossel/velasCarrossel.webp" alt="Slide 1">
+                    </picture>               
                 </div>
 
                 <div class="mySlides">
-                    <img src="Imagens/Slide2.png" alt="Slide 2">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="Imagens/carrossel/bambu.webp">
+                        <img src="Imagens/carrossel/bambu.jpg" alt="Slide 2">
+                    </picture>     
                 </div>
 
                 <div class="mySlides">
-                    <img src="Imagens/Slide3.png" alt="Slide 3">
+                   <picture>
+                        <source media="(max-width: 768px)" srcset="Imagens/carrossel/flordecerejeira.webp">
+                        <img src="Imagens/carrossel/florCerejeira.jpg" alt="Slide 3">
+                    </picture>     
+                </div>
+
+                <div class="mySlides">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="Imagens/carrossel/baunilha.webp">
+                        <img src="Imagens/carrossel/baunilha.jpg" alt="Slide 4">
+                    </picture>     
+                </div>
+
+                <div class="mySlides">
+                    <picture>
+                        <source media="(max-width: 768px)" srcset="Imagens/carrossel/manga.webp">
+                        <img src="Imagens/carrossel/manga.jpg" alt="Slide 5">
+                    </picture>     
                 </div>
             </div>
             
@@ -28,25 +50,26 @@ $_SESSION["sessaoSite"]="https://eq.projetoscti.com.br". $_SESSION["raiz"]; ?>
         <div class="dots-container">
             <span class="dot" onclick="currentSlide(0)"></span> 
             <span class="dot" onclick="currentSlide(1)"></span> 
-            <span class="dot" onclick="currentSlide(2)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span> 
+            
         </div>
         <!------------CATEGORIAS------------>
         <section id="catAmb"> 
-            <img src="Imagens/categAmb.jpg" alt="Categoria Ambiente">
+            <img src="Imagens/categAmb.png" alt="Categoria Ambiente">
             <div class="texto">ambiente</div>
             <a href="categoria.php?cat=ambiente" class="verMais" >ver mais</a>
         </section>
         <section id="catEst"> 
-            <img src="Imagens/categEst.jpg" alt="Categoria Estudo">
+            <img src="Imagens/categEst.png" alt="Categoria Estudo">
             <div class="texto">estudo</div>
             <a href="categoria.php?cat=estudo" class="verMais">ver mais</a>
         </section>
 
         <!------------VÍDEO------------>
         <figure>
-            <video autoplay muted playsinline controls width="100%" loop>
-                <source src="Imagens/Video.mp4" type="video/mp4">
-            </video>
+            <iframe src="https://www.youtube.com/embed/wWH5MnRoKQo?si=NOn_vXTl3T4d_zeT" title="Velas Aromáticas Lumière" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </figure>
     </main>
     <?php include("_rodape.php"); ?>

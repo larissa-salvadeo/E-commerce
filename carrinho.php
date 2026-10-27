@@ -395,8 +395,9 @@ if (isset($_GET['reservado']) && $statusCompra === 'reservado'
                 <div class="popup-reserva-item">
                     <div class="popup-reserva-icone">&#128205;</div>
                     <div>
-                        <h3>Local de pagamento e retirada</h3>
-                        <p>SALA X</p>
+                        <h3>Local de Pagamento e Retirada</h3>
+                        <p>SALA 6 - Localizada no último bloco</p>
+                        <a href="https://www.ubieventos.com.br/viewMap/32o-semana-do-colegio-2026/?local=33" target="_blank" style="color: #007bff; text-decoration: underline;">Ver localização</a>
                     </div>
                 </div>
 
@@ -405,6 +406,14 @@ if (isset($_GET['reservado']) && $statusCompra === 'reservado'
                     <div>
                         <h3>Retirada do pedido</h3>
                         <p>Até o dia 23/10/2026. Horário: 7:00 ao 12:15</p>
+                    </div>
+                </div>
+
+                <div class="popup-reserva-item">
+                    <div class="popup-reserva-icone">⚠️</div>
+                    <div>
+                        <h3>ATENÇÃO</h3>
+                        <p>O produto estará sujeito a esgotamento caso seja retirado muito tempo após a reserva</p>
                     </div>
                 </div>
             </div>

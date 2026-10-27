@@ -188,6 +188,60 @@ if (login === 'sucesso' || cadastro === 'sucesso') {
         window.location.pathname
     );
 }
+else if (login === 'erro' || cadastro === 'erro') {
+   modal.style.display = 'flex';
+
+    if (login === 'erro') {
+        // Mostra o lado do login
+        containerLogin.classList.remove('right-panel-active');
+
+        const erroLogin = document.getElementById('erroLogin');
+
+        if (erroLogin) {
+            if (msg === 'Senha incorreta') {
+                erroLogin.textContent = 'Senha incorreta! Tente novamente.';
+            }
+            else if (msg === 'Usuario nao encontrado') {
+                erroLogin.textContent = 'E-mail não cadastrado!';
+            }
+            else {
+                erroLogin.textContent = 'Ocorreu um erro no login.';
+            }
+
+            erroLogin.style.display = 'block';
+            erroLogin.style.color = 'white';
+        }
+    }
+
+    if (cadastro === 'erro') {
+        // Mostra o lado do cadastro
+        containerLogin.classList.add('right-panel-active');
+
+        const erroCadastro = document.getElementById('erroCadastro');
+
+        if (erroCadastro) {
+            if (msg === 'email_ja_cadastrado') {
+                erroCadastro.textContent = 'Este e-mail já está cadastrado!';
+            }
+            else if (msg === 'conta_excluida') {
+                erroCadastro.textContent = 'Este e-mail pertence a uma conta excluída.';
+            }
+            else {
+                erroCadastro.textContent = 'Não foi possível realizar o cadastro.';
+            }
+
+            erroCadastro.style.display = 'block';
+            erroCadastro.style.color = 'white';
+        }
+    }
+
+    window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+    );
+    
+}
 
 /* POP-UP DO USUÁRIO */
 
@@ -523,4 +577,30 @@ telefone.addEventListener("input", function () {
     valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
 
     telefone.value = valor;
+});
+
+/*Validação de tamanho*/
+document.getElementById('imagem').addEventListener('change', function() {
+  const arquivo = this.files[0];
+  const mensagemErro = document.getElementById('erroTamanho');
+  const btnEnviar = document.getElementById('btnEnviar');
+
+  // 1. Define o limite de tamanho em Megabytes (mude o valor abaixo se precisar)
+  const LIMITE_MB = 0.5; 
+  const LIMITE_BYTES = LIMITE_MB * 1024 * 1024;
+
+  // Reseta os estados de erro e botão
+  mensagemErro.style.display = 'none';
+  btnEnviar.disabled = false;
+
+  if (arquivo) {
+    // 2. Verifica se o tamanho do arquivo passou do limite
+    if (arquivo.size > LIMITE_BYTES) {
+      mensagemErro.textContent = `A imagem é muito pesada! O tamanho máximo é de ${LIMITE_MB}MB.`;
+      mensagemErro.style.display = 'block';
+      
+      this.value = ''; // Limpa o campo para o usuário não conseguir enviar
+      btnEnviar.disabled = true; // Bloqueia o botão de envio por segurança
+    }
+  }
 });

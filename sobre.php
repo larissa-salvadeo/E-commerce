@@ -9,7 +9,7 @@
         <!------------Sobre a Lumière?------------>
         <div class="img-sobre">
             <h1 class="titulo-img">Sobre a Lumière</h1>
-            <img src="Imagens/Sobre.jpg" alt="Imagem - Missão, Visão e Valores" >
+            <img src="Imagens/sobre/Sobre.jpg" alt="Imagem - Missão, Visão e Valores" >
         </div>
         <div class="quem" id="linkQuem">
             <div id="texto-quem">
@@ -18,7 +18,7 @@
                 <p>A Lumière nasceu no Colégio CTI com o propósito de transformar a rotina de estudos e descanso em momentos de mais equilíbrio, foco e bem-estar através da aromaterapia. Produzidas artesanalmente com cera vegetal e essências marcantes, nossas velas contam com quatro fragrâncias exclusivas, desenvolvidas especialmente para estimular a concentração durante o aprendizado ou proporcionar o relaxamento necessário para desacelerar. Criado para a Semana do Colégio CTI, nosso projeto une o empreendedorismo jovem e o carinho do feito à mão, convidando você a iluminar o seu espaço e renovar as suas energias!</p>
             </div>
             <div id="img-quem">
-                <img src="Imagens/equipe.png" alt="Desenvolvedores">
+                <img src="Imagens/sobre/equipeLumiere.webp" alt="Desenvolvedores">
             </div>
         </div>
         <!------------NOSSA MISSÃO, VISÃO E VALORES------------>
@@ -56,27 +56,27 @@
             <div class="fioDev"></div>
             <div class="lista-devs">
                 <section id="dev1">  
-                    <img src="Imagens/dev1.png" alt="Desenvolvedor 1"> 
+                    <img src="Imagens/sobre/anaJulia.webp" alt="Desenvolvedor 1"> 
                     <h3>Ana Júlia Pereira da Silva Leal</h3> 
                 </section> 
 
                 <section id="dev2">  
-                    <img src="Imagens/dev2.png" alt="Desenvolvedor 2"> 
+                    <img src="Imagens/sobre/julia.webp" alt="Desenvolvedor 2"> 
                     <h3>Julia Gonçalves de Souza Campos</h3> 
                 </section> 
 
                 <section id="dev3"> 
-                    <img src="Imagens/dev3.png" alt="Desenvolvedor 3"> 
+                    <img src="Imagens/sobre/larissa.webp" alt="Desenvolvedor 3"> 
                     <h3>Larissa Salvadeo Santana</h3> 
                 </section> 
 
                 <section id="dev4">  
-                    <img src="Imagens/dev4.png" alt="Desenvolvedor 4"> 
+                    <img src="Imagens/sobre/pietra.webp" alt="Desenvolvedor 4"> 
                     <h3>Pietra Borgo Bernardi</h3> 
                 </section>     
 
                 <section id="dev5">  
-                    <img src="Imagens/dev5.png" alt="Desenvolvedor 5"> 
+                    <img src="Imagens/sobre/thales.webp" alt="Desenvolvedor 5"> 
                     <h3>Thales Navarro Neves</h3> 
                 </section>
             </div>

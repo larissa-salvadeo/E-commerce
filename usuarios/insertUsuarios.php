@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Verifica se o email já existe
-    $sql = "SELECT email FROM usuario WHERE email = :email";
+    $sql = "SELECT email FROM usuario WHERE email = :email AND excluido = false";
 
     $select = $conn->prepare($sql);
     $select->bindParam(":email", $email);

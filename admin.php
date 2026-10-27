@@ -62,6 +62,11 @@ SaiseHacker();
 
         </div>
 
+        <a href="relatorio.php" class="botao-relatorio">
+            <i class="fi fi-rr-file"></i>
+            Gerar Relatório
+        </a>
+
     </div>
 
 </main>
